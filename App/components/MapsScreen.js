@@ -1,10 +1,10 @@
-import { MapView, Marker } from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Dimensions} from 'react-native';
 import {data} from './Maps/Data';
 
 
-export default function MapsScreen() {
+function Map() {
     console.log(data)
     return (
     <View style={styles.container}>
@@ -49,23 +49,23 @@ export default function MapsScreen() {
   );
 }
 
+export default function MapsScreen() {
+  return (
+    <Map></Map>
+  );
+}
 
 const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'pink',
-    },
-  
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      // backgroundColor: '#fff',
+      backgroundColor: 'pink',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'flex-end',
     },
     map: {
-      width: Dimensions.get('window').width,
-      height: Dimensions.get('window').height,
+      // width: Dimensions.get('window').width,
+      // height: Dimensions.get('window').height,
+      ...StyleSheet.absoluteFillObject,
     },
 });

@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './components/HomeScreen';
 import ProfileScreen from './components/ProfileScreen';
-// import MapsScreen from './components/MapsScreen';
+import MapsScreen from './components/MapsScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
@@ -11,13 +11,13 @@ import { Text, View } from 'react-native';
 const Tab = createBottomTabNavigator();
 
 // Fonction à supprimer Pour tester la fonction de la map de Maxime et décommenter l'import (j'ai des problèmes de tests avec mon pc)
-function MapsScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Maps Screen</Text>
-    </View>
-  );
-}
+// function MapsScreen() {
+//   return (
+//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+//       <Text>Maps Screen</Text>
+//     </View>
+//   );
+// }
 
 function App() {
   return (
