@@ -1,0 +1,4 @@
+.idea
+App/.expo
+App/package-lock.json
+App/node_modules
