@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+    db:
+        image: mysql:latest
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        networks:
+        - backend
+        volumes:
+            - /var/lib/mysql
+            - ./mysql-dump:/docker-entrypoint-initdb.d
+        environment:
+            MYSQL_ROOT_PASSWORD: admin
+            MYSQL_DATABASE: strolly
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin
+            MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_TCP_PORT: 3308
+            MYSQL_PORT: 3308
+        ports:
+            - "3308:3308"
+        cap_add:
+            - SYS_NICE
+        expose:
+            - 3308
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on:
+        - db
+        networks:
+        - backend
+        ports:
+            - "8081:80"
+        links:
+            - "db:mysql"
+        environment:
+            PMA_HOST: "mysql"
+            PMA_PORT: 3308
+    backend:
+        container_name: strolly_backend
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        depends_on:
+        - db
+        networks:
+        - backend
+        links:
+        - db
+        ports:
+         - 8082:8082
+        expose:
+        - 8082
+        command:  ["./waitforit.sh", "mysql:3308", "--", "node", "main.js"]
+networks:
+    backend:

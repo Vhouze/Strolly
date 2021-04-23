@@ -1,0 +1,10 @@
+
+CREATE DATABASE IF NOT EXISTS strolly;
+USE strolly;
+
+CREATE TABLE IF NOT EXISTS users
+(
+  id serial PRIMARY KEY,
+  password VARCHAR(100) NOT NULL,
+  pseudo VARCHAR(50) UNIQUE NOT NULL
+);
