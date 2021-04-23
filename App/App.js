@@ -7,7 +7,7 @@ import MapsScreen from './components/MapsScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
-
+/// ETSTTSTST
 const Tab = createBottomTabNavigator();
 
 // Fonction à supprimer Pour tester la fonction de la map de Maxime et décommenter l'import (j'ai des problèmes de tests avec mon pc)
