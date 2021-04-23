@@ -1,13 +1,15 @@
 import MapView, { Marker } from 'react-native-maps';
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Dimensions} from 'react-native';
-import {data} from './Maps/Data';
+import {data} from '../../Components/Maps/Data';
 
 
-function Map() {
+function Map({navigation}) {
     console.log(data)
+    const move = () => {navigation.navigate('Swipe Screen')};
     return (
     <View style={styles.container}>
+      <Button title="next" onPress={move}/>
         <MapView
             style={styles.map}
             initialRegion={{
