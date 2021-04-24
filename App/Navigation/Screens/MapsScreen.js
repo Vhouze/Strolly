@@ -1,14 +1,51 @@
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Dimensions} from 'react-native';
-import {data} from '../../Components/Maps/Data';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Dimensions, ColorPropType} from 'react-native';
+import {dataMap} from '../../Components/Maps/DataMap';
+import getDirections from 'expando-react-native-google-maps-directions';
+// import Geolocation from '@react-native-community/geolocation';
+// geolocation.setRNConfiguration(config);
+// Geolocation.getCurrentPosition(info => console.log(info));
+import Color from '../../Constant/Color';
 
-const origin = { latitude: 3.367857, longitude: -76.531143 };
-const destination = { latitude: 3.366294, longitude: -76.531968 };
+const exdata = {
+
+ destination: {
+   latitude: dataMap[0].latitude,
+   longitude: dataMap[0].longitude,
+ },
+ params: [
+   {
+     key: "travelmode",
+     value: "walking"        // may be "walking", "bicycling" or "transit" as well
+   },
+   {
+     key: "dir_action",
+     value: "navigate"       // this instantly initializes navigation using the given travel mode
+   }
+ ],
+// waypoints: [
+//   {
+//     latitude: -33.8600025,
+//     longitude: 18.697452
+//   },
+//   {
+//     latitude: -33.8600026,
+//     longitude: 18.697453
+//   },
+//      {
+//     latitude: -33.8600036,
+//     longitude: 18.697493
+//   }
+// ]
+}
+
+const travel = () => {getDirections(exdata)};
+
 
 function Map({navigation}) {
-    console.log(data)
+    console.log(dataMap)
     return (
     <View style={styles.container}>
         <MapView
@@ -19,32 +56,48 @@ function Map({navigation}) {
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
             }}
-            showsUserLocation={true} >
+            showsUserLocation={true}
+            showsBuildings = {true}
+            >
             <Marker
-            key= {data[0].id}
+            key= {dataMap[0].id}
             coordinate=
-            {{latitude: data[0].latitude,
-               longitude:  data[0].longitude}}
-            title={data[0].title}
-            description={data[0].description}
-            pinColor = {data[0].color}
+            {{latitude: dataMap[0].latitude,
+               longitude:  dataMap[0].longitude}}
+            title={dataMap[0].title}
+            description={dataMap[0].description}
+            pinColor = {dataMap[0].color}
+            onPress={travel}
             /> 
 
 
 
           <MapViewDirections
-            origin={{latitude: data[0].latitude, longitude:  data[0].longitude}}
-            destination={{latitude: data[1].latitude, longitude:  data[1].longitude}}
+            origin={{latitude: dataMap[0].latitude, longitude:  dataMap[0].longitude}}
+            destination={{latitude: dataMap[1].latitude, longitude:  dataMap[1].longitude}}
             apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
+            mode="WALKING"
+           
+            strokeColor= {Color.second}
+            strokeWidth={5}
+            onStart={(params) => {
+              console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
+            }}
+            onReady={result => {
+              console.log(`Distance: ${result.distance} km`)
+              console.log(`Duration: ${result.duration} min.`)}}
+
+
           />
             <Marker
             key= {data[1].id}
             coordinate=
-            {{latitude: data[1].latitude,
-               longitude:  data[1].longitude}}
-            title={data[1].title}
-            description={data[1].description}
-            pinColor = {data[1].color}
+            {{latitude: dataMap[1].latitude,
+               longitude:  dataMap[1].longitude}}
+            title={dataMap[1].title}
+            description={dataMap[1].description}
+            pinColor = {dataMap[1].color}
+
             />
 
         </MapView>

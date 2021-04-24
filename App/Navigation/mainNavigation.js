@@ -10,6 +10,8 @@ import MapsScreen from './Screens/MapsScreen';
 import MoodScreen from './Screens/MoodScreen';
 import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
+import Color from '../Constant/Color';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,8 +25,8 @@ const MainNavigator = function mainNavigator ({navigation}){
     <NavigationContainer>
           <Stack.Navigator initialRouteName="LoginScreen"
           screenOptions={{
-            headerStyle: {backgroundColor:  "yellow"},
-            headerTintColor: 'black',
+            headerStyle: {backgroundColor:  Color.second},
+            headerTintColor: Color.third,
             headerTitleStyle: {fontWeight: 'bold'}}}>
             
           <Stack.Screen
@@ -41,6 +43,7 @@ const MainNavigator = function mainNavigator ({navigation}){
           <Stack.Screen
           name="Swipe Screen"
           component={SwipeScreen}
+          options={({route}) => ({title : route.params.title})}
           />
 
           <Stack.Screen
@@ -58,9 +61,9 @@ const MainNavigator = function mainNavigator ({navigation}){
 
 const TabNavigator = function TabNavigator()  {
   return(
-      <Tab.Navigator tabBarOptions= { {activeTintColor: 'yellow', labelStyle: { fontSize: 5}, showLabel: false, activeBackgroundColor: 'yellow', height: 2, backgroundColor: 'yellow',}}>
-            <Tab.Screen name="Mood Screen" component={MoodScreen} options={{tabBarIcon: () => (<MaterialCommunityIcons name="home" color={'#2E90FF'} size= {35} /> ) }} />
-            <Tab.Screen name="Profil Screen" component={ProfilScreen}  options={{ tabBarIcon: () => (<MaterialCommunityIcons name="account" color={'#2E90FF'} size= {35} /> ) }}/>
+      <Tab.Navigator tabBarOptions= { {activeTintColor: Color.second, labelStyle: { fontSize: 5}, showLabel: false, activeBackgroundColor:Color.second , height: 2, backgroundColor: Color.second,}}>
+            <Tab.Screen name="Mood Screen" component={MoodScreen} options={{tabBarIcon: () => (<MaterialCommunityIcons name="home" color={Color.first} size= {35} /> ) }} />
+            <Tab.Screen name="Profil Screen" component={ProfilScreen}  options={{ tabBarIcon: () => (<MaterialCommunityIcons name="account" color={Color.first} size= {35} /> ) }}/>
       </Tab.Navigator>
  
   );  

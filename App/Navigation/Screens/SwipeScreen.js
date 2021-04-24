@@ -1,7 +1,7 @@
 import { View, Text, Button } from 'react-native';
 import * as React from 'react';
 
-export default function SwipeScreen({navigation}) {
+export default function SwipeScreen({navigation,route}) {
 
   const move = () => {navigation.navigate('Maps Screen')};
 

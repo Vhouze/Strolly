@@ -1,4 +1,4 @@
-class Lieux {
+export class Lieux {
     constructor(id, title, color, description,latitude, longitude ){
         this.id = id;
         this.title = title;
@@ -8,6 +8,14 @@ class Lieux {
         this.longitude = longitude;
 
     }
-}
+};
 
-export default Lieux;
+export class Mood {
+    constructor(id, title, image ){
+        this.id = id;
+        this.title = title;
+        this.image= image;
+    }
+};
+
+
