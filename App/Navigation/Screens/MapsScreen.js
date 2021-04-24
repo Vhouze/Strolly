@@ -90,7 +90,7 @@ function Map({navigation}) {
 
           />
             <Marker
-            key= {data[1].id}
+            key= {dataMap[1].id}
             coordinate=
             {{latitude: dataMap[1].latitude,
                longitude:  dataMap[1].longitude}}

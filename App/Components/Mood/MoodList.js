@@ -1,10 +1,25 @@
-import React from 'react';
+import React , {useState} from 'react';
+import * as Animatable from 'react-native-animatable';
 
-import {TouchableOpacity, View, Text, StyleSheet, Platform, TouchableNativeFeedback} from 'react-native';
+import {TouchableOpacity, View, Text, StyleSheet,ImageBackground, Platform, TouchableNativeFeedback} from 'react-native';
+import Color from '../../Constant/Color';
 
 const MoodList = function moodList ({navigation, id, title , image}){
+  
+    const [action,setAction]=useState(null)
 
-    const nextPage = () => {navigation.navigate(('Swipe Screen'),{title : title})};
+
+    const nextPage = () => {
+
+        setAction ('fadeOut')
+        
+        setTimeout(() => {
+        navigation.navigate(('Swipe Screen'),{title : title})
+        setAction (null);}, 1000)
+        
+        
+        ;
+    };
 
     let TouchableCmp = TouchableOpacity;
 
@@ -13,12 +28,16 @@ const MoodList = function moodList ({navigation, id, title , image}){
     }
     return(
         <View style={styles.gridItem}>
-            <TouchableCmp style={{flex:1}}
-            onPress={nextPage}>
-            <View style={{...styles.container,...{backgroundColor: 'white'}}} >
+        <Animatable.View animation={action} duration = {1000}  style={{flex:1}}>
+            <TouchableCmp style={{flex:1}} onPress={nextPage}>
+      
+            <View style={{...styles.container}} >
+                <ImageBackground source={{uri:image}} style={styles.bgImage}>
                 <Text style ={styles.title} numberofLines={2}>{title}</Text>
+                </ImageBackground>
             </View>
         </TouchableCmp>
+        </Animatable.View>
     </View>
     );
 };
@@ -27,6 +46,18 @@ const MoodList = function moodList ({navigation, id, title , image}){
 
 
 const styles = StyleSheet.create({
+
+    bgImage:{
+        width: '100%',
+        height:'100%',
+        borderRadius: 20,
+        justifyContent: 'center',
+        overflow: "hidden", 
+        borderWidth: 3,
+        borderColor: Color.second, 
+        
+    },
+
     gridItem: {
         flex: 1,
         margin: 15,
@@ -37,18 +68,26 @@ const styles = StyleSheet.create({
     },
     container: {
         flex:1,
-        borderRadius: 10,
-        shadowColor: 'black',
-        shadowOpacity: 0.26,
-        shadowOffset: {width: 0 , height: 2 },
-        shadowRadius: 10,
+        
+        shadowColor: Color.second,
+        shadowOpacity: 1,
+        shadowRadius: 25,
         padding: 15,
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
+        
+        
+
+        
+
     },
     title:{
         fontSize: 22,
-        textAlign: 'right',
+        color: "white",
+        textAlign: 'center',
+        fontWeight: 'bold',
+        textShadowColor:'black',
+        textShadowRadius:8,
     }
 });
     
