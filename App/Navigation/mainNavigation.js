@@ -23,7 +23,7 @@ const MainNavigator = function mainNavigator ({navigation}){
   return (
   
     <NavigationContainer>
-          <Stack.Navigator initialRouteName="LoginScreen"
+          <Stack.Navigator initialRouteName="Maps Screen"
           screenOptions={{
             headerStyle: {backgroundColor:  Color.second},
             headerTintColor: Color.third,
@@ -37,6 +37,7 @@ const MainNavigator = function mainNavigator ({navigation}){
           <Stack.Screen
             name="Mood Screen"
             component={TabNavigator}
+            options={{title : "Home"}}
 
           />
 

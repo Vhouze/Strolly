@@ -1,26 +1,40 @@
 import React, {useState} from 'react';
-import {Animated, View, Text, Button,StyleSheet, FlatList, TouchableOpacity, Platform } from 'react-native';
+import {Animated, View, Text, Button,StyleSheet, Image } from 'react-native';
+import Color from '../../Constant/Color';
+import * as Animatable from 'react-native-animatable';
 
 export default function ProfilScreen() {
 
-  const value = useState(new Animated.ValueXY({x:0, y:0}))[0]
 
-  function moveBall(){ 
-    Animated.timing(value, { 
-      toValue: { x: 100, y:100 },
-      duration:1000,
-      useNativeDriver: false
-    }).start()
-  }
 
     return (
       
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Animated.View style={value.getLayout()}>
-          <View style={{ width:100, height: 100, borderRadius: 100/2, backgroundColor:'red' }}/>
-        </Animated.View>
-        <TouchableOpacity onPress={moveBall}><Text>Click</Text></TouchableOpacity>
+      
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: Color.first }}>
+          <Image 
+          style={{width: 160, height: 160,borderRadius: 200 / 2, overflow: "hidden", borderWidth: 3,borderColor: Color.second, alignItems:'center', justifyContent:'center', marginBottom:30, marginTop:30,}} 
+          source={{uri: 'https://pbs.twimg.com/profile_images/1377261846827270149/iUn8fDU6_400x400.jpg'}} 
+          />
+          <View style={styles.containerProfil}>
+            <Text style={{fontSize:15}}>Vous êtes connecté en tant que </Text><Text style={{fontSize:24, fontWeight:'bold', color: Color.second }}>Thomas</Text>
+          </View>   
+  
+
+
       </View>
+
+
+
     );
 }
 
+
+const styles = StyleSheet.create({
+  
+  containerProfil:{
+    flexDirection:'row',
+    marginVertical: 15,
+    alignItems: 'center',
+  },
+
+});
