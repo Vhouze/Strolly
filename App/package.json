@@ -29,7 +29,9 @@
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
     "react-native-web": "^0.15.7",
-    "rnal": "^0.2.1"
+    "react-tinder-card": "^1.4.0",
+    "rnal": "^0.2.1",
+    "styled-components": "^5.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
