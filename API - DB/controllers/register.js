@@ -22,6 +22,7 @@ module.exports = {
             	res.status(403).send(data);
             	return;
     		}
+    		//insert in db
     		database.sqlQueryOptions("INSERT INTO users(pseudo, password) VALUES (?, ?)", [pseudo, hash]).then(result => {
     			data.code = "SUCCESS"
       			data.message = "User created"

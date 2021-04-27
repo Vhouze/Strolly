@@ -1,5 +1,6 @@
 var database = require('./database');
 const bcrypt = require('bcrypt');
+var jwt = require('./jwt')
 
 module.exports = {
     PostLogin: function (app, req, res) {
@@ -19,9 +20,9 @@ module.exports = {
             bcrypt.compare(password, result[0].password, function(cmperr, cmpres) {
                 if (cmpres) {
                     //generate token
-                    //TODO
+                    let token = jwt.GenerateToken(result[0].id, "REFRESH_TOKEN");
                     data.code = "SUCCESS"
-                    data.message = "Logged in"
+                    data.message = {token: token, id: result[0].id}
                     res.status(200).send(data)
                     return;
                 } else {
