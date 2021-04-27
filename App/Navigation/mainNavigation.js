@@ -10,6 +10,7 @@ import MapsScreen from './Screens/MapsScreen';
 import MoodScreen from './Screens/MoodScreen';
 import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
+import debug from './Screens/debug';
 import Color from '../Constant/Color';
 
 
@@ -23,7 +24,7 @@ const MainNavigator = function mainNavigator ({navigation}){
   return (
   
     <NavigationContainer>
-          <Stack.Navigator initialRouteName="Maps Screen"
+          <Stack.Navigator initialRouteName="Login Screen"
           screenOptions={{
             headerStyle: {backgroundColor:  Color.second},
             headerTintColor: Color.third,

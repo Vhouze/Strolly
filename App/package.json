@@ -28,7 +28,9 @@
     "react-native-reanimated": "^2.1.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.1.1",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "^0.15.7",
+    "react-spring": "^9.1.2",
     "react-tinder-card": "^1.4.0",
     "rnal": "^0.2.1",
     "styled-components": "^5.2.3"

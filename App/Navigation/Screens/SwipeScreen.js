@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 import TinderCard from 'react-tinder-card'
 // import Activités from '../Db/Activités.json'
 
+
 const Container = styled.View`
     display: flex;
     align-items: center;
@@ -58,24 +59,24 @@ const InfoText = styled.Text`
 
 const db = [
   {
-    name: 'Richard Hendricks',
-    img: require('../../assets/img/Swipe/1.jpeg')
+    name: 'IA Drinks',
+    img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKtppjr06hahJbvcxsl9bJwMslGEdMEC-Ozg&usqp=CAU'
   },
   {
-    name: 'Erlich Bachman',
-    img: require('../../assets/img/Swipe/2.jpeg')
+    name: 'Python Beer',
+    img: 'https://img.huffingtonpost.com/asset/5f71b0c3220000f40082b9aa.jpeg?cache=7oQUZjKk3M&ops=scalefit_630_noupscale'
   },
   {
-    name: 'Monica Hall',
-    img: require('../../assets/img/Swipe/3.png')
+    name: 'Jupyter Coktail',
+    img:'https://www.herminenantes.fr/wp-content/uploads/2018/04/Meilleurs-bars-de-Nantes-pour-suivre-le-sport-1280x640.jpg'
   },
   {
-    name: 'Jared Dunn',
-    img: require('../../assets/img/Swipe/1.jpeg')
+    name: 'Linear Friends ',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuShFvjiM1mVcRGpHBDHS9iobL-jVVyH2fsQ&usqp=CAU'
   },
   {
-    name: 'Dinesh Chugtai',
-    img: require('../../assets/img/Swipe/2.jpeg')
+    name: 'Back Apero',
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6HPg7Cde5Pf5j4YfATjS0j8YTE7zA9nXzEg&usqp=CAU'
   }
 ]
 
@@ -107,7 +108,7 @@ export default function SwipeScreen({navigation,route}) {
           <TinderCard key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
           {/* <TinderCard key={character.Name} onSwipe={(dir) => swiped(dir, character.Name)} onCardLeftScreen={() => outOfFrame(character.Name)}> */}
           <Card>
-            <CardImage source={character.img}>
+            <CardImage source={{ uri : character.img}}>
             {/* <CardImage source={character.Photo}> */}
             {/* <CardTitle>{character.Name}</CardTitle> */}
             <CardTitle>{character.name}</CardTitle>

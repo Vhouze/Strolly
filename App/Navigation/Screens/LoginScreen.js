@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     color:"white"
   },
   loginTextBis:{
-    margin: "15px",
+    margin: 15,
     color:"grey"
   }
 });
