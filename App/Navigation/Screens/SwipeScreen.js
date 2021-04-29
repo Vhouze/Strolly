@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/native'
 import TinderCard from 'react-tinder-card'
-// import Activités from '../Db/Activités.json'
-
+import {Animated, View, Text, Button,StyleSheet, Image } from 'react-native';
 
 const Container = styled.View`
     display: flex;
@@ -100,12 +99,24 @@ export default function SwipeScreen({navigation,route}) {
   const move = () => {navigation.navigate('Maps Screen')};
 
 
+  const fo = () => {
+
+
+    navigation.navigate(('Maps Screen'))
+    
+    
+  
+};
+
+
   return (
-    <Container>
+    <View>
+      <Container>
       <Header>Where do you want to go ?</Header>
       <CardContainer>
         {characters.map((character) =>
-          <TinderCard key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+          <TinderCard  key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+            
           {/* <TinderCard key={character.Name} onSwipe={(dir) => swiped(dir, character.Name)} onCardLeftScreen={() => outOfFrame(character.Name)}> */}
           <Card>
             <CardImage source={{ uri : character.img}}>
@@ -118,6 +129,9 @@ export default function SwipeScreen({navigation,route}) {
         )}
       </CardContainer>
       {lastDirection ? <InfoText>You swiped {lastDirection}</InfoText> : <InfoText />}
-    </Container>
+      </Container>
+      <Button title="dnj" onPress={fo} />
+    </View>
   )
 }
+

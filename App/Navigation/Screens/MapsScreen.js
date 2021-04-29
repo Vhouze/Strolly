@@ -1,6 +1,6 @@
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { StyleSheet, Text, View,Image, TouchableOpacity, ScrollView, Button, Dimensions, ColorPropType} from 'react-native';
 import {dataMap} from '../../Components/Maps/DataMap';
 import getDirections from 'expando-react-native-google-maps-directions';
@@ -9,7 +9,8 @@ import getDirections from 'expando-react-native-google-maps-directions';
 // Geolocation.getCurrentPosition(info => console.log(info));
 import Color from '../../Constant/Color';
 import MyCarousel from '../../Components/Maps/Carousel';
-
+import * as Location from 'expo-location';
+import { createPortal } from 'react-dom';
 
 
 const exdata = {
@@ -35,6 +36,29 @@ const travel = () => {getDirections(exdata)};
 
 
 function Map({navigation}) {
+
+  const [location, setLocation] = useState({coords : {
+    latitude: dataMap[0].latitude,
+    longitude: dataMap[0].longitude}});
+
+  const [errorMsg, setErrorMsg] = useState(null);
+
+
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  console.log(location)
 
 
   const [distance, setDistance] = useState(0);
@@ -67,13 +91,10 @@ function Map({navigation}) {
                   <Image source={require('../../Assets/img/Map/beer.png')} style={{height: 35, width:35 }} />
                 </Marker>
                  
-           
-
-
 
               <MapViewDirections
-                origin={{latitude: dataMap[0].latitude, longitude:  dataMap[0].longitude}}
-                destination={{latitude: dataMap[1].latitude, longitude:  dataMap[1].longitude}}
+                origin={{latitude: location.coords.latitude, longitude:  location.coords.longitude}}
+                destination={{latitude: dataMap[0].latitude, longitude:  dataMap[0].longitude}}
                 apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
                 mode="WALKING"
                 
@@ -89,17 +110,6 @@ function Map({navigation}) {
                 }}
               />
 
-                <Marker
-                key= {dataMap[1].id}
-                coordinate=
-                {{latitude: dataMap[1].latitude,
-                   longitude:  dataMap[1].longitude}}
-                title={dataMap[1].title}
-                description={dataMap[1].description}
-                pinColor = {dataMap[1].color}
-                >
-                   <Image source={require('../../Assets/img/Map/home.png')} style={{height: 35, width:35 }} />
-                </Marker>
 
             </MapView>
             </View>

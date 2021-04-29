@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
-import React, {useState, useEffect} from 'react';
+import React, {Platform, useState, useEffect} from 'react';
 import LoginScreen from './Screens/LoginScreen';
 import MapsScreen from './Screens/MapsScreen';
 import MoodScreen from './Screens/MoodScreen';
@@ -13,7 +13,6 @@ import ProfilScreen from './Screens/ProfilScreen';
 import debug from './Screens/debug';
 import Color from '../Constant/Color';
 
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -21,14 +20,15 @@ const Tab = createBottomTabNavigator();
 
 const MainNavigator = function mainNavigator ({navigation}){
 
+
   return (
   
     <NavigationContainer>
           <Stack.Navigator initialRouteName="Login Screen"
           screenOptions={{
-            headerStyle: {backgroundColor:  Color.second},
+            headerStyle: {backgroundColor:  Color.second, height: 100},
             headerTintColor: Color.third,
-            headerTitleStyle: {fontWeight: 'bold'}}}>
+            headerTitleStyle: { fontWeight: 'bold',alignSelf: 'center' }}}>
             
           <Stack.Screen
             name="Login Screen"

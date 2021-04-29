@@ -1,11 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {Animated, View, Text, Button,StyleSheet, Image } from 'react-native';
 import Color from '../../Constant/Color';
 import * as Animatable from 'react-native-animatable';
+import * as Location from 'expo-location';
+
 
 export default function ProfilScreen() {
 
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
+  
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+   if (location != null ) {console.log(location.coords.latitude)}
 
     return (
       

@@ -11,11 +11,9 @@ const MoodList = function moodList ({navigation, id, title , image}){
 
     const nextPage = () => {
 
-        setAction ('fadeOut')
-        
-        setTimeout(() => {
+
         navigation.navigate(('Swipe Screen'),{title : title})
-        setAction (null);}, 1000)
+        
         
         
         ;
