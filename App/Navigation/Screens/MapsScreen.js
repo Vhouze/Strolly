@@ -145,7 +145,7 @@ Quisque porta dolor elit, non tincidunt turpis aliquet aliquam. Praesent sollici
             </View>
             <View style={{flex : 2}}></View>
             <TouchableOpacity onPress={travel} style={{ position : 'absolute', right: 15, bottom: 10}}>
-              <View  style={{ backgroundColor: '#FF496D', width: 100, height: 30, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"'center", textAlign:'center'}}>
+              <View  style={{ backgroundColor: '#FF496D', width: 100, height: 30, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
                 <Text style={{color: "white" , fontSize: 20, fontWeight:'bold',  textAlign:'center'}}>Let's GO</Text>
               </View>
             </TouchableOpacity>

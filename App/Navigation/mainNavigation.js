@@ -12,7 +12,7 @@ import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
 import debug from './Screens/debug';
 import Color from '../Constant/Color';
-
+import SC from './Screens/SwipeScreen';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -28,7 +28,7 @@ const MainNavigator = function mainNavigator ({navigation}){
           screenOptions={{
             headerStyle: {backgroundColor:  Color.second, height: 100},
             headerTintColor: Color.third,
-            headerTitleStyle: { fontWeight: 'bold',alignSelf: 'center' }}}>
+            headerTitleStyle: { fontWeight: 'bold' }}}>
             
           <Stack.Screen
             name="Login Screen"

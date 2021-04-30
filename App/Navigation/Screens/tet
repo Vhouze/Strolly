@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react'
-import { Button } from 'react-native'
-import styled from 'styled-components'
+import React, { useState } from 'react'
+import styled from 'styled-components/native'
 import TinderCard from 'react-tinder-card'
+import {Animated, View, Text, Button,StyleSheet, Image } from 'react-native';
 
 const Container = styled.View`
     display: flex;
@@ -49,11 +49,6 @@ const CardTitle = styled.Text`
     color: #fff;
 `
 
-const Buttons = styled.View`
-    margin: 20px;
-    z-index: -100;
-`
-
 const InfoText = styled.Text`
     height: 28px;
     justify-content: center;
@@ -84,65 +79,59 @@ const db = [
   }
 ]
 
-const alreadyRemoved = []
-let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
-
 export default function SwipeScreen({navigation,route}) {
-  const [characters, setCharacters] = useState(db)
+  const characters = db
   const [lastDirection, setLastDirection] = useState()
 
-  const childRefs = useMemo(() => Array(db.length).fill(0).map(i => React.createRef()), [])
-
   const swiped = (direction, nameToDelete) => {
-    console.log('removing: ' + nameToDelete + ' to the ' + direction)
+    console.log('removing: ' + nameToDelete)
     setLastDirection(direction)
-    alreadyRemoved.push(nameToDelete)
     if (direction === 'right') {
       console.log('right');
-      move();}
+      move();
+    }
+  }
 
+  const outOfFrame = (name) => {
+    console.log(name + ' left the screen!')
   }
 
   const move = () => {navigation.navigate('Maps Screen')};
 
-  const outOfFrame = (name) => {
-    console.log(name + ' left the screen!')
-    charactersState = charactersState.filter(character => character.name !== name)
-    setCharacters(charactersState)
-  }
 
-  const swipe = (dir) => {
-    const cardsLeft = characters.filter(person => !alreadyRemoved.includes(person.name))
-    if (cardsLeft.length) {
-      const toBeRemoved = cardsLeft[cardsLeft.length - 1].name // Find the card object to be removed
-      const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
-      alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
-      childRefs[index].current.swipe(dir)
-      if (direction === 'right') {
-        console.log('right');
-        move(); // Swipe the card!
-    }}
+  const fo = () => {
 
-  }
+
+    navigation.navigate(('Maps Screen'))
+    
+    
+  
+};
+
 
   return (
-    <Container>
+    <View>
+      <Container>
+      <Header>Where do you want to go ?</Header>
       <CardContainer>
-        {characters.map((character, index) =>
-          <TinderCard ref={childRefs[index]} key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-            <Card>
-              <CardImage source={{uri : character.img}}>
-                <CardTitle>{character.name}</CardTitle>
+        {characters.map((character) =>
+          <TinderCard  key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+            
+          {/* <TinderCard key={character.Name} onSwipe={(dir) => swiped(dir, character.Name)} onCardLeftScreen={() => outOfFrame(character.Name)}> */}
+          <Card>
+            <CardImage source={{ uri : character.img}}>
+            {/* <CardImage source={character.Photo}> */}
+            {/* <CardTitle>{character.Name}</CardTitle> */}
+            <CardTitle>{character.name}</CardTitle>
               </CardImage>
             </Card>
           </TinderCard>
         )}
       </CardContainer>
-      <Buttons>
-        <Button onPress={() => swipe('left')} title='Swipe left!' />
-        <Button onPress={() => swipe('right')} title='Swipe right!' />
-      </Buttons>
-    </Container>
+      {lastDirection ? <InfoText>You swiped {lastDirection}</InfoText> : <InfoText />}
+      </Container>
+      <Button title="dnj" onPress={fo} />
+    </View>
   )
 }
 
