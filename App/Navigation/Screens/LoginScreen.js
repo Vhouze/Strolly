@@ -1,19 +1,31 @@
 import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-
-function check_id(email, password) {
-  console.log(email)
-  console.log(password)  
-  return;
-}
+import {Strolly_postRegister, Strolly_postLogin} from '../../Components/StrollyAPI/User'
 
 export default function LoginScreen({navigation}) {
-  const [email, setText] = useState('Guest');
+  const [email, setText] = useState('');
   const [password, setPass] = useState('');  
+  const login = () => {
+    Strolly_postLogin(email, password).then(res => 
+      {if (res)
+        navigation.navigate('Mood Screen')
+        else
+          alert("login failed.")
+      })  
+  };
   const move = () => {
-    check_id(email, password);
-    navigation.navigate('Mood Screen')
+    navigation.navigate("Mood Screen")
+  }
+  const register = () => {
+    if (email == "" || password == "")
+      return;
+    Strolly_postRegister(email, password).then(res => 
+      {if (res)
+        alert("account created.")
+        else
+          alert("account creation failed.")
+      })  
   };
   return (
     <View style={styles.container}>
@@ -39,10 +51,10 @@ export default function LoginScreen({navigation}) {
     <TouchableOpacity>
       <Text style={styles.forgot}>Forgot Password?</Text>
     </TouchableOpacity>
-    <TouchableOpacity onPress={move} style={styles.loginBtn}>
+    <TouchableOpacity onPress={login} style={styles.loginBtn}>
       <Text style={styles.loginText}>LOGIN</Text>
     </TouchableOpacity>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={register}>
       <Text style={styles.loginText}>Signup</Text>
     </TouchableOpacity>
     <TouchableOpacity onPress={move}>
