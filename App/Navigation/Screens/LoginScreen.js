@@ -1,115 +1,110 @@
-import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet, StatusBar } from 'react-native';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-import {Strolly_postRegister, Strolly_postLogin} from '../../Components/StrollyAPI/User'
+import Color from '../../Constant/Color';
+
+
+function check_id(email, password) {
+  console.log(email)
+  console.log(password)  
+  return;
+}
 
 export default function LoginScreen({navigation}) {
-  const [email, setText] = useState('');
+  const [email, setText] = useState('Guest');
   const [password, setPass] = useState('');  
-  const login = () => {
-    Strolly_postLogin(email, password).then(res => 
-      {if (res)
-        navigation.navigate('Mood Screen')
-        else
-          alert("login failed.")
-      })  
-  };
   const move = () => {
-    navigation.navigate("Mood Screen")
-  }
-  const register = () => {
-    if (email == "" || password == "")
-      return;
-    Strolly_postRegister(email, password).then(res => 
-      {if (res)
-        alert("account created.")
-        else
-          alert("account creation failed.")
-      })  
+    check_id(email, password);
+    navigation.navigate('Mood Screen')
   };
+
+  const moveLogin = () => {
+    check_id(email, password);
+    navigation.navigate('Sign Screen')
+  };
+
+
+
   return (
     <View style={styles.container}>
-    <Text style={styles.logo}>Strolly</Text>
-    <View style={styles.inputView} >
-      <TextInput  
-        style={styles.inputText}
-        placeholder="Email..." 
-        placeholderTextColor="#003f5c"
-        onChangeText={email => setText(email)}
-        // value={state.email}
-      />
-    </View>
-    <View style={styles.inputView} >
-      <TextInput  
-        secureTextEntry
-        style={styles.inputText}
-        placeholder="Password..." 
-        placeholderTextColor="#003f5c"
-        onChangeText={password => setPass(password)}
-        />
-    </View>
-    <TouchableOpacity>
-      <Text style={styles.forgot}>Forgot Password?</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={login} style={styles.loginBtn}>
-      <Text style={styles.loginText}>LOGIN</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={register}>
-      <Text style={styles.loginText}>Signup</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={move}>
-      <Text style={styles.loginTextBis}>Continue as Guest</Text>
-    </TouchableOpacity>
+      <StatusBar barStyle = 'dark-content' />
+      <Text style={styles.logo}>Barz</Text>
+      <View style={styles.slogan}>
+        <Text style={{fontSize : 20}}>L'ambiance en un clic</Text>
+      </View>
+      <View style={styles.connection}>
+        <TouchableOpacity onPress={moveLogin} >
+          <View  style={styles.log}>
+            <Text style={styles.logText} >Login</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={move} >
+          <View  style={styles.log}>
+            <Text style={styles.logText}> Continue with Facebook</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={move} >
+          <View  style={styles.log}>
+            <Text style={styles.logText} >Continue with Google</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bottom}>
+        <Text style={{color: Color.second , fontSize: 16}}>Ici pour la première fois ?  </Text>
+          <TouchableOpacity onPress={move}>
+            <Text style={styles.loginTextBis}>Sign up</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 }
 
   
 const styles = StyleSheet.create({
+  slogan:{
+    flex:1,
+    marginHorizontal:50,
+  },
+  connection:{
+    flex:5,    
+  },
+  logText:{
+    color:'white',
+    fontWeight:'bold',
+    fontSize: 22,
+    width: '100%',
+    textAlign: 'center',
+  },
+  log:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor:Color.first,
+    borderRadius: 50,
+    width:300,
+    height: 60,
+    marginVertical: 20,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#003f5c',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo:{
     fontWeight:"bold",
-    fontSize:50,
-    color:"#fb5b5a",
-    marginBottom:40
+    fontSize:70,
+    color:Color.first,
+    flex:3,
+    marginTop: 90,
   },
-  inputView:{
-    width:"80%",
-    backgroundColor:"#465881",
-    borderRadius:25,
-    height:50,
-    marginBottom:20,
-    justifyContent:"center",
-    padding:20
+  bottom:{
+    flex:2,
+    flexDirection:'row',
   },
-  inputText:{
-    height:50,
-    color:"white"
-  },
-  forgot:{
-    color:"white",
-    fontSize:11
-  },
-  loginBtn:{
-    width:"80%",
-    backgroundColor:"#fb5b5a",
-    borderRadius:25,
-    height:50,
-    alignItems:"center",
-    justifyContent:"center",
-    marginTop:40,
-    marginBottom:10
-  },
-  loginText:{
-    color:"white"
-  },
-  loginTextBis:{
-    margin: 15,
-    color:"grey"
+  loginTextBis :{
+    color:Color.first,
+    fontWeight:'bold',
+    fontSize: 16,
   }
+  
 });

@@ -13,6 +13,9 @@ import ProfilScreen from './Screens/ProfilScreen';
 import debug from './Screens/debug';
 import Color from '../Constant/Color';
 import SC from './Screens/SwipeScreen';
+import SignScreen from'./Screens/SignScreen';
+
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -26,9 +29,8 @@ const MainNavigator = function mainNavigator ({navigation}){
     <NavigationContainer>
           <Stack.Navigator initialRouteName="Login Screen"
           screenOptions={{
-            headerStyle: {backgroundColor:  Color.second, height: 100},
-            headerTintColor: Color.third,
-            headerTitleStyle: { fontWeight: 'bold' }}}>
+            headerShown: false
+          }}>
             
           <Stack.Screen
             name="Login Screen"
@@ -51,6 +53,12 @@ const MainNavigator = function mainNavigator ({navigation}){
           <Stack.Screen
           name="Maps Screen"
           component={MapsScreen}
+          />  
+
+          
+          <Stack.Screen
+          name="Sign Screen"
+          component={SignScreen}
           />  
 
         </Stack.Navigator>

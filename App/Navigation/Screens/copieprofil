@@ -3,7 +3,7 @@ import {Animated, View, Text, Button,StyleSheet, Image, FlatList } from 'react-n
 import Color from '../../Constant/Color';
 import * as Animatable from 'react-native-animatable';
 import Emoji from 'react-native-emoji';
-import {FavMoodData} from '../../Components/Profil/DataProfil.js';
+import {FavMoodData} from '../../Components/Profil/DataProfil';
 
 
 export default function ProfilScreen() {

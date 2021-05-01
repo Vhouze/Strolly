@@ -66,10 +66,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex:1,
-        
-        shadowColor: Color.second,
-        shadowOpacity: 1,
-        shadowRadius: 25,
+
         padding: 15,
         justifyContent: 'flex-end',
         alignItems: 'flex-end',

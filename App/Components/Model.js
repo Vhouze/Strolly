@@ -19,3 +19,11 @@ export class Mood {
 };
 
 
+export class FavMood {
+    constructor(id, title, emoji ){
+        this.id = id;
+        this.title = title;
+        this.emoji= emoji;
+    }
+};
+
