@@ -66,7 +66,6 @@ function Map({navigation}) {
 
     return (
       <View style={styles.screen}>
-       <ScrollView></ScrollView>
         <View style={styles.containerMap}>
             <MapView
                 style={styles.map}
@@ -98,8 +97,8 @@ function Map({navigation}) {
                 apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
                 mode="WALKING"
                 
-                strokeColor= {Color.second}
-                strokeWidth={5}
+                strokeColor= {Color.first}
+                strokeWidth={6}
                /// onStart={(params) => {
                ///   console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
                /// }}
@@ -121,10 +120,10 @@ function Map({navigation}) {
                 <View style={{marginHorizontal : 25}}>
                 <View style={{flexDirection : 'row', marginTop: 10, borderBottomWidth: 3, paddingBottom: 5,}}>
                   <Text style={{alignItems:'center',marginRight: 10}}>
-                  Distance: <Text style={{color: '#FF496D', fontWeight:'bold'}}> {distance}  </Text>km
+                  Distance: <Text style={{color: Color.first, fontWeight:'bold'}}> {distance}  </Text>km
                   </Text>
                   <Text style={{marginLeft: 10}}>
-                  Durée: <Text style={{color: '#FF496D', fontWeight:'bold'}}>{duree} </Text> minutes
+                  Durée: <Text style={{color: Color.first, fontWeight:'bold'}}>{duree} </Text> minutes
                   </Text>
                 </View>
             
@@ -145,7 +144,7 @@ Quisque porta dolor elit, non tincidunt turpis aliquet aliquam. Praesent sollici
             </View>
             <View style={{flex : 2}}></View>
             <TouchableOpacity onPress={travel} style={{ position : 'absolute', right: 15, bottom: 10}}>
-              <View  style={{ backgroundColor: '#FF496D', width: 100, height: 30, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
+              <View  style={{ backgroundColor: Color.first, width: 100, height: 30, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
                 <Text style={{color: "white" , fontSize: 20, fontWeight:'bold',  textAlign:'center'}}>Let's GO</Text>
               </View>
             </TouchableOpacity>
@@ -166,14 +165,15 @@ const styles = StyleSheet.create({
 
     screen:{
       flex: 15,   
-      backgroundColor: Color.first,
+      backgroundColor: "white",
       paddingHorizontal: 18,
     
     },
 
     containerMap: {
       flex:7, 
-      marginBottom: 25,     
+      marginBottom: 25,  
+      marginTop: 40,   
     },
 
     map: {

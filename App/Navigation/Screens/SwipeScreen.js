@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react'
-import { Button } from 'react-native'
 import styled from 'styled-components'
-import TinderCard from 'react-tinder-card'
+import TinderCard from 'react-tinder-card';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Color from '../../Constant/Color';
 
 const Container = styled.View`
     display: flex;
@@ -118,7 +120,7 @@ export default function SwipeScreen({navigation,route}) {
       const index = db.map(person => person.name).indexOf(toBeRemoved) // Find the index of which to make the reference to
       alreadyRemoved.push(toBeRemoved) // Make sure the next card gets removed next time if this card do not have time to exit the screen
       childRefs[index].current.swipe(dir)
-      if (direction === 'right') {
+      if (dir === 'right') {
         console.log('right');
         move(); // Swipe the card!
     }}
@@ -126,23 +128,37 @@ export default function SwipeScreen({navigation,route}) {
   }
 
   return (
-    <Container>
-      <CardContainer>
-        {characters.map((character, index) =>
-          <TinderCard ref={childRefs[index]} key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
-            <Card>
-              <CardImage source={{uri : character.img}}>
-                <CardTitle>{character.name}</CardTitle>
-              </CardImage>
-            </Card>
-          </TinderCard>
-        )}
-      </CardContainer>
-      <Buttons>
-        <Button onPress={() => swipe('left')} title='Swipe left!' />
-        <Button onPress={() => swipe('right')} title='Swipe right!' />
-      </Buttons>
-    </Container>
+    <View style={{flex: 1}}>
+      <View style={{flex: 7, marginTop: 180, }}>
+        <Container>
+          <CardContainer>
+            {characters.map((character, index) =>
+              <TinderCard ref={childRefs[index]} key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen={() => outOfFrame(character.name)}>
+                <Card>
+                  <CardImage source={{uri : character.img}}>
+                    <CardTitle>{character.name}</CardTitle>
+                  </CardImage>
+                </Card>
+              </TinderCard>
+            )}
+          </CardContainer>
+
+        <View style={{flexDirection:'row', marginVertical: 100}}>
+          <TouchableOpacity style={{marginHorizontal: 35}} onPress={() => swipe('left')}>
+            <View>
+              <MaterialCommunityIcons name="close-circle" color={Color.second} size= {100} /> 
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={{marginHorizontal: 35}} onPress={() => swipe('right')}>
+            <View>
+              <MaterialCommunityIcons name="checkbox-marked-circle" color={Color.first} size= {100} /> 
+            </View>
+          </TouchableOpacity>
+
+        </View>      
+        </Container>
+      </View>
+    </View>
   )
 }
 

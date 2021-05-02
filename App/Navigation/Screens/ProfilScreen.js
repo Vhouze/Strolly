@@ -8,13 +8,13 @@ import {FavMoodData} from '../../Components/Profil/DataProfil.js';
 
 export default function ProfilScreen() {
 
-console.log(FavMoodData)
+
 
 const favMoodList = ({item})=>{
   return (
-  <View style={{flexDirection:'row'}}>
-    <Text>{item.title}</Text>
-    <Emoji name={item.emoji} style ={{fonstSize:20}}/>
+  <View style={{flexDirection:'row', backgroundColor: Color.second, borderRadius: 20, alignContent: 'center', alignItems: 'center', width: 180, height: 30, justifyContent:'center', marginHorizontal: 7}}>
+    <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>{item.title}</Text>
+    <Emoji name={item.emoji} style ={{fontSize:19, }}/>
   </View>
   );
 
@@ -24,21 +24,33 @@ const favMoodList = ({item})=>{
     return (
       
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "white" }}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',}}>
           <Image 
           style={{width: 160, height: 160,borderRadius: 200 / 2, overflow: "hidden", borderWidth: 3,borderColor: Color.first, alignItems:'center', justifyContent:'center', marginBottom:30, marginTop:30,}} 
-          source={{uri: 'https://pbs.twimg.com/profile_images/1377261846827270149/iUn8fDU6_400x400.jpg'}} 
+          source={{uri: 'https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-vector-user-young-boy-avatar-icon-png-image_1538408.jpg'}} 
           /> 
-          <View>
+          <Text style={{fontSize: 36}}>Ton Profil</Text>
+          </View>
+          <View style={{flex: 1}}>
+            <View style={styles.cont}>
             <View style={styles.favMoood}>
-              <Text>Tes moods favoris </Text>
+              <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}>Tes moods favoris </Text>
               <FlatList
-                      scrollEnabled = {false}
-                      keyExtractor={(item) => item.id}
+                      horizontal={true}
+                      keyExtractor={(item) => item.id.toString()}
                       data={FavMoodData} 
                       renderItem={favMoodList} 
+                      showsVerticalScrollIndicator={false}
+                      showsHorizontalScrollIndicator={false}
+                      style={{marginBottom: 20}}
               />
             </View>
-            <Text>Tes lieux favoris</Text>
+            </View>
+            <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}> Tes lieux favoris</Text>
+            <View style={{marginLeft: 20, backgroundColor: Color.second, borderRadius: 20, alignContent: 'center', alignItems: 'center', width: 110, height: 25, justifyContent:'center', marginHorizontal: 7}}>
+            <Text style={{color:'white', fontSize:17, fontWeight:'bold'}}>Cosy café</Text>
+   
+          </View>
           </View>
       </View>
 
@@ -50,17 +62,20 @@ const favMoodList = ({item})=>{
 
 const styles = StyleSheet.create({
   
+  cont:{     
+    borderTopColor: Color.first,
+    borderBottomColor: Color.first,
+    borderTopWidth: 2, 
+    borderBottomWidth:2,
+    width: '90%'
+  },
   favMoood:{
-     borderTopColor: Color.first,
-     borderBottomColor: Color.first,
-     borderTopWidth: 2, 
-     borderBottomWidth:2,
-     width:'80%'
+
+     width:'100%'
 
   },
   containerProfil:{
     flexDirection:'row',
-    marginVertical: 15,
     alignItems: 'center',
   },
 

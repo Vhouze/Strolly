@@ -1,6 +1,6 @@
 export default {
     first:"#F90000", // moutarde
-    second: "#B3B0B0", // turquoise
+    second: "#949494", // turquoise
     third: "black",
     fourth: "white"
 

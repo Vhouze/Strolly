@@ -4,22 +4,15 @@ import { render } from 'react-dom';
 import Color from '../../Constant/Color';
 
 
-function check_id(email, password) {
-  console.log(email)
-  console.log(password)  
-  return;
-}
 
 export default function LoginScreen({navigation}) {
   const [email, setText] = useState('Guest');
   const [password, setPass] = useState('');  
   const move = () => {
-    check_id(email, password);
     navigation.navigate('Mood Screen')
   };
 
   const moveLogin = () => {
-    check_id(email, password);
     navigation.navigate('Sign Screen')
   };
 
@@ -33,7 +26,7 @@ export default function LoginScreen({navigation}) {
         <Text style={{fontSize : 20}}>L'ambiance en un clic</Text>
       </View>
       <View style={styles.connection}>
-        <TouchableOpacity onPress={moveLogin} >
+        <TouchableOpacity onPress={move} >
           <View  style={styles.log}>
             <Text style={styles.logText} >Login</Text>
           </View>
@@ -51,7 +44,7 @@ export default function LoginScreen({navigation}) {
       </View>
       <View style={styles.bottom}>
         <Text style={{color: Color.second , fontSize: 16}}>Ici pour la première fois ?  </Text>
-          <TouchableOpacity onPress={move}>
+          <TouchableOpacity onPress={moveLogin}>
             <Text style={styles.loginTextBis}>Sign up</Text>
           </TouchableOpacity>
         </View>

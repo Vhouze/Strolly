@@ -12,9 +12,7 @@ import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
 import debug from './Screens/debug';
 import Color from '../Constant/Color';
-import SC from './Screens/SwipeScreen';
-import SignScreen from'./Screens/SignScreen';
-
+ import SignScreen from'./Screens/SignScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -54,12 +52,15 @@ const MainNavigator = function mainNavigator ({navigation}){
           name="Maps Screen"
           component={MapsScreen}
           />  
-
           
           <Stack.Screen
           name="Sign Screen"
           component={SignScreen}
           />  
+
+
+          
+
 
         </Stack.Navigator>
     </NavigationContainer>
