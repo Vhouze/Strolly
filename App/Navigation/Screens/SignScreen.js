@@ -1,7 +1,8 @@
 import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-import {Strolly_postRegister, Strolly_postLogin} from '../../Components/StrollyAPI/User'
+import {Strolly_postRegister, Strolly_postLogin} from '../../Components/StrollyAPI/User';
+import Color from '../../Constant/Color';
 
 export default function SignScreen({navigation}) {
   const [email, setText] = useState('');
@@ -27,60 +28,67 @@ export default function SignScreen({navigation}) {
           alert("account creation failed.")
       })  
   };
+
   return (
     <View style={styles.container}>
-    <Text style={styles.logo}>Strolly</Text>
-    <View style={styles.inputView} >
-      <TextInput  
-        style={styles.inputText}
-        placeholder="Email..." 
-        placeholderTextColor="#003f5c"
-        onChangeText={email => setText(email)}
-        // value={state.email}
-      />
-    </View>
-    <View style={styles.inputView} >
-      <TextInput  
-        secureTextEntry
-        style={styles.inputText}
-        placeholder="Password..." 
-        placeholderTextColor="#003f5c"
-        onChangeText={password => setPass(password)}
+      <Text style={styles.logo}>Barz</Text>
+      <View style={styles.slogan}>
+        <Text style={{fontSize : 20, marginBottom: 40}}>L'ambiance en un clic</Text>
+      </View>
+    
+      <View style={styles.inputView} >
+        <TextInput  
+          style={styles.inputText}
+          placeholder="Username..." 
+          placeholderTextColor="white"
+          onChangeText={email => setText(email)}
+          // value={state.email}
         />
-    </View>
-    <TouchableOpacity>
-      <Text style={styles.forgot}>Forgot Password?</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={login} style={styles.loginBtn}>
-      <Text style={styles.loginText}>LOGIN</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={register}>
-      <Text style={styles.loginText}>Signup</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={move}>
-      <Text style={styles.loginTextBis}>Continue as Guest</Text>
-    </TouchableOpacity>
+      </View>
+      <View style={styles.inputView} >
+        <TextInput  
+          secureTextEntry
+          style={styles.inputText}
+          placeholder="Password..." 
+          placeholderTextColor="white"
+          onChangeText={password => setPass(password)}
+          />
+      </View>
+      <TouchableOpacity>
+        <Text style={styles.forgot}>Forgot Password?</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={login} style={styles.loginBtn}>
+        <Text style={styles.loginText}>SIGN UP</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={register}>
+        <Text style={styles.loginText}>Signup</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={move}>
+        <Text style={styles.loginTextBis}>Continue as Guest</Text>
+      </TouchableOpacity>
+     
     </View>
   );
 }
 
   
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor: '#003f5c',
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   logo:{
     fontWeight:"bold",
     fontSize:50,
-    color:"#fb5b5a",
-    marginBottom:40
+    color: Color.first,
+    marginBottom:40,
   },
   inputView:{
     width:"80%",
-    backgroundColor:"#465881",
+    backgroundColor: Color.second,
     borderRadius:25,
     height:50,
     marginBottom:20,
@@ -97,7 +105,7 @@ const styles = StyleSheet.create({
   },
   loginBtn:{
     width:"80%",
-    backgroundColor:"#fb5b5a",
+    backgroundColor:Color.first,
     borderRadius:25,
     height:50,
     alignItems:"center",
@@ -106,10 +114,17 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   loginText:{
-    color:"white"
+    color:"white",
+    fontSize: 20,
+    fontWeight:'bold',
   },
   loginTextBis:{
     margin: 15,
     color:"grey"
-  }
+  },
+
+  slogan:{
+
+    marginHorizontal:50,
+  },
 });

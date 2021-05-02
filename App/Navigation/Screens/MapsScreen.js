@@ -10,7 +10,10 @@ import getDirections from 'expando-react-native-google-maps-directions';
 import Color from '../../Constant/Color';
 import MyCarousel from '../../Components/Maps/Carousel';
 import * as Location from 'expo-location';
-import { createPortal } from 'react-dom';
+
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
+
 
 
 const exdata = {
@@ -43,7 +46,7 @@ function Map({navigation}) {
 
   const [errorMsg, setErrorMsg] = useState(null);
 
-
+  const back = () => { navigation.goBack()} 
 
   useEffect(() => {
     (async () => {
@@ -66,6 +69,9 @@ function Map({navigation}) {
 
     return (
       <View style={styles.screen}>
+       <TouchableOpacity onPress={back} style={{top:38, left: 10 , position : 'absolute'}}>
+         <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
+       </TouchableOpacity>
         <View style={styles.containerMap}>
             <MapView
                 style={styles.map}
@@ -143,8 +149,8 @@ Quisque porta dolor elit, non tincidunt turpis aliquet aliquam. Praesent sollici
               </ScrollView>
             </View>
             <View style={{flex : 2}}></View>
-            <TouchableOpacity onPress={travel} style={{ position : 'absolute', right: 15, bottom: 10}}>
-              <View  style={{ backgroundColor: Color.first, width: 100, height: 30, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
+            <TouchableOpacity onPress={travel} style={{ position : 'absolute', right: 15, top: 38}}>
+              <View  style={{ backgroundColor: Color.first, width: 110, height: 35, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
                 <Text style={{color: "white" , fontSize: 20, fontWeight:'bold',  textAlign:'center'}}>Let's GO</Text>
               </View>
             </TouchableOpacity>
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
     containerMap: {
       flex:7, 
       marginBottom: 25,  
-      marginTop: 40,   
+      marginTop: 90,   
     },
 
     map: {

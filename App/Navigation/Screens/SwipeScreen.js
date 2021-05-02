@@ -66,11 +66,11 @@ const InfoText = styled.Text`
 const db = [
   {
     name: 'Bar One',
-    img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKtppjr06hahJbvcxsl9bJwMslGEdMEC-Ozg&usqp=CAU'
+    img:'https://www.lyoncapitale.fr/wp-content/uploads/2019/06/010_guillotiere_lyon_nuit_bar.jpg'
   },
   {
     name: 'Bar Two',
-    img: 'https://img.huffingtonpost.com/asset/5f71b0c3220000f40082b9aa.jpeg?cache=7oQUZjKk3M&ops=scalefit_630_noupscale'
+    img: 'https://static.wixstatic.com/media/80ddee_7e9d138c4b13426b907b6d841368e92a~mv2.png/v1/fill/w_1328,h_890,al_c/80ddee_7e9d138c4b13426b907b6d841368e92a~mv2.png'
   },
   {
     name: 'Bar Three',
@@ -78,11 +78,11 @@ const db = [
   },
   {
     name: 'Bar four ',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuShFvjiM1mVcRGpHBDHS9iobL-jVVyH2fsQ&usqp=CAU'
+    img: 'https://cdn.galaxy.tf/unit-media/tc-group/uploads/images/restaurant_photo/001/557/832/duke-s-bar-overview-back-2.jpg'
   },
   {
     name: 'Bar five',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6HPg7Cde5Pf5j4YfATjS0j8YTE7zA9nXzEg&usqp=CAU'
+    img: 'https://ik.imagekit.io/youshould/tr:w-1500,rt-auto/2018/edi-libedinsky-709320-unsplash_SydUiuaPX.jpg'
   }
 ]
 
@@ -107,6 +107,8 @@ export default function SwipeScreen({navigation,route}) {
 
   const move = () => {navigation.navigate('Maps Screen')};
 
+  const back = () => { navigation.goBack()} 
+
   const outOfFrame = (name) => {
     console.log(name + ' left the screen!')
     charactersState = charactersState.filter(character => character.name !== name)
@@ -129,6 +131,9 @@ export default function SwipeScreen({navigation,route}) {
 
   return (
     <View style={{flex: 1}}>
+      <TouchableOpacity onPress={back} style={{top:45, left: 10 , position : 'absolute'}}>
+        <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
+      </TouchableOpacity>
       <View style={{flex: 7, marginTop: 180, }}>
         <Container>
           <CardContainer>

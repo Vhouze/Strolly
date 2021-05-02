@@ -26,7 +26,7 @@ export default function LoginScreen({navigation}) {
         <Text style={{fontSize : 20}}>L'ambiance en un clic</Text>
       </View>
       <View style={styles.connection}>
-        <TouchableOpacity onPress={move} >
+        <TouchableOpacity onPress={moveLogin} >
           <View  style={styles.log}>
             <Text style={styles.logText} >Login</Text>
           </View>
