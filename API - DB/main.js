@@ -1,6 +1,8 @@
 const express = require('express');
 var bodyParser = require('body-parser');
+var fs = require('fs')
 var cookieParser = require('cookie-parser');
+var https = require('https')
 const app = express();
 
 var loginController = require("./controllers/login")
@@ -28,6 +30,9 @@ app.post('/refreshToken', function(req, res) {
     tokenController.GenerateRefreshToken(app, req, res);
 });
 
-app.listen(8082, function() {
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.cert')
+}, app).listen(8082, function() {
     console.log('server listening on 8082');
 });
