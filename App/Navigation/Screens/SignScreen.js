@@ -58,10 +58,10 @@ export default function SignScreen({navigation}) {
         <Text style={styles.forgot}>Forgot Password?</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={login} style={styles.loginBtn}>
-        <Text style={styles.loginText}>SIGN UP</Text>
+        <Text style={styles.loginText}>SIGN IN</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={register}>
-        <Text style={styles.loginText}>S'inscrire</Text>
+      <TouchableOpacity onPress={register}  style={styles.loginBtn}>
+        <Text style={styles.loginText}>SIGN UP</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={move}>
         <Text style={styles.loginTextBis}>Continue as Guest</Text>
