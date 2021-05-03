@@ -61,7 +61,7 @@ export default function SignScreen({navigation}) {
         <Text style={styles.loginText}>SIGN UP</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={register}>
-        <Text style={styles.loginText}>Signup</Text>
+        <Text style={styles.loginText}>S'inscrire</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={move}>
         <Text style={styles.loginTextBis}>Continue as Guest</Text>
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   loginText:{
-    color:"white",
+    color:"black",
     fontSize: 20,
     fontWeight:'bold',
   },

@@ -7,6 +7,7 @@ module.exports = {
         let data = {code: "", message: {}};
 
         //check parameters
+		
         if (pseudo === undefined || password === undefined) {
             data.code = "ERROR_PARAMS";
             data.message = "Error with parameters"
