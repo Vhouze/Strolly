@@ -2,4 +2,5 @@
 App/.expo
 App/package-lock.json
 App/node_modules
+API_DB/package-lock.json
 node_modules

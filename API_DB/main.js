@@ -6,6 +6,7 @@ const app = express();
 var loginController = require("./controllers/login")
 var registerController = require("./controllers/register")
 var tokenController = require("./controllers/token")
+var datasetController = require("./controllers/dataset")
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -26,6 +27,10 @@ app.post('/register', function(req, res) {
 
 app.post('/refreshToken', function(req, res) {
     tokenController.GenerateRefreshToken(app, req, res);
+});
+
+app.post('/GetCafe', function(req, res) {
+    datasetController.GetCafe(app, req, res);
 });
 
 
