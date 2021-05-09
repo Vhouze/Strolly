@@ -3,7 +3,7 @@ const csv=require('csvtojson');
 
 module.exports = {
 	GetCafe: function(app, req, res) {
-		let link = "./PhantomBuster_dataset/CafeLyon6_9.csv"
+		let link = "./PhantomBuster_dataset/Clean_DB.csv.csv"
 	    let data = {code: "", message: {}};
 
 		csv()
