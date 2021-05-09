@@ -18,8 +18,10 @@ export default function LoginScreen({navigation}) {
 
   const getData = () => {
     GetCafe().then(res => 
-      {if (res)
-        console.log(res)
+      {if (res) {
+        console.log("1er element :")
+        console.log(res[0])
+      }
         else
           alert("data loading failed.")
       })  
