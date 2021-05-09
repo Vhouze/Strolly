@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   loginText:{
-    color:"black",
+    color:"white",
     fontSize: 20,
     fontWeight:'bold',
   },

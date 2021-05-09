@@ -2,7 +2,7 @@ BACK DE STROLLY
 
 Pour lancer le docker compose qui va tout setup, dans un terminal :
 Docker-compose up --build
-
+Docker-compose up --build
 Pour tester, aller sur internet et taper:
 http://localhost:8082
 

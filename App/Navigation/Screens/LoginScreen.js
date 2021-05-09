@@ -2,7 +2,7 @@ import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet, StatusBar 
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import Color from '../../Constant/Color';
-
+import {GetCafe} from '../../Components/StrollyAPI/Data';
 
 
 export default function LoginScreen({navigation}) {
@@ -16,12 +16,21 @@ export default function LoginScreen({navigation}) {
     navigation.navigate('Sign Screen')
   };
 
+  const getData = () => {
+    GetCafe().then(res => 
+      {if (res)
+        console.log(res)
+        else
+          alert("data loading failed.")
+      })  
+  };
 
 
   return (
     <View style={styles.container}>
       <StatusBar barStyle = 'dark-content' />
       <Text style={styles.logo}>Barz</Text>
+      <Button onPress={getData} title='lol'/>
       <View style={styles.slogan}>
         <Text style={{fontSize : 20}}>L'ambiance en un clic</Text>
       </View>

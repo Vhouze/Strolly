@@ -158,9 +158,9 @@ Quisque porta dolor elit, non tincidunt turpis aliquet aliquam. Praesent sollici
   );
 }
 
-export default function MapsScreen() {
+export default function MapsScreen({navigation}) {
   return (
-    <Map></Map>
+    <Map navigation = {navigation}></Map>
   );
 }
 

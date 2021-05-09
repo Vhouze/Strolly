@@ -89,7 +89,7 @@ const db = [
 const alreadyRemoved = []
 let charactersState = db // This fixes issues with updating characters state forcing it to use the current state and not the state that was active when the card was created.
 
-export default function SwipeScreen({navigation,route}) {
+export default function SwipeScreen({navigation}) {
   const [characters, setCharacters] = useState(db)
   const [lastDirection, setLastDirection] = useState()
 
