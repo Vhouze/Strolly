@@ -1,10 +1,11 @@
-// ceci est un exemple
 
-import {ADDELEMENT, DELELEMENT,EDITELEMENT} from '../Actions/actionTypes';
-import Element from '../../Models/CoucheClass';
-import { ActionSheetIOS } from 'react-native';
 
- const initialState = { listElement : [] };
+import {LOCALISATION} from '../Actions/actionTypes';
+import {dataMap} from '../../Components/Maps/DataMap';
+
+ const initialState = { coords : {
+    latitude: 45.76612748153259,
+    longitude: 4.83441214610266}} ;
 
 
 
@@ -12,23 +13,8 @@ export const addElementReducer = (state = initialState, action) =>
 {
     switch(action.type){
 
-       case ADDELEMENT:
-           return {...state, listElement: [...state.listElement,  action.payload]};
-        
-        case DELELEMENT: {
-            return  {...state, listElement: state.listElement.filter((element) => element.id.toString() !== action.payload.id )}
-        
-        };
-
-        case EDITELEMENT: {
-            return  {
-                ...state, 
-                listElement: state.listElement.map(
-                    (element) =>  (element.id.toString == action.payload.id) ? {...element, color: action.payload, title : action.payload}
-                     : element
-                 )
-            };
-        }
+       case LOCALISATION:
+           return {...state , coords:  action.payload};
              
         default:
             return state;

@@ -16,7 +16,7 @@ export default function SignScreen({navigation}) {
       })  
   };
   const move = () => {
-    navigation.navigate("Mood Screen")
+    navigation.navigate("Localisation Screen")
   }
   const register = () => {
     if (email == "" || password == "")

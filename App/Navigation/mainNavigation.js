@@ -10,6 +10,7 @@ import MapsScreen from './Screens/MapsScreen';
 import MoodScreen from './Screens/MoodScreen';
 import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
+import LocalisationScreen from './Screens/LocalisationScreen';
 import debug from './Screens/debug';
 import Color from '../Constant/Color';
  import SignScreen from'./Screens/SignScreen';
@@ -57,6 +58,12 @@ const MainNavigator = function mainNavigator ({navigation}){
           name="Sign Screen"
           component={SignScreen}
           />  
+
+          <Stack.Screen
+          name="Localisation Screen"
+          component={LocalisationScreen}
+          />  
+          
 
 
           

@@ -9,7 +9,7 @@ export default function LoginScreen({navigation}) {
   const [email, setText] = useState('Guest');
   const [password, setPass] = useState('');  
   const move = () => {
-    navigation.navigate('Mood Screen')
+    navigation.navigate('Localisation Screen')
   };
 
   const moveLogin = () => {

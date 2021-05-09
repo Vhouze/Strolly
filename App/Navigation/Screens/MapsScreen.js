@@ -10,8 +10,9 @@ import getDirections from 'expando-react-native-google-maps-directions';
 import Color from '../../Constant/Color';
 import MyCarousel from '../../Components/Maps/Carousel';
 import * as Location from 'expo-location';
-
+import {useSelector, useDispatch} from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 
 
@@ -34,33 +35,43 @@ const exdata = {
 
 }
 
+
+
 const travel = () => {getDirections(exdata)};
 
 
 function Map({navigation}) {
 
-  const [location, setLocation] = useState({coords : {
-    latitude: dataMap[0].latitude,
-    longitude: dataMap[0].longitude}});
+  
 
+  //const [location, setLocation] = useState({coords : {
+  //  latitude: dataMap[0].latitude,
+  //  longitude: dataMap[0].longitude}});
+//
   const [errorMsg, setErrorMsg] = useState(null);
+
+  const localisation = useSelector ((state) => state.coords);
+  console.log(localisation)
+
+  useEffect(()=> {
+  },[localisation])
 
   const back = () => { navigation.goBack()} 
 
-  useEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
-
-  console.log(location)
+ // useEffect(() => {
+ //   (async () => {
+ //     let { status } = await Location.requestForegroundPermissionsAsync();
+ //     if (status !== 'granted') {
+ //       setErrorMsg('Permission to access location was denied');
+ //       return;
+ //     }
+//
+ //     let location = await Location.getCurrentPositionAsync({});
+ //     setLocation(location);
+ //   })();
+ // }, []);
+//
+ 
 
 
   const [distance, setDistance] = useState(0);
@@ -97,7 +108,7 @@ function Map({navigation}) {
                  
 
               <MapViewDirections
-                origin={{latitude: location.coords.latitude, longitude:  location.coords.longitude}}
+                origin={{latitude: localisation.coords.latitude, longitude:  localisation.coords.longitude}}
                 destination={{latitude: dataMap[0].latitude, longitude:  dataMap[0].longitude}}
                 apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
                 mode="WALKING"
@@ -110,7 +121,7 @@ function Map({navigation}) {
                 onReady={(result) => {
                  setDistance(result.distance)
                  setDuree(Math.trunc(result.duration))
-                 console.log(result)
+               
                 }}
               />
 
