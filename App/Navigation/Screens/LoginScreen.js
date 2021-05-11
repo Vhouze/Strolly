@@ -2,7 +2,7 @@ import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet, StatusBar 
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import Color from '../../Constant/Color';
-import {GetCafe} from '../../Components/StrollyAPI/Data';
+import {GetShops} from '../../Components/StrollyAPI/Data';
 
 
 export default function LoginScreen({navigation}) {
@@ -17,8 +17,9 @@ export default function LoginScreen({navigation}) {
   };
 
   const getData = () => {
-    GetCafe().then(res => 
+    GetShops(0.00, 0.00, 0, "bolDair").then(res => 
       {if (res) {
+        console.log(Object.keys(res).length)
         console.log("1er element :")
         console.log(res[0])
       }

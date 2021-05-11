@@ -29,8 +29,8 @@ app.post('/refreshToken', function(req, res) {
     tokenController.GenerateRefreshToken(app, req, res);
 });
 
-app.post('/GetCafe', function(req, res) {
-    datasetController.GetCafe(app, req, res);
+app.post('/GetShops', function(req, res) {
+    datasetController.GetShops(app, req, res);
 });
 
 
