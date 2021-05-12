@@ -11,9 +11,8 @@ import MoodScreen from './Screens/MoodScreen';
 import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
 import LocalisationScreen from './Screens/LocalisationScreen';
-import debug from './Screens/debug';
 import Color from '../Constant/Color';
- import SignScreen from'./Screens/SignScreen';
+import SignScreen from'./Screens/SignScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -23,6 +22,8 @@ const Tab = createBottomTabNavigator();
 const MainNavigator = function mainNavigator ({navigation}){
 
 
+
+  
   return (
   
     <NavigationContainer>
@@ -63,6 +64,9 @@ const MainNavigator = function mainNavigator ({navigation}){
           name="Localisation Screen"
           component={LocalisationScreen}
           />  
+
+
+
           
 
 

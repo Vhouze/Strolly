@@ -15,6 +15,7 @@ moods:
 - whatTheBarz
 - letsplay
 */
+
 export async function GetShops(lat = 0.00, lng = 0.00, radius = 0, mood = "") {
     const url= 'http://10.0.2.2:8082/getShops'
     var parameters = {};

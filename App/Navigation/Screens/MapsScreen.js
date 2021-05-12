@@ -108,7 +108,7 @@ function Map({navigation}) {
                  
 
               <MapViewDirections
-                origin={{latitude: localisation.coords.latitude, longitude:  localisation.coords.longitude}}
+                origin={{latitude: localisation.latitude, longitude:  localisation.longitude}}
                 destination={{latitude: dataMap[0].latitude, longitude:  dataMap[0].longitude}}
                 apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
                 mode="WALKING"
