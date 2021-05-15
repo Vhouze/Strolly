@@ -1,4 +1,4 @@
-const data = [
+const database = [
     {
       "placeUrl": "https://www.google.com/maps/place/L'+Antiquaire/@45.7683331,4.828893,16z/data=!4m9!1m2!2m1!1sbar+lyon+69001!3m5!1s0x47f4eafe19af9dff:0x1842eb2d36a4ec0b!8m2!3d45.7678949!4d4.8306154!15sCg5iYXIgbHlvbiA2OTAwMVogCg5iYXIgbHlvbiA2OTAwMSIOYmFyIGx5b24gNjkwMDGSAQxjb2NrdGFpbF9iYXKaASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVTnZiVGhIZUVOUkVBRQ?hl=fr",
       "title": "L'Antiquaire",
@@ -9,7 +9,7 @@ const data = [
       "attributes": "·  Service aux tables  ·  Commandes à emporter  ·  Livraison",
       "address": "20 Rue Hippolyte Flandrin, 69001 Lyon, France",
       "plusCode": "QR9J+56 Lyon, France",
-      "website": "",
+      "website": "lefooding.com/fr/bars/bar-l-antiquaire-lyon",
       "phoneNumber": "+33 6 34 21 54 65",
       "jeudi": "18h00–1h00",
       "vendredi": "18h00–3h00",
@@ -56,6 +56,5 @@ const data = [
       "mood": "['bolDair']"
     },]
 
-console.log(data[0].mood[2])
 
-data[0].placeUrl
+    export default  database;

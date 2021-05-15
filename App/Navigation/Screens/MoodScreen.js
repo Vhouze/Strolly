@@ -4,6 +4,7 @@ import Color from '../../Constant/Color';
 import MoodList from '../../Components/Mood/MoodList';
 import {dataMood} from '../../Components/Mood/DataMood'
 import * as Animatable from 'react-native-animatable';
+import {useSelector, useDispatch} from 'react-redux';
 
 export default function HomeScreen({navigation}) {
 

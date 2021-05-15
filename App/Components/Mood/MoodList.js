@@ -1,17 +1,50 @@
 import React , {useState} from 'react';
 import * as Animatable from 'react-native-animatable';
-
+import {useSelector, useDispatch} from 'react-redux';
 import {TouchableOpacity, View, Text, StyleSheet,ImageBackground, Platform, TouchableNativeFeedback} from 'react-native';
 import Color from '../../Constant/Color';
+import {dataBack, moodPick} from '../../Store/Actions/actions';
+import {GetShops} from '../../Components/StrollyAPI/Data';
 
 const MoodList = function moodList ({navigation, id, title , image}){
+
+
+    const getData = (latitude,longitude,rayon,mood) => {
+        GetShops(latitude,longitude,rayon,mood).then(res => 
+          {if (res) {
+            console.log(Object.keys(res).length)
+            console.log("1er element :")
+            console.log(res[0])
+            dispatch(dataBack(res))
+          }
+            else
+              alert("data loading failed.")
+          })  
+      };
   
+
+
+    const latitude = useSelector ((state) => state.coords.latitude);
+    const longitude = useSelector ((state) => state.coords.longitude);
+    const mood = useSelector ((state) => state.moodPick);
+    const rayon = 2000
+
+    const dispatch = useDispatch();
     const [action,setAction]=useState(null)
 
 
     const nextPage = () => {
 
+        dispatch(moodPick(title));
 
+
+        
+
+
+        getData(latitude,longitude,rayon,title);
+
+        
+        
         navigation.navigate(('Swipe Screen'),{title : title})
         
         

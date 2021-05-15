@@ -1,7 +1,7 @@
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import React, {useState,useEffect} from 'react';
-import { StyleSheet, Text, View,Image, TouchableOpacity, ScrollView, Button, Dimensions, ColorPropType} from 'react-native';
+import React, {useState,useEffect, version} from 'react';
+import { StyleSheet, Text, View,Image, TouchableOpacity, ScrollView, Button, Dimensions, ColorPropType,Platform, Linking} from 'react-native';
 import {dataMap} from '../../Components/Maps/DataMap';
 import getDirections from 'expando-react-native-google-maps-directions';
 // import Geolocation from '@react-native-community/geolocation';
@@ -12,9 +12,11 @@ import MyCarousel from '../../Components/Maps/Carousel';
 import * as Location from 'expo-location';
 import {useSelector, useDispatch} from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import database from '../../test.js'
+import { Col } from 'react-bootstrap';
 
 
-
+const data = database 
 
 const exdata = {
 
@@ -72,13 +74,24 @@ function Map({navigation}) {
  // }, []);
 //
  
+  const smsOperator = Platform.select({ios: '&', android: '?'});
 
+  const callOperator = Platform.select({ ios : 'tel' , android: 'telprompt'})
+  
+  const message = "Hello ! J'ai trouvé un super endroit pour passer un moment ensemble sur Barz. Retrouve-moi à " + data[0].title + ". L'adresse de l'établissement est la suivante : " + data[0].address
 
   const [distance, setDistance] = useState(0);
   const [duree, setDuree] = useState(0);
 
     return (
       <View style={styles.screen}>
+
+        <TouchableOpacity onPress={travel} style={{ position : 'absolute', right: 15, top: 38}}>
+            <View  style={{ backgroundColor: Color.first, width: 110, height: 35, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
+                <Text style={{color: "white" , fontSize: 20, fontWeight:'bold',  textAlign:'center'}}>Let's GO</Text>
+            </View>
+        </TouchableOpacity>
+
        <TouchableOpacity onPress={back} style={{top:38, left: 10 , position : 'absolute'}}>
          <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
        </TouchableOpacity>
@@ -124,46 +137,92 @@ function Map({navigation}) {
                
                 }}
               />
-
-
             </MapView>
             </View>
-            <View style={{flex: 5}}>
-              <MyCarousel></MyCarousel>
-            </View>
-            <View style={styles.info}>
-              <ScrollView showsHorizontalScrollIndicator={false} showsVerticalScrollIndicator={false}>
-                <View style={{marginHorizontal : 25}}>
-                <View style={{flexDirection : 'row', marginTop: 10, borderBottomWidth: 3, paddingBottom: 5,}}>
-                  <Text style={{alignItems:'center',marginRight: 10}}>
-                  Distance: <Text style={{color: Color.first, fontWeight:'bold'}}> {distance}  </Text>km
+            <View style={{alignContent: 'center', marginBottom: 15,  alignItems: 'center', backgroundColor: Color.first, height: 28, borderRadius: 20, justifyContent:'center'}}>
+                <View style={{flexDirection : 'row'}}>
+                  <Text style={{alignItems:'center',marginRight: 10 ,fontSize: 18,fontWeight:'bold'}}>
+                  Distance: <Text style={{color: 'white', fontWeight:'bold',fontSize: 18,fontWeight:'bold'}}> {distance}  </Text>km
                   </Text>
-                  <Text style={{marginLeft: 10}}>
-                  Durée: <Text style={{color: Color.first, fontWeight:'bold'}}>{duree} </Text> minutes
+                  <Text style={{marginLeft: 10,fontSize: 18,fontWeight: 'bold'}}>
+                  Durée: <Text style={{color: 'white' , fontWeight:'bold',fontSize: 18,}}>{duree} </Text> minutes
                   </Text>
                 </View>
+            </View>
+
+            <View style={{marginRight: 20, flex : 9}}>
             
-                <View>
-                  <Text style={{fontSize: 18, fontWeight:'bold', borderBottomWidth: 3, paddingBottom: 5 , paddingTop: 10}}>Description</Text>
-                  <Text style={{textAlign: "justify"}}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sit amet dui eget eros scelerisque auctor id et tellus. Donec sit amet congue urna, vitae euismod neque. Aenean sagittis leo ut porttitor fermentum. Etiam maximus massa quis ultrices eleifend. Aliquam non metus vel nunc varius finibus vel sit amet lacus. Nunc id velit ipsum. Duis vel egestas urna. Nullam gravida sapien eget nunc pellentesque, volutpat mollis est venenatis. Quisque id interdum quam, non tempus ante.
+               <View   numberOfLines={3 }   style={{flexDirection:'row', flex: 1,  alignItems: 'center', borderTopWidth: 1 , borderTopColor: Color.second, borderBottomWidth: 1, borderBottomColor: Color.second,}}>
+                 <MaterialCommunityIcons name="map-marker" color={Color.first} size= {28} style={{marginRight:5}} />
+                 <Text> Adresse : <Text> {data[0].address} </Text></Text>
+               </View>
 
-Phasellus eros tellus, condimentum sed vestibulum a, hendrerit vel enim. Donec mollis porttitor nisl ut volutpat. Sed ac aliquam sem. Vivamus eget nisi vitae ex pretium varius. Duis imperdiet, dolor vitae consequat elementum, dui massa bibendum enim, vitae dapibus nunc eros non est. Nunc ac euismod erat. Aenean commodo congue mi, ut finibus diam scelerisque quis. Phasellus pellentesque vehicula lacus, congue vestibulum turpis vestibulum et. Cras iaculis volutpat mollis.
+               <View style={{flexDirection:'row', flex: 1,  alignItems: 'center',  }}>
+                 <MaterialCommunityIcons name="antenna" color={Color.first} size= {28} style={{marginRight:5,}}/>
+                 <Text> Site : <Text  style={{color:'blue', textDecorationLine: 'underline'}} onPress={() => Linking.openURL('https://'+data[0].website)}> {data[0].website} </Text></Text>
+               </View>
 
-Quisque porta dolor elit, non tincidunt turpis aliquet aliquam. Praesent sollicitudin scelerisque ipsum laoreet commodo. Fusce facilisis ut massa vitae elementum. Donec nec dignissim enim, ac laoreet quam. Curabitur nunc orci, ultrices id iaculis vel, pretium in orci. Vestibulum tincidunt sollicitudin arcu ac faucibus. Ut ac tincidunt arcu, sit amet molestie neque. Mauris a mi quis nisl suscipit pellentesque et id ante. Duis consectetur purus mauris, non cursus velit tristique eu. Praesent efficitur ut dui eu consectetur. Maecenas odio ipsum, ultricies et tortor non, scelerisque malesuada massa. Maecenas in dictum turpis, vel bibendum magna. Pellentesque dapibus urna eget vehicula ornare. Nunc fringilla leo sed erat congue, at pulvinar purus tempus. Duis nec malesuada lorem. Nulla facilisi.
+               <View style={{flexDirection:'row', flex: 1,  alignItems: 'center',  borderTopWidth: 1 , borderTopColor: Color.second, borderBottomWidth: 1, borderBottomColor: Color.second,}}>
+                 <TouchableOpacity onPress={() => Linking.openURL(`${callOperator}:${data[0].phoneNumber}`)} style={{flexDirection:'row',  alignItems: 'center',  }}>
+                    <MaterialCommunityIcons name="phone" color={Color.first} size= {28} style={{marginRight:5}} />
+                    <Text > Téléphone : <Text > {data[0].phoneNumber} </Text></Text>
+                 </TouchableOpacity>
+               </View>
+
+               <View style={{flexDirection:'row', flex: 1, alignItems: 'center', borderTopColor: Color.second, borderBottomWidth:1, borderBottomColor: Color.second,}}>
+                 <TouchableOpacity onPress={() => Linking.openURL(`sms:${smsOperator}body=${message}`)} style={{flexDirection:'row',  alignItems: 'center'}} >
+                     <MaterialCommunityIcons name="account-group" color={Color.first} size= {28} style={{marginRight:5}} />
+                     <Text > Partager l'établissement avec un(e) ami(e) </Text>
+                 </TouchableOpacity>
+               </View>
+                
+              
+
+
+               <View style={{flex : 4, marginTop: 5}}>
+                <View style={{ flexDirection:'row', alignItems: 'center',}}>
+                 <MaterialCommunityIcons name="clock-time-four-outline" color={Color.first} size= {28} style={{marginRight:5}} />
+                  <Text style={{fontSize: 17, fontWeight:'bold',}}>
+                      Horaires: 
                   </Text>
-                  
                 </View>
-                </View>
+                <View style={{marginLeft: 20, marginTop: 10, }}>
+                 <View style={{marginVertical: 3}} >
+                   <Text style={{fontSize: 15}} > Lundi : <Text>
+                    {data[0].lundi} </Text> </Text> 
+                 </View>
+                 <View style={{marginVertical: 3}}>
+                   <Text style={{fontSize: 15}} > Mardi : <Text>
+                    {data[0].mardi} </Text> </Text> 
+                 </View>
+                 <View style={{marginVertical: 3}}>
+                   <Text style={{fontSize: 15}} > Mercredi : <Text>
+                    {data[0].mercredi} </Text> </Text> 
+                 </View>
+                 <View style={{marginVertical: 3}}>
+                   <Text style={{fontSize: 15}} > Jeudi : <Text>
+                    {data[0].jeudi} </Text> </Text> 
+                 </View>
+                 <View style={{marginVertical: 3}}>
+                   <Text style={{fontSize: 15}} > Vendredi : <Text>
+                    {data[0].vendredi} </Text> </Text> 
+                 </View>
+                 <View style={{marginVertical: 3}}>
+                   <Text style={{fontSize: 15}} > Samedi : <Text>
+                    {data[0].samedi} </Text> </Text> 
+                 </View>
+                 <View style={{marginVertical: 3}}>
+                   <Text style={{fontSize: 15}} > Dimanche : <Text>
+                    {data[0].samedi} </Text> </Text> 
+                 </View>
+                 </View>
 
-              </ScrollView>
+            </View>    
+
+
             </View>
-            <View style={{flex : 2}}></View>
-            <TouchableOpacity onPress={travel} style={{ position : 'absolute', right: 15, top: 38}}>
-              <View  style={{ backgroundColor: Color.first, width: 110, height: 35, borderRadius: 30, justifyContent:'center', alignContent:'center', alignSelf:"center", textAlign:'center'}}>
-                <Text style={{color: "white" , fontSize: 20, fontWeight:'bold',  textAlign:'center'}}>Let's GO</Text>
-              </View>
-            </TouchableOpacity>
+
+
       </View>
   
   );
@@ -187,7 +246,7 @@ const styles = StyleSheet.create({
     },
 
     containerMap: {
-      flex:7, 
+      flex:4, 
       marginBottom: 25,  
       marginTop: 90,   
     },
@@ -201,12 +260,5 @@ const styles = StyleSheet.create({
       borderRadius: 20,
     },
 
-    info:{
-      flex:9,
-      backgroundColor:Color.second,
-      borderRadius: 20,
-      alignItems:'center',
-      marginTop: 20,
-
-    },
+  
 });

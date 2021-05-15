@@ -1,12 +1,15 @@
 
 
-import {LOCALISATION} from '../Actions/actionTypes';
-import {dataMap} from '../../Components/Maps/DataMap';
+import {LOCALISATION,MOODPICK, DATABACK} from '../Actions/actionTypes';
 
- const initialState = { coords : {
-    latitude: 45.76612748153259,
-    longitude: 4.83441214610266}} ;
 
+ const initialState = { 
+     dataBack:{} , 
+     moodPick:'',
+     coords : {
+        latitude: 45.76612748153259,
+        longitude: 4.83441214610266}} ;
+     
 
 
 export const addElementReducer = (state = initialState, action) => 
@@ -15,6 +18,15 @@ export const addElementReducer = (state = initialState, action) =>
 
        case LOCALISATION:
            return {...state , coords:  action.payload};
+
+
+       case MOODPICK:
+            return {...state , moodPick:  action.payload};
+
+
+            
+       case DATABACK:
+            return {...state , dataBack:  action.payload};
              
         default:
             return state;
