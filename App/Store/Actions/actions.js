@@ -1,4 +1,4 @@
-import {LOCALISATION, MOODPICK, DATABACK} from './actionTypes';
+import {LOCALISATION, MOODPICK, DATABACK, BARPICK} from './actionTypes';
 
 export const localisation = (element) => ({
     type : LOCALISATION,
@@ -13,5 +13,10 @@ export const moodPick = (element) => ({
 
 export const dataBack = (element) => ({
     type : DATABACK,
+    payload: element,
+});
+
+export const barPick = (element) => ({
+    type : BARPICK,
     payload: element,
 });

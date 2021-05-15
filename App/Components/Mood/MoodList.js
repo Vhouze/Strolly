@@ -41,7 +41,7 @@ const MoodList = function moodList ({navigation, id, title , image}){
         
 
 
-        getData(latitude,longitude,rayon,title);
+        // getData(latitude,longitude,rayon,title);
 
         
         

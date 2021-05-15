@@ -1,9 +1,10 @@
 
 
-import {LOCALISATION,MOODPICK, DATABACK} from '../Actions/actionTypes';
+import {LOCALISATION,MOODPICK, DATABACK, BARPICK} from '../Actions/actionTypes';
 
 
  const initialState = { 
+     barPick: {},
      dataBack:{} , 
      moodPick:'',
      coords : {
@@ -27,6 +28,9 @@ export const addElementReducer = (state = initialState, action) =>
             
        case DATABACK:
             return {...state , dataBack:  action.payload};
+
+       case BARPICK:
+           return {...state , barPick:  action.payload};
              
         default:
             return state;

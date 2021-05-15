@@ -5,3 +5,5 @@ export const LOCALISATION = 'LOCALISATION';
 export const MOODPICK = 'MOODPICK';
 
 export const DATABACK = 'DATABACK';
+
+export const BARPICK = 'BARPICK';

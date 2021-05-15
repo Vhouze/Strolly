@@ -12,11 +12,10 @@ import MyCarousel from '../../Components/Maps/Carousel';
 import * as Location from 'expo-location';
 import {useSelector, useDispatch} from 'react-redux';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import database from '../../test.js'
-import { Col } from 'react-bootstrap';
 
 
-const data = database 
+
+
 
 const exdata = {
 
@@ -44,12 +43,8 @@ const travel = () => {getDirections(exdata)};
 
 function Map({navigation}) {
 
-  
+  const data = useSelector ((state) => state.barPick);
 
-  //const [location, setLocation] = useState({coords : {
-  //  latitude: dataMap[0].latitude,
-  //  longitude: dataMap[0].longitude}});
-//
   const [errorMsg, setErrorMsg] = useState(null);
 
   const localisation = useSelector ((state) => state.coords);
@@ -60,25 +55,12 @@ function Map({navigation}) {
 
   const back = () => { navigation.goBack()} 
 
- // useEffect(() => {
- //   (async () => {
- //     let { status } = await Location.requestForegroundPermissionsAsync();
- //     if (status !== 'granted') {
- //       setErrorMsg('Permission to access location was denied');
- //       return;
- //     }
-//
- //     let location = await Location.getCurrentPositionAsync({});
- //     setLocation(location);
- //   })();
- // }, []);
-//
  
   const smsOperator = Platform.select({ios: '&', android: '?'});
 
   const callOperator = Platform.select({ ios : 'tel' , android: 'telprompt'})
   
-  const message = "Hello ! J'ai trouvé un super endroit pour passer un moment ensemble sur Barz. Retrouve-moi à " + data[0].title + ". L'adresse de l'établissement est la suivante : " + data[0].address
+  const message = "Hello ! J'ai trouvé un super endroit pour passer un moment ensemble sur Barz. Retrouve-moi à " + data.title + ". L'adresse de l'établissement est la suivante : " + data.address
 
   const [distance, setDistance] = useState(0);
   const [duree, setDuree] = useState(0);
@@ -99,8 +81,8 @@ function Map({navigation}) {
             <MapView
                 style={styles.map}
                 initialRegion={{
-                latitude: dataMap[0].latitude,
-                longitude: dataMap[0].longitude,
+                latitude: localisation.latitude,
+                longitude: localisation.longitude,
                 latitudeDelta: 0.0222,
                 longitudeDelta: 0.0221,
                 }}
@@ -110,11 +92,9 @@ function Map({navigation}) {
                 <Marker
                 key= {dataMap[0].id}
                 coordinate=
-                {{latitude: dataMap[0].latitude,
-                   longitude:  dataMap[0].longitude}}
-                title={dataMap[0].title}
-                description={dataMap[0].description}
-                pinColor = {dataMap[0].color}
+                {{latitude: data.latitude,
+                   longitude:  data.longitude}}
+                title={data.title}
                 >
                   <Image source={require('../../Assets/img/Map/beer.png')} style={{height: 35, width:35 }} />
                 </Marker>
@@ -122,7 +102,7 @@ function Map({navigation}) {
 
               <MapViewDirections
                 origin={{latitude: localisation.latitude, longitude:  localisation.longitude}}
-                destination={{latitude: dataMap[0].latitude, longitude:  dataMap[0].longitude}}
+                destination={{latitude: data.latitude, longitude:  data.longitude}}
                 apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
                 mode="WALKING"
                 
@@ -150,26 +130,28 @@ function Map({navigation}) {
                 </View>
             </View>
 
+            <ScrollView showsVerticalScrollIndicator={false}  showsHorizontalScrollIndicator={false}>
+
             <View style={{marginRight: 20, flex : 9}}>
             
-               <View   numberOfLines={3 }   style={{flexDirection:'row', flex: 1,  alignItems: 'center', borderTopWidth: 1 , borderTopColor: Color.second, borderBottomWidth: 1, borderBottomColor: Color.second,}}>
+               <View   numberOfLines={3 }   style={{paddingVertical: 12, flexDirection:'row', flex: 1,  alignItems: 'center', borderTopWidth: 1 , borderTopColor: Color.second, borderBottomWidth: 1, borderBottomColor: Color.second,}}>
                  <MaterialCommunityIcons name="map-marker" color={Color.first} size= {28} style={{marginRight:5}} />
-                 <Text> Adresse : <Text> {data[0].address} </Text></Text>
+                 <Text> Adresse : <Text> {data.address} </Text></Text>
                </View>
 
-               <View style={{flexDirection:'row', flex: 1,  alignItems: 'center',  }}>
+               <View style={{flexDirection:'row', flex: 1,  alignItems: 'center',paddingVertical: 12,   }}>
                  <MaterialCommunityIcons name="antenna" color={Color.first} size= {28} style={{marginRight:5,}}/>
-                 <Text> Site : <Text  style={{color:'blue', textDecorationLine: 'underline'}} onPress={() => Linking.openURL('https://'+data[0].website)}> {data[0].website} </Text></Text>
+                 <Text> Site : <Text  style={{color:'blue', textDecorationLine: 'underline'}} onPress={() => Linking.openURL('https://'+data.website)}> {data.website} </Text></Text>
                </View>
 
-               <View style={{flexDirection:'row', flex: 1,  alignItems: 'center',  borderTopWidth: 1 , borderTopColor: Color.second, borderBottomWidth: 1, borderBottomColor: Color.second,}}>
-                 <TouchableOpacity onPress={() => Linking.openURL(`${callOperator}:${data[0].phoneNumber}`)} style={{flexDirection:'row',  alignItems: 'center',  }}>
+               <View style={{paddingVertical: 12, flexDirection:'row', flex: 1,  alignItems: 'center',  borderTopWidth: 1 , borderTopColor: Color.second, borderBottomWidth: 1, borderBottomColor: Color.second,}}>
+                 <TouchableOpacity onPress={() => Linking.openURL(`${callOperator}:${data.phoneNumber}`)} style={{flexDirection:'row',  alignItems: 'center',  }}>
                     <MaterialCommunityIcons name="phone" color={Color.first} size= {28} style={{marginRight:5}} />
-                    <Text > Téléphone : <Text > {data[0].phoneNumber} </Text></Text>
+                    <Text > Téléphone : <Text > {data.phoneNumber} </Text></Text>
                  </TouchableOpacity>
                </View>
 
-               <View style={{flexDirection:'row', flex: 1, alignItems: 'center', borderTopColor: Color.second, borderBottomWidth:1, borderBottomColor: Color.second,}}>
+               <View style={{paddingVertical: 12, flexDirection:'row', flex: 1, alignItems: 'center', borderTopColor: Color.second, borderBottomWidth:1, borderBottomColor: Color.second,}}>
                  <TouchableOpacity onPress={() => Linking.openURL(`sms:${smsOperator}body=${message}`)} style={{flexDirection:'row',  alignItems: 'center'}} >
                      <MaterialCommunityIcons name="account-group" color={Color.first} size= {28} style={{marginRight:5}} />
                      <Text > Partager l'établissement avec un(e) ami(e) </Text>
@@ -189,39 +171,39 @@ function Map({navigation}) {
                 <View style={{marginLeft: 20, marginTop: 10, }}>
                  <View style={{marginVertical: 3}} >
                    <Text style={{fontSize: 15}} > Lundi : <Text>
-                    {data[0].lundi} </Text> </Text> 
+                    {data.lundi} </Text> </Text> 
                  </View>
                  <View style={{marginVertical: 3}}>
                    <Text style={{fontSize: 15}} > Mardi : <Text>
-                    {data[0].mardi} </Text> </Text> 
+                    {data.mardi} </Text> </Text> 
                  </View>
                  <View style={{marginVertical: 3}}>
                    <Text style={{fontSize: 15}} > Mercredi : <Text>
-                    {data[0].mercredi} </Text> </Text> 
+                    {data.mercredi} </Text> </Text> 
                  </View>
                  <View style={{marginVertical: 3}}>
                    <Text style={{fontSize: 15}} > Jeudi : <Text>
-                    {data[0].jeudi} </Text> </Text> 
+                    {data.jeudi} </Text> </Text> 
                  </View>
                  <View style={{marginVertical: 3}}>
                    <Text style={{fontSize: 15}} > Vendredi : <Text>
-                    {data[0].vendredi} </Text> </Text> 
+                    {data.vendredi} </Text> </Text> 
                  </View>
                  <View style={{marginVertical: 3}}>
                    <Text style={{fontSize: 15}} > Samedi : <Text>
-                    {data[0].samedi} </Text> </Text> 
+                    {data.samedi} </Text> </Text> 
                  </View>
                  <View style={{marginVertical: 3}}>
                    <Text style={{fontSize: 15}} > Dimanche : <Text>
-                    {data[0].samedi} </Text> </Text> 
+                    {data.samedi} </Text> </Text> 
                  </View>
                  </View>
-
+                 
             </View>    
 
 
             </View>
-
+           </ScrollView>
 
       </View>
   

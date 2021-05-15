@@ -7,26 +7,40 @@ import {FavMoodData} from '../../Components/Profil/DataProfil.js';
 import database from '../../test.js'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector, useDispatch} from 'react-redux';
-
-
+import {barPick} from '../../Store/Actions/actions';
 
 export default function SwipeScreen({navigation}) {
 
+  const [index,setIndex] = useState(0);
+
+  const dispatch = useDispatch();
+
+  const randomInt = function randomNumber() {
+    return Math.floor(Math.random() * 10000).toString();
+  }
+
     const data = database;
 
-    const db = useSelector ((state) => state.dataBack);
+    // const db = useSelector ((state) => state.dataBack);
 
     const swipe = (dir) => {
-        if (dir == 'left') { let i = i + 1 };
+        if (dir == 'left') {setIndex(index + 1) , console.log(index)};
 
-        if (dir== 'right') { navigation.navigate('Maps Screen') };
+        if (dir== 'right') { 
+          dispatch(barPick(data[index]));
+          navigation.navigate('Maps Screen') 
+      
+      };
     };
 
     const back = () => { navigation.goBack()} 
+    console.log(index)
     
+    useEffect(()=> {
+    },[index])
 
 
-    var attributeClean = data[0].attributes.split(" · ")
+    var attributeClean = data[index].attributes.split(" · ")
     attributeClean=  attributeClean.join(',')
     attributeClean = attributeClean.split('·  ')
     attributeClean = attributeClean.join(',')
@@ -60,7 +74,7 @@ export default function SwipeScreen({navigation}) {
   
 
           <View  style={styles.imgContainer}>
-             <Image style={styles.img} source={{uri:data[0].imgUrl}}  />
+             <Image style={styles.img} source={{uri:data[index].imgUrl}}  />
              <TouchableOpacity onPress={back} style={{top:38, left: 10 , position : 'absolute'}}>
                 <MaterialCommunityIcons name="arrow-left-circle" color={'red'} size= {37} /> 
              </TouchableOpacity>
@@ -70,17 +84,17 @@ export default function SwipeScreen({navigation}) {
 
               <View style={styles.title}>
                   <View style={styles.encadrage}>
-                     <Text style = {{fontSize: 35, fontWeight:"bold",}}>{data[0].title}</Text>
+                     <Text style = {{fontSize: 35, fontWeight:"bold",}}>{data[index].title}</Text>
                   </View> 
               </View>
 
               <View style={styles.attributes}>
                 <View style={{backgroundColor: Color.first, borderRadius: 20, alignContent: 'center', alignItems: 'center', height: 30, justifyContent:'center', marginBottom: 40, marginHorizontal: 40, }}>
-                    <Text style={{fontSize: 25,color:'white',  fontWeight:'bold'}}>{data[0].category}</Text>
+                    <Text style={{fontSize: 25,color:'white',  fontWeight:'bold'}}>{data[index].category}</Text>
                 </View>
                 <FlatList
                         horizontal={true}
-                        keyExtractor={(index) => {index.toString()}}
+                        keyExtractor={randomInt}
                         data={attributeClean} 
                         renderItem={attributesRender} 
                         showsVerticalScrollIndicator={false}
@@ -92,7 +106,7 @@ export default function SwipeScreen({navigation}) {
 
               <View style={styles.quote}>
                 <Text style={{fontWeight:'bold', textDecorationLine: 'underline', marginBottom:6,}}> Détail du mood: </Text>
-                <Text>{data[0].quote}</Text>
+                <Text>{data[index].quote}</Text>
               </View>
 
           <View style={styles.buttonContainer} >
@@ -142,6 +156,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems:'center', 
     justifyContent:'center',
+    alignContent: 'center',
     marginHorizontal: 10,
     borderWidth: 4,
     borderColor: Color.first,
