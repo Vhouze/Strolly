@@ -10,8 +10,8 @@ module.exports = {
 	    let i = 0;
 	    let isInside = false;
 	    let center = {lat: 0.00, lon: 0.00};
-	    var filteredJSON = {};
-	    let filteredJSONIndex = 0;
+	    var filteredJSONUpper = [];
+	    var filteredJSONDown = [];
 	    let needInsert = false;
 
 	    //checking if optional parameters are here; in this case, we enable the fetching of shops by a perimeter
@@ -55,15 +55,18 @@ module.exports = {
     			}
 
     			if (needInsert) {
-    				filteredJSON[filteredJSONIndex] = jsonObj[i];
-    				filteredJSONIndex++;
+    				if (jsonObj[i].quote != "")
+    					filteredJSONUpper.push(jsonObj[i]);
+    				else
+    					filteredJSONDown.push(jsonObj[i]);
     			}
+
     			i++;
     		}
 
     		//if parsed by perimeter: submit filtered json
     		if (isInside || mood != undefined)
-    			data.message = filteredJSON;
+    			data.message = filteredJSONUpper.concat(filteredJSONDown);
     		else
             	data.message = jsonObj;
             res.status(200).send(data)
