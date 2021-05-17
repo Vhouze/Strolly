@@ -102,7 +102,7 @@ export default function SwipeScreen({navigation}) {
 
               <View style={styles.quote}>
                 <Text style={{fontWeight:'bold', textDecorationLine: 'underline', marginBottom:6,}}> Détail du mood: </Text>
-                <Text>{data[index].quote}</Text>
+                <Text style={{alignItems:'center' }}>{data[index].quote}</Text>
               </View>
 
           <View style={styles.buttonContainer} >
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     
   },
   quote : {
-    flex: 1,
+    flex: 1.1,
     alignItems:'center', 
     justifyContent:'center',
     alignContent: 'center',
@@ -157,6 +157,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: Color.first,
     borderRadius: 30,
+    paddingHorizontal: 30,
 
   }, 
 

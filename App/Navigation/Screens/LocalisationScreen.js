@@ -37,7 +37,7 @@ export default function LocalisationScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', flex : 6}}>
+      <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', flex : 6, }}>
         <Text style={{fontSize: 42, color: Color.second, }}>Bienvenue !</Text>
       </View>
       <View style={styles.slogan}>
@@ -50,7 +50,7 @@ export default function LocalisationScreen({navigation}) {
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={move} >
-          <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 200}} >
+          <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 80}} >
             <Text style={styles.default}>Prendre Lyon comme position actuelle</Text>
           </View>
         </TouchableOpacity>
@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
     marginHorizontal:50,
   },
   slogan:{
-    flex:3,
+    flex:2,
     marginHorizontal:20,
-    marginBottom: 50,
+    marginBottom: 100,
   },
 
   logText:{
@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     height: 60,
     marginVertical: 20,
     marginBottom: 60,
-    marginTop: 40,
   },
 
 });

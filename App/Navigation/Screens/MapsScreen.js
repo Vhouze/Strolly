@@ -57,7 +57,7 @@ function Map({navigation}) {
  
   const smsOperator = Platform.select({ios: '&', android: '?'});
 
-  const callOperator = Platform.select({ ios : 'tel' , android: 'telprompt'})
+  const callOperator = Platform.select({ ios : 'tel' , android: 'tel'})
   
   const message = "Hello ! J'ai trouvé un super endroit pour passer un moment ensemble sur Barz. Retrouve-moi à " + data.title + ". L'adresse de l'établissement est la suivante : " + data.address
 
