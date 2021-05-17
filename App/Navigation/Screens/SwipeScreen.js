@@ -18,13 +18,11 @@ export default function SwipeScreen({navigation}) {
   const randomInt = function randomNumber() {
     return Math.floor(Math.random() * 10000).toString();
   }
-
-    const data = database;
-
-    // const db = useSelector ((state) => state.dataBack);
+     const data = useSelector ((state) => state.dataBack);
 
     const swipe = (dir) => {
-        if (dir == 'left') {setIndex(index + 1) , console.log(index)};
+        if (dir == 'left')
+          setIndex(index + 1)
 
         if (dir== 'right') { 
           dispatch(barPick(data[index]));
@@ -33,9 +31,7 @@ export default function SwipeScreen({navigation}) {
       };
     };
 
-    const back = () => { navigation.goBack()} 
-    console.log(index)
-    
+    const back = () => { navigation.goBack()}     
     useEffect(()=> {
     },[index])
 

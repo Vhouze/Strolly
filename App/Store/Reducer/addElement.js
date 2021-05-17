@@ -16,7 +16,6 @@ import {LOCALISATION,MOODPICK, DATABACK, BARPICK} from '../Actions/actionTypes';
 export const addElementReducer = (state = initialState, action) => 
 {
     switch(action.type){
-
        case LOCALISATION:
            return {...state , coords:  action.payload};
 

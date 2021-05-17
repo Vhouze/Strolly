@@ -19,6 +19,11 @@ moods:
 export async function GetShops(lat = 0.00, lng = 0.00, radius = 0, mood = "") {
     const url= 'http://10.0.2.2:8082/getShops'
     var parameters = {};
+    var moodByTitle = {"Bol d'air": "bolDair", "Cosy": "cosy", "Afterwork": "afterwork", "Let's play": "letsplay", "Dance": "letsdance", "WHAT THE BARZ": "whatTheBarz"};
+    let finalMood = mood;
+
+    if (mood != "" && moodByTitle[mood] != undefined)
+        finalMood = moodByTitle[mood];
 
     if (lat != 0.00 && lng != 0.00 && radius != 0) {
         parameters.lat = lat;
@@ -26,8 +31,8 @@ export async function GetShops(lat = 0.00, lng = 0.00, radius = 0, mood = "") {
         parameters.radius = radius;
     }
 
-    if (mood != "") {
-        parameters.mood = mood;
+    if (finalMood != "") {
+        parameters.mood = finalMood;
     }
 
     return(

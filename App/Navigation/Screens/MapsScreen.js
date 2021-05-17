@@ -48,7 +48,6 @@ function Map({navigation}) {
   const [errorMsg, setErrorMsg] = useState(null);
 
   const localisation = useSelector ((state) => state.coords);
-  console.log(localisation)
 
   useEffect(()=> {
   },[localisation])
@@ -92,8 +91,8 @@ function Map({navigation}) {
                 <Marker
                 key= {dataMap[0].id}
                 coordinate=
-                {{latitude: data.latitude,
-                   longitude:  data.longitude}}
+                {{latitude: parseFloat(data.latitude),
+                   longitude:  parseFloat(data.longitude)}}
                 title={data.title}
                 >
                   <Image source={require('../../Assets/img/Map/beer.png')} style={{height: 35, width:35 }} />
@@ -102,7 +101,7 @@ function Map({navigation}) {
 
               <MapViewDirections
                 origin={{latitude: localisation.latitude, longitude:  localisation.longitude}}
-                destination={{latitude: data.latitude, longitude:  data.longitude}}
+                destination={{latitude: parseFloat(data.latitude), longitude:  parseFloat(data.longitude)}}
                 apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
                 mode="WALKING"
                 

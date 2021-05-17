@@ -10,17 +10,16 @@ const MoodList = function moodList ({navigation, id, title , image}){
 
 
     const getData = (latitude,longitude,rayon,mood) => {
-        GetShops(latitude,longitude,rayon,mood).then(res => 
+        return (GetShops(latitude,longitude,rayon,mood).then(res => 
           {if (res) {
-            console.log(Object.keys(res).length)
-            console.log("1er element :")
-            console.log(res[0])
-            dispatch(dataBack(res))
-          }
+                dispatch(dataBack(res))
+                return "ok";
+            }
             else
-              alert("data loading failed.")
-          })  
-      };
+              return null;
+          }
+        ))
+    };
   
 
 
@@ -37,19 +36,12 @@ const MoodList = function moodList ({navigation, id, title , image}){
 
         dispatch(moodPick(title));
 
-
-        
-
-
-        // getData(latitude,longitude,rayon,title);
-
-        
-        
-        navigation.navigate(('Swipe Screen'),{title : title})
-        
-        
-        
-        ;
+        getData(latitude,longitude,rayon,title).then((res) => {
+            if (res != null)
+                navigation.navigate(('Swipe Screen'),{title : title})
+            else
+                alert("Error: loading failed.")
+        });
     };
 
     let TouchableCmp = TouchableOpacity;
