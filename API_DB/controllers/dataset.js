@@ -2,18 +2,26 @@ var database = require('./database');
 const csv=require('csvtojson');
 var geoloc = require('geolocation-utils')
 
+/*format handled:
+00h00–00h00
+Fermé
+00:00–00:00
+*/
 function IsOpened(openingHours, hours, minutes) {
-	if (openingHours == "")
+	let chrDivider = "h";
+	if (openingHours == "" || openingHours == "Fermé")
 		return false;
 	try {
-		let op_time = {hour: openingHours.split("-")[0].split("h")[0], minute: openingHours.split("-")[0].split("h")[1]};
-		let cl_time = {hour: openingHours.split("-")[1].split("h")[0], minute: openingHours.split("-")[1].split("h")[1]};
+		if (openingHours.indexOf(":") != -1)
+			chrDivider = ":";
+		let op_time = {hour: openingHours.split("–")[0].split(chrDivider)[0], minute: openingHours.split("–")[0].split(chrDivider)[1]};
+		let cl_time = {hour: openingHours.split("–")[1].split(chrDivider)[0], minute: openingHours.split("–")[1].split(chrDivider)[1]};
 
 		if (hours > op_time.hour && hours < cl_time.hour)
 			return true;
-		else if (hour == op_time.hour && minutes > op_time.minute)
+		else if (hours == op_time.hour && minutes > op_time.minute)
 			return true;
-		else if (hour == cl_time.hour && minutes < cl_time.minute)
+		else if (hours == cl_time.hour && minutes < cl_time.minute)
 			return true;
 		return false;
 	} catch (e){
@@ -54,7 +62,7 @@ function ParseCSV(jsonObj, center, radius, isInside, mood, currentTime) {
     	let day = jsonObj[i][dayConverter[currentTime.getDay()]];
     	//insert by filtering by categories
     	if (needInsert) {
-    		if (jsonObj[i].quote == "" )//|| !IsOpened(day, currentTime.getHours(), currentTime.getMinutes()))
+    		if (jsonObj[i].quote == "" || !IsOpened(day, currentTime.getHours(), currentTime.getMinutes()))
     			filteredJSON.last.push(jsonObj[i]);
     		else {
     			switch(parseFloat(jsonObj[i].rating)) {
