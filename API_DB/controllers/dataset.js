@@ -2,8 +2,29 @@ var database = require('./database');
 const csv=require('csvtojson');
 var geoloc = require('geolocation-utils')
 
-function ParseCSV(jsonObj, center, radius, isInside, mood) {
+function IsOpened(openingHours, hours, minutes) {
+	if (openingHours == "")
+		return false;
+	try {
+		let op_time = {hour: openingHours.split("-")[0].split("h")[0], minute: openingHours.split("-")[0].split("h")[1]};
+		let cl_time = {hour: openingHours.split("-")[1].split("h")[0], minute: openingHours.split("-")[1].split("h")[1]};
+
+		if (hours > op_time.hour && hours < cl_time.hour)
+			return true;
+		else if (hour == op_time.hour && minutes > op_time.minute)
+			return true;
+		else if (hour == cl_time.hour && minutes < cl_time.minute)
+			return true;
+		return false;
+	} catch (e){
+		console.log("error when fetching opening hours: " + openingHours + " " + e);
+		return false
+	}
+}
+
+function ParseCSV(jsonObj, center, radius, isInside, mood, currentTime) {
 	let i = 0;
+	const dayConverter = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 	var filteredJSON = {fourfive: [], three: [], onetwo: [], last: []};
 	let needInsert = false;
 
@@ -30,9 +51,10 @@ function ParseCSV(jsonObj, center, radius, isInside, mood) {
     			needInsert = false;
     	}
 
+    	let day = jsonObj[i][dayConverter[currentTime.getDay()]];
     	//insert by filtering by categories
     	if (needInsert) {
-    		if (jsonObj[i].quote == "")
+    		if (jsonObj[i].quote == "" )//|| !IsOpened(day, currentTime.getHours(), currentTime.getMinutes()))
     			filteredJSON.last.push(jsonObj[i]);
     		else {
     			switch(parseFloat(jsonObj[i].rating)) {
@@ -64,6 +86,7 @@ module.exports = {
 	    let isInside = false;
 	    var filteredJSON = {fourfive: [], three: [], onetwo: [], last: []};
 	    let center = {lat: 0.00, lon: 0.00};
+	    var currentTime = new Date();
 
 	    //checking if optional parameters are here; in this case, we enable the fetching of shops by a perimeter
 	    if (lat != undefined && lng != undefined && radius != undefined) {
@@ -96,11 +119,19 @@ module.exports = {
 	   		}
 
 	   		while ((filteredJSON.fourfive.length + filteredJSON.three.length + filteredJSON.onetwo.length + filteredJSON.last.length) < 30) {
-		   		filteredJSON = ParseCSV(jsonObj, center, radius, isInside, mood)
+		   		filteredJSON = ParseCSV(jsonObj, center, radius, isInside, mood, currentTime)
 
-		   		//if not enough results, search in a wider zone
+		   		//if not enough results, search in a wider zone; after 10kms, check if there are any results: if no, throw an error; if yes get out of the while
 		   		radius += 100;
-			}
+		   		if (radius > 10000 && (filteredJSON.fourfive.length + filteredJSON.three.length + filteredJSON.onetwo.length + filteredJSON.last.length) == 0) {
+					data.code = "ERROR_WITH_MOOD"
+        			data.message = "Error in the name of mood: no results after 10km."
+          			res.status(403).send(data)
+        			return;
+		   		} else {
+		   			break;
+		   		}
+		   	}
 
     		//shuffle everything
     		filteredJSON.fourfive.sort(() => Math.random() - 0.5);
