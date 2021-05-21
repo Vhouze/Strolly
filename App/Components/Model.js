@@ -10,6 +10,15 @@ export class Lieux {
     }
 };
 
+export class Rating {
+    constructor(id, title, rating, comment){
+        this.id = id;
+        this.title = title;
+        this.rating = rating;
+        this. comment = comment;
+    }
+};
+
 export class Mood {
     constructor(id, title, image ){
         this.id = id;

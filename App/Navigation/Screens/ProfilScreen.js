@@ -1,12 +1,13 @@
 import React, {useState,useEffect} from 'react';
-import {Animated, View, Text, Button,StyleSheet, Image, FlatList } from 'react-native';
+import {Animated, View, Text, Button,StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import { Icon } from 'react-native-elements'
 import Color from '../../Constant/Color';
 import * as Animatable from 'react-native-animatable';
 import Emoji from 'react-native-emoji';
 import {FavMoodData} from '../../Components/Profil/DataProfil.js';
 
 
-export default function ProfilScreen() {
+export default function ProfilScreen({navigation}) {
 
 
 
@@ -24,6 +25,23 @@ const favMoodList = ({item})=>{
     return (
       
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "white" }}>
+        <View style={{alignSelf: 'flex-end', marginHorizontal:10, marginVertical: 5}}>
+          <TouchableOpacity
+            style={{
+              borderWidth:1,
+              borderColor: Color.first,
+              alignItems:'center',
+              justifyContent:"center",
+              width:50,
+              height:50,
+              backgroundColor:'#fff',
+              borderRadius:30,
+            }}
+            onPress={() => navigation.navigate('History Screen')}
+          >
+            <Icon name="hourglass" type='antdesign'  size={30} color="#01a699" />
+          </TouchableOpacity>
+        </View>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',}}>
           <Image 
           style={{width: 160, height: 160,borderRadius: 200 / 2, overflow: "hidden", borderWidth: 3,borderColor: Color.first, alignItems:'center', justifyContent:'center', marginBottom:30, marginTop:30,}} 
@@ -78,5 +96,4 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     alignItems: 'center',
   },
-
 });

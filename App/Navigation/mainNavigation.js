@@ -13,6 +13,8 @@ import ProfilScreen from './Screens/ProfilScreen';
 import LocalisationScreen from './Screens/LocalisationScreen';
 import Color from '../Constant/Color';
 import SignScreen from'./Screens/SignScreen';
+import HistoryScreen from'./Screens/HistoryScreen';
+
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -63,6 +65,11 @@ const MainNavigator = function mainNavigator ({navigation}){
           <Stack.Screen
           name="Localisation Screen"
           component={LocalisationScreen}
+          />
+
+          <Stack.Screen
+          name="History Screen"
+          component={HistoryScreen}
           />  
 
 
