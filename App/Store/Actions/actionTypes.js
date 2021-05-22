@@ -7,3 +7,5 @@ export const MOODPICK = 'MOODPICK';
 export const DATABACK = 'DATABACK';
 
 export const BARPICK = 'BARPICK';
+
+export const UPDATEHISTORY = 'UPDATEHISTORY';

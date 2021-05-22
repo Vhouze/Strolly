@@ -14,6 +14,7 @@ import LocalisationScreen from './Screens/LocalisationScreen';
 import Color from '../Constant/Color';
 import SignScreen from'./Screens/SignScreen';
 import HistoryScreen from'./Screens/HistoryScreen';
+import ReviewEditScreen from'./Screens/ReviewEditScreen';
 
 
 const Stack = createStackNavigator();
@@ -70,14 +71,12 @@ const MainNavigator = function mainNavigator ({navigation}){
           <Stack.Screen
           name="History Screen"
           component={HistoryScreen}
-          />  
+          />
 
-
-
-          
-
-
-          
+          <Stack.Screen
+          name="Review Edit Screen"
+          component={ReviewEditScreen}
+          />
 
 
         </Stack.Navigator>

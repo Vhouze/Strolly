@@ -1,22 +1,52 @@
-import React from 'react';
-import {Rating} from "./../Model"
-import {View, Text, StyleSheet, ScrollView } from 'react-native';
+import React, {useState,useEffect} from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Color from '../../Constant/Color';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export  const dataHistory = [
-    new Rating(0, "Cafe theatre", 4, "plutot pas mal pour passer l'apres midi"),
-    new Rating(1, "Docks", 5, "Bar parfait pour revoir ses potes"),
-    new Rating(2, "Mac Carthy", 3, "Les billards sont vraiment pas mal mais sinon c'est bondé h24")
-];
+export function HistoryItem({navigation, id, title, rating, comment}) {
+    const [maxRating, setMaxRating] = useState([1, 2, 3, 4, 5]);
+    const starImgFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png"
+    const starImgCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png"
 
-export function HistoryItem({id, title, rating, comment}) {
+    const CustomRatingBar = () => {
+        return (
+            <View style={styles.customRatingBarStyle}>
+                {
+                    maxRating.map((item, key) => {
+                        return (
+                            <TouchableOpacity
+                                activeOpacity={0.7}
+                                key={item}
+                            >
+                                <Image
+                                    style={styles.starImgStyle}
+                                    source={
+                                        item <= rating
+                                            ? {uri: starImgFilled}
+                                            : {uri: starImgCorner}
+                                    }
+                                />
+                            </TouchableOpacity>
+                        )
+                    })
+                }
+            </View>
+        )
+    }
+
     return (
         <View style={styles.box}>
-            <View>
-                <Text style={{color:'white', fontSize:20, fontWeight:'bold'}}>{title}</Text>
+            <View style={{flexDirection:"row", alignItems: "flex-start", flexWrap:"wrap", flex:1}}>
+                <Text style={{flex: 1,color:'white', fontSize:20, fontWeight:'bold'}}>{title}</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Review Edit Screen", {id: id, title: title, rating: rating, comment: comment})}>
+                    <MaterialCommunityIcons name="pencil-outline" color={'white'} size= {29} /> 
+                </TouchableOpacity>
             </View>
             <View style={{flexDirection:"column", alignItems: "flex-start", flexWrap:"wrap", flex:1}}>
-                <Text style={{width:"50%", color:'white', fontSize:20, fontWeight:'bold'}}>{"Avis : " + rating + "/5"}</Text>
+                <View style={{flexDirection:"column", width: "50%"}}>
+                    <Text style={{color:'white', fontSize:15, fontWeight:'bold'}}>Avis donné:</Text>
+                    <CustomRatingBar/>
+                </View>
                 <Text style={{width:"50%", color:'white', fontSize:20, fontWeight:'bold'}}>{comment}</Text>
             </View>
         </View>
@@ -33,6 +63,14 @@ const styles = StyleSheet.create({
         marginVertical: 7,
         padding: 2,
     },
-
+    customRatingBarStyle: {
+        justifyContent: 'center',
+        flexDirection: "row",
+    },
+    starImgStyle: {
+        width: 20,
+        height: 20,
+        resizeMode: 'cover'
+    }
   });
   

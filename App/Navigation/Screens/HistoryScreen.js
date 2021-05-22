@@ -1,15 +1,15 @@
 import React, {useState,useEffect} from 'react';
 import {View, Text, Button,StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import {dataHistory, HistoryItem} from "./../../Components/Profil/DataHistory"
+import {HistoryItem} from "./../../Components/Profil/DataHistory"
 import Color from '../../Constant/Color';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-
+import {useSelector, useDispatch} from 'react-redux';
 
 export default function HistoryScreen({navigation}) {
+    const data = useSelector ((state) => state.history);
 
     const renderHistory = ({item})=>{
-        return (<HistoryItem id={item.id} title={item.title} rating={item.rating} comment={item.comment}/>);
+        return (<HistoryItem navigation={navigation} id={item.id} title={item.title} rating={item.rating} comment={item.comment}/>);
     };
 
     return (
@@ -26,7 +26,7 @@ export default function HistoryScreen({navigation}) {
                 <View style={styles.cont}>
                     <FlatList
                         keyExtractor={(item) => item.id.toString()}
-                        data={dataHistory} 
+                        data={data} 
                         renderItem={renderHistory} 
                         style={{marginBottom: 20}}
                     />
@@ -44,5 +44,4 @@ const styles = StyleSheet.create({
       borderBottomWidth:2,
       width: '90%'
     },
-  });
-  
+});
