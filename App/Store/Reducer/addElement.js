@@ -18,10 +18,17 @@ import {LOCALISATION,MOODPICK, DATABACK, BARPICK, UPDATEHISTORY} from '../Action
 }
 
 function updateElementHistory(state, place) {
-    state.history.forEach((value, index) => {
-        if (value.id == place.id)
-            state.history[index] = place;
-    });
+    state.history = state.history.map((item, index) => {
+        if (item.id !== place.id) {
+            return item
+        }
+     
+        return {
+            ...item,
+            ...place
+        }
+    })
+
     return state;
 }
 

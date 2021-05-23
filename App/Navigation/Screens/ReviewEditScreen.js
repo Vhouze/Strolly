@@ -15,6 +15,12 @@ export default function ReviewEditScreen({route, navigation}) {
     const starImgFilled = "https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png"
     const starImgCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png"
 
+    function Confirm() {
+        //TODO send rating and comment in db
+        dispatch(updateHistory({id: id, title: title, comment: comment, rating: rating}));
+        alert("Review updated!");
+        navigation.goBack();
+    }
     const CustomRatingBar = () => {
         return (
             <View style={styles.customRatingBarStyle}>
@@ -60,7 +66,7 @@ export default function ReviewEditScreen({route, navigation}) {
                         onChangeText={value => setComment(value)}
                         value={comment}
                     />
-                    <TouchableOpacity onPress={() => dispatch(updateHistory({id: id, title: title, comment: comment, rating: rating}))}
+                    <TouchableOpacity onPress={() => Confirm()}
                         style={{borderWidth:2,
                             borderColor: Color.first,
                             borderRadius: 20,
