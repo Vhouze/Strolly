@@ -14,7 +14,7 @@ export default function HistoryScreen({navigation}) {
 
     return (
         <View>
-            <View  style={styles.imgContainer}>
+            <View>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={{top:22, left: 10 , position : 'absolute'}}>
                     <MaterialCommunityIcons name="arrow-left-circle" color={'red'} size= {37} /> 
                 </TouchableOpacity>
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
       borderBottomColor: Color.first,
       borderTopWidth: 2, 
       borderBottomWidth:2,
-      width: '90%'
+      alignItems:"center",
     },
 });

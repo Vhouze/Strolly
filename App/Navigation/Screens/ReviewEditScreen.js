@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {View, Text, Button,StyleSheet, Image, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import {View, Text, Button,StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import {HistoryItem} from "./../../Components/Profil/DataHistory"
 import Color from '../../Constant/Color';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,6 +16,10 @@ export default function ReviewEditScreen({route, navigation}) {
     const starImgCorner = "https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png"
 
     function Confirm() {
+        if (rating == 0) {
+            alert("Please choose a rating value.")
+            return;
+        }
         //TODO send rating and comment in db
         dispatch(updateHistory({id: id, title: title, comment: comment, rating: rating}));
         alert("Review updated!");
@@ -61,17 +65,21 @@ export default function ReviewEditScreen({route, navigation}) {
                 <View style={styles.cont}>
                     <Text style={{fontSize: 25, fontWeight: "bold"}}>{title}</Text>
                     <CustomRatingBar/>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={value => setComment(value)}
-                        value={comment}
-                    />
+                    <ScrollView style={styles.inputBox}>
+                        <TextInput
+                            multiline={true}
+                            numberOfLines={20}
+                            style={styles.input}
+                           onChangeText={value => setComment(value)}
+                            value={comment}
+                        />
+                    </ScrollView>
                     <TouchableOpacity onPress={() => Confirm()}
                         style={{borderWidth:2,
                             borderColor: Color.first,
                             borderRadius: 20,
-                            width: 50,
-                            height: 50,
+                            width: "30%",
+                            height: "15%",
                             alignItems: "center",
                             justifyContent: "center",
                         }}
@@ -86,9 +94,12 @@ export default function ReviewEditScreen({route, navigation}) {
 
 const styles = StyleSheet.create({
     input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
+        textAlignVertical: "top",
+    },
+    inputBox: {
+        margin: 10,
+        width: "100%",
+        height: "30%",
     },
     cont:{
       borderTopColor: Color.first,

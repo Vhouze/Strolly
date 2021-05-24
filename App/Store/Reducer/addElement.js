@@ -12,7 +12,7 @@ import {LOCALISATION,MOODPICK, DATABACK, BARPICK, UPDATEHISTORY} from '../Action
      history: [
         {id: 0, title: "Cafe theatre", rating: 4, comment: "plutot pas mal pour passer l'apres midi"},
         {id: 1, title: "Docks", rating: 5, comment: "Bar parfait pour revoir ses potes"},
-        {id: 2, title: "Mac Carthy", rating: 3, comment: "Les billards sont vraiment pas mal mais sinon c'est bondé h24"},
+        {id: 2, title: "Mac Carthy", rating: 3, comment: "Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24"},
         {id: 3, title: "le nouveau", rating: 0, comment: ""},
      ]
 }
