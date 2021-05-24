@@ -15,6 +15,8 @@ import Color from '../Constant/Color';
 import SignScreen from'./Screens/SignScreen';
 import HistoryScreen from'./Screens/HistoryScreen';
 import ReviewEditScreen from'./Screens/ReviewEditScreen';
+import EventScreen from'./Screens/EventScreen';
+
 
 
 const Stack = createStackNavigator();
@@ -89,11 +91,11 @@ const MainNavigator = function mainNavigator ({navigation}){
 
 const TabNavigator = function TabNavigator()  {
   return(
-      <Tab.Navigator tabBarOptions= { {activeTintColor: Color.second, labelStyle: { fontSize: 5}, showLabel: false, activeBackgroundColor:Color.second , height: 2, backgroundColor: Color.second,}}>
-            <Tab.Screen name="Mood Screen" component={MoodScreen} options={{tabBarIcon: () => (<MaterialCommunityIcons name="home" color={Color.first} size= {35} /> ) }} />
-            <Tab.Screen name="Profil Screen" component={ProfilScreen}  options={{ tabBarIcon: () => (<MaterialCommunityIcons name="account" color={Color.first} size= {35} /> ) }}/>
+      <Tab.Navigator tabBarOptions= { { activeTintColor: Color.first, inactiveTintColor: Color.second, showLabel: false, height: 1}}>
+            <Tab.Screen name="Mood Screen" component={MoodScreen} options={{tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="home" color={color} size= {27} style={{borderTopColor: focused ? "red": "white", borderTopWidth: 2}}/> ) }} />
+            <Tab.Screen name="Profil Screen" component={ProfilScreen}  options={{ tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="account" color={color} size= {27} style={{borderTopColor: focused ? "red": "white", borderTopWidth: 2}}/> ) }}/>
+            <Tab.Screen name="Event Screen" component={EventScreen}  options={{ tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="ticket-percent" color={color} size= {27} style={{borderTopColor: focused ? "red": "white", borderTopWidth: 2}}/> ) }}/>
       </Tab.Navigator>
- 
   );  
 };
 

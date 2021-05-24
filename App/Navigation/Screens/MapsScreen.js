@@ -63,7 +63,18 @@ function Map({navigation}) {
 
   const [distance, setDistance] = useState(0);
   const [duree, setDuree] = useState(0);
+  const [showHours, setShowHours] = useState(false);
+  const [dropdownButtonIcon, setDropdownButtonIcon] = useState("chevron-down");
 
+  function DropdownHours() {
+    if (showHours) {
+      setDropdownButtonIcon("chevron-down")
+      setShowHours(false)
+    } else {
+      setDropdownButtonIcon("chevron-up")
+      setShowHours(true)
+    }
+  }
     return (
       <View style={styles.screen}>
 
@@ -163,11 +174,14 @@ function Map({navigation}) {
                <View style={{flex : 4, marginTop: 5}}>
                 <View style={{ flexDirection:'row', alignItems: 'center',}}>
                  <MaterialCommunityIcons name="clock-time-four-outline" color={Color.first} size= {28} style={{marginRight:5}} />
-                  <Text style={{fontSize: 17, fontWeight:'bold',}}>
-                      Horaires: 
+                  <Text style={{fontSize: 17, fontWeight:'bold', marginRight: 10}}>
+                      Horaires
                   </Text>
+                  <TouchableOpacity onPress={() => {DropdownHours()}} >
+                     <MaterialCommunityIcons name={dropdownButtonIcon} color={Color.first} size= {24} />
+                  </TouchableOpacity>
                 </View>
-                <View style={{marginLeft: 20, marginTop: 10, }}>
+                {showHours && <View style={{marginLeft: 20, marginTop: 10, }}>
                  <View style={{marginVertical: 3}} >
                    <Text style={{fontSize: 15}} > Lundi : <Text>
                     {data.lundi} </Text> </Text> 
@@ -196,7 +210,7 @@ function Map({navigation}) {
                    <Text style={{fontSize: 15}} > Dimanche : <Text>
                     {data.samedi} </Text> </Text> 
                  </View>
-                 </View>
+                 </View>}
                  
             </View>    
 

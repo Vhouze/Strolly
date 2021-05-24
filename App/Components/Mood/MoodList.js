@@ -76,9 +76,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         overflow: "hidden", 
-        borderWidth: 3,
-        borderColor: Color.second, 
-        
     },
 
     gridItem: {
