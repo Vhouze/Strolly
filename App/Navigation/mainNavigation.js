@@ -92,9 +92,9 @@ const MainNavigator = function mainNavigator ({navigation}){
 const TabNavigator = function TabNavigator()  {
   return(
       <Tab.Navigator tabBarOptions= { { activeTintColor: Color.first, inactiveTintColor: Color.second, showLabel: false, height: 1}}>
-            <Tab.Screen name="Mood Screen" component={MoodScreen} options={{tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="home" color={color} size= {27} style={{borderTopColor: focused ? "red": "white", borderTopWidth: 2}}/> ) }} />
-            <Tab.Screen name="Profil Screen" component={ProfilScreen}  options={{ tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="account" color={color} size= {27} style={{borderTopColor: focused ? "red": "white", borderTopWidth: 2}}/> ) }}/>
-            <Tab.Screen name="Event Screen" component={EventScreen}  options={{ tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="ticket-percent" color={color} size= {27} style={{borderTopColor: focused ? "red": "white", borderTopWidth: 2}}/> ) }}/>
+            <Tab.Screen name="Mood Screen" component={MoodScreen} options={{tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="home" color={color} size= {27} style={{borderTopColor: focused ? Color.first: "white", borderTopWidth: 2}}/> ) }} />
+            <Tab.Screen name="Profil Screen" component={ProfilScreen}  options={{ tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="account" color={color} size= {27} style={{borderTopColor: focused ? Color.first: "white", borderTopWidth: 2}}/> ) }}/>
+            <Tab.Screen name="Event Screen" component={EventScreen}  options={{ tabBarIcon: ({focused, color}) => (<MaterialCommunityIcons name="ticket-percent" color={color} size= {27} style={{borderTopColor: focused ? Color.first: "white", borderTopWidth: 2}}/> ) }}/>
       </Tab.Navigator>
   );  
 };

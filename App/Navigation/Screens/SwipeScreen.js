@@ -72,7 +72,7 @@ export default function SwipeScreen({navigation}) {
           <View  style={styles.imgContainer}>
              <Image style={styles.img} source={{uri:data[index].imgUrl}}  />
              <TouchableOpacity onPress={back} style={{top:38, left: 10 , position : 'absolute'}}>
-                <MaterialCommunityIcons name="arrow-left-circle" color={'red'} size= {37} /> 
+                <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
              </TouchableOpacity>
           </View>
 
