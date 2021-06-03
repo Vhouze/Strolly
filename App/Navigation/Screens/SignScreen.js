@@ -31,7 +31,7 @@ export default function SignScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Barz</Text>
+      <Text style={styles.logo}>Trendby</Text>
       <View style={styles.slogan}>
         <Text style={{fontSize : 20, marginBottom: 40}}>L'ambiance en un clic</Text>
       </View>

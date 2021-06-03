@@ -80,13 +80,13 @@ export default function SwipeScreen({navigation}) {
 
               <View style={styles.title}>
                   <View style={styles.encadrage}>
-                     <Text style = {{fontSize: 35, fontWeight:"bold",}}>{data[index].title}</Text>
+                     <Text numberOfLines={1} adjustsFontSizeToFit style = {{fontSize: 35, fontWeight:"bold",}}>{data[index].title}</Text>
                   </View> 
               </View>
 
               <View style={styles.attributes}>
                 <View style={{backgroundColor: Color.first, borderRadius: 20, alignContent: 'center', alignItems: 'center', height: 30, justifyContent:'center', marginBottom: 40, marginHorizontal: 40, }}>
-                    <Text style={{fontSize: 25,color:'white',  fontWeight:'bold'}}>{data[index].category}</Text>
+                    <Text numberOfLines={1} adjustsFontSizeToFit style={{fontSize: 25,color:'white',  fontWeight:'bold'}}>{data[index].category}</Text>
                 </View>
                 <FlatList
                         horizontal={true}

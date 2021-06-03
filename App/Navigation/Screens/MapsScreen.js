@@ -106,7 +106,8 @@ function Map({navigation}) {
                    longitude:  parseFloat(data.longitude)}}
                 title={data.title}
                 >
-                  <Image source={require('../../Assets/img/Map/beer.png')} style={{height: 35, width:35 }} />
+                 
+    
                 </Marker>
                  
 

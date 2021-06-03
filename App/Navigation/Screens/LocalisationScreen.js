@@ -55,7 +55,7 @@ export default function LocalisationScreen({navigation}) {
           </View>
         </TouchableOpacity>
         <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 50}}>
-          <Text style={styles.nom}>Barz</Text>
+          <Text style={styles.nom}>Trendby</Text>
         </View>
         </View>
     </View>

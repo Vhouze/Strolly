@@ -32,7 +32,7 @@ export default function LoginScreen({navigation}) {
   return (
     <View style={styles.container}>
       <StatusBar barStyle = 'dark-content' />
-      <Text style={styles.logo}>Barz</Text>
+      <Text style={styles.logo}>Trendby</Text>
       <View style={styles.slogan}>
         <Text style={{fontSize : 20}}>L'ambiance en un clic</Text>
       </View>
