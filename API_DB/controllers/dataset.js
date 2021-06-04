@@ -2,6 +2,36 @@ var database = require('./database');
 const csv=require('csvtojson');
 var geoloc = require('geolocation-utils')
 
+function FixStringsOfArray(jsonObj, indexes) {
+	let y = 0;
+	let tempArr = [];
+
+	while (y < Object.keys(jsonObj).length) {
+		indexes.forEach(index => {
+			tempArr = [];
+			//case of only one string (not in an array)
+			if (jsonObj[y][index] != "" && jsonObj[y][index][0] != '[') {
+				tempArr.push(jsonObj[y][index]);
+				jsonObj[y][index] = tempArr;
+			} else if (jsonObj[y][index] != "") {
+				//case of array converted to string - removing errors of conversion
+    			tempArr = jsonObj[y][index].split("'");
+    			let j = 1;
+   				jsonObj[y][index] = [];
+
+   				while (j < tempArr.length) {
+   					jsonObj[y][index].push(tempArr[j]);
+   					j += 2;
+   				}
+			}
+		})
+   		y++;
+   	}
+
+	return jsonObj;
+}
+
+
 /*format handled:
 00h00–00h00
 Fermé
@@ -30,9 +60,8 @@ function IsOpened(openingHours, hours, minutes) {
 	}
 }
 
-function ParseCSV(jsonObj, center, radius, isInside, mood, currentTime) {
+function ParseCSV(jsonObj, center, radius, isInside, mood) {
 	let i = 0;
-	const dayConverter = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 	var filteredJSON = {fourfive: [], three: [], onetwo: [], last: []};
 	let needInsert = false;
 
@@ -59,10 +88,9 @@ function ParseCSV(jsonObj, center, radius, isInside, mood, currentTime) {
     			needInsert = false;
     	}
 
-    	let day = jsonObj[i][dayConverter[currentTime.getDay()]];
     	//insert by filtering by categories
     	if (needInsert) {
-    		if (jsonObj[i].quote == "" || !IsOpened(day, currentTime.getHours(), currentTime.getMinutes()))
+    		if (jsonObj[i].quote == "")
     			filteredJSON.last.push(jsonObj[i]);
     		else {
     			switch(parseFloat(jsonObj[i].rating)) {
@@ -88,7 +116,7 @@ function ParseCSV(jsonObj, center, radius, isInside, mood, currentTime) {
 }
 module.exports = {
 	GetShops: function(app, req, res) {
-		let link = "./PhantomBuster_dataset/Clean_DB_final.csv"
+		let link = "./PhantomBuster_dataset/MergeDB.csv"
 	    let data = {code: "", message: {}};
 	    var {lat, lng, radius, mood} = req.body;
 	    let isInside = false;
@@ -110,24 +138,10 @@ module.exports = {
 		.then((jsonObj) => {
     		data.code = "SUCCESS"
 	   		
-	   		let y = 0;
-	   		while (y < Object.keys(jsonObj).length) {
-	   			if (jsonObj[y].mood != "") {
-    				//removing errors of conversion
-    				let tempArr = jsonObj[y].mood.split("'");
-    				let j = 1;
-    				jsonObj[y].mood = [];
-
-    				while (j < tempArr.length) {
-    					jsonObj[y].mood.push(tempArr[j]);
-    					j += 2;
-    				}
-    			}
-    			y++;
-	   		}
+	   		jsonObj = FixStringsOfArray(jsonObj, ["mood", "imgUrl"]);
 
 	   		while ((filteredJSON.fourfive.length + filteredJSON.three.length + filteredJSON.onetwo.length + filteredJSON.last.length) < 30) {
-		   		filteredJSON = ParseCSV(jsonObj, center, radius, isInside, mood, currentTime)
+		   		filteredJSON = ParseCSV(jsonObj, center, radius, isInside, mood)
 
 		   		//if not enough results, search in a wider zone; after 10kms, check if there are any results: if no, throw an error; if yes get out of the while
 		   		radius += 100;
