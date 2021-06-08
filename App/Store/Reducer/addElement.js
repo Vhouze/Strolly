@@ -1,5 +1,5 @@
 
-import {LOCALISATION,MOODPICK, DATABACK, BARPICK, UPDATEHISTORY} from '../Actions/actionTypes';
+import {LOCALISATION,MOODPICK, DATABACK, BARPICK, UPDATEHISTORY, LOGIN} from '../Actions/actionTypes';
 
 
  const initialState = { 
@@ -14,7 +14,8 @@ import {LOCALISATION,MOODPICK, DATABACK, BARPICK, UPDATEHISTORY} from '../Action
         {id: 1, title: "Docks", rating: 5, comment: "Bar parfait pour revoir ses potes"},
         {id: 2, title: "Mac Carthy", rating: 3, comment: "Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24Les billards sont vraiment pas mal mais sinon c'est bondé h24"},
         {id: 3, title: "le nouveau", rating: 0, comment: ""},
-     ]
+     ],
+     connectedUser: {id: 0, pseudo: "Invité"},
 }
 
 function updateElementHistory(state, place) {
@@ -49,6 +50,9 @@ export const addElementReducer = (state = initialState, action) =>
              
         case UPDATEHISTORY:
             return updateElementHistory(state, action.payload);
+        
+        case LOGIN:
+            return {...state, connectedUser: action.payload};
         default:
             return state;
     }

@@ -1,21 +1,28 @@
 import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
+import {useDispatch} from 'react-redux';
 import {Strolly_postRegister, Strolly_postLogin} from '../../Components/StrollyAPI/User';
 import Color from '../../Constant/Color';
+import {loginUser} from "../../Store/Actions/actions"
 
 export default function SignScreen({navigation}) {
+  const dispatch = useDispatch();
   const [email, setText] = useState('');
   const [password, setPass] = useState('');  
   const login = () => {
     Strolly_postLogin(email, password).then(res => 
-      {if (res)
-        navigation.navigate('Mood Screen')
+      {
+        if (res) {
+          dispatch(loginUser({id: res.id, pseudo: res.pseudo}))
+          navigation.navigate('Mood Screen')
+        }
         else
           alert("login failed.")
       })  
   };
   const move = () => {
+    dispatch(loginUser({id: 0, pseudo: "Invité"}))
     navigation.navigate("Localisation Screen")
   }
   const register = () => {

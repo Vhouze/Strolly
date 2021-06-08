@@ -22,7 +22,7 @@ module.exports = {
                     //generate token
                     let token = jwt.GenerateToken(result[0].id, "REFRESH_TOKEN");
                     data.code = "SUCCESS"
-                    data.message = {token: token, id: result[0].id}
+                    data.message = {token: token, id: result[0].id, pseudo: result[0].pseudo}
                     res.status(200).send(data)
                     return;
                 } else {

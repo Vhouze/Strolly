@@ -1,5 +1,5 @@
 import { View, Text, Button,StyleSheet, FlatList, TouchableOpacity, Platform, StatusBar } from 'react-native';
-import React , { useRef, useEffect, useState }from 'react';
+import React , { useState }from 'react';
 import Color from '../../Constant/Color';
 import MoodList from '../../Components/Mood/MoodList';
 import {dataMood} from '../../Components/Mood/DataMood'
@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import {useSelector, useDispatch} from 'react-redux';
 
 export default function HomeScreen({navigation}) {
-
+const user = useSelector((state) => state.connectedUser);
 
 
 const zoomOut = {
@@ -40,7 +40,7 @@ const zoomOut = {
           <View style={{flex: 3, marginTop: 70, marginLeft: 40}}>
             <View style={{flexDirection:'row', marginBottom:10}}>
               <Text style={{ fontSize: 30}}> Hello </Text>
-              <Text style={{color: Color.first,  fontSize: 30}}> Patrick </Text>
+              <Text style={{color: Color.first,  fontSize: 30}}> {user.pseudo} </Text>
               <Text style={{ fontSize: 30}}> ! </Text>
           </View>
           <View style={{flex: 1}}>

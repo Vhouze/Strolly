@@ -23,10 +23,10 @@ export async function Strolly_postLogin(pseudo, password) {
         axios.post(url,
             {pseudo: pseudo, password: password}
         ).then(response => {
-            return(true)
+            return(response.data.message)
         })
         .catch(error => {
-            return(false)
+            return(null)
         })
     )
 }
