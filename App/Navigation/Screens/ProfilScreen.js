@@ -65,7 +65,7 @@ const favMoodList = ({item})=>{
               />
             </View>
             </View>
-            <View style={{backgroundColor:'white', marginTop: 45, paddingBottom: 20}}>
+            <View style={{backgroundColor:'white', marginTop: 25, paddingBottom: 25 , marginHorizontal:15, borderTopRightRadius: 42,  borderTopLeftRadius: 42,  borderWidth: 4, borderColor: Color.second }}>
               <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}> Tes lieux favoris</Text>
               <View style={{marginLeft: 20, backgroundColor: Color.second, borderRadius: 20, alignContent: 'center', alignItems: 'center', width: 110, height: 25, justifyContent:'center', marginHorizontal: 7}}>
               <Text style={{color:'white', fontSize:17, fontWeight:'bold'}}>Cosy café</Text>
@@ -88,11 +88,19 @@ const styles = StyleSheet.create({
     borderBottomColor: Color.first,
     borderTopWidth: 2, 
     borderBottomWidth:2,
-    width: '100%'
+    width: '100%',
   },
   favMoood:{
      backgroundColor:'white',
-     width:'100%',
+     borderTopRightRadius: 42, 
+      borderTopLeftRadius: 42, 
+      borderWidth: 4, 
+      borderColor: Color.second,
+      paddingBottom: 14 ,
+      marginHorizontal: 15
+    
+      
+   
 
   },
   containerProfil:{
