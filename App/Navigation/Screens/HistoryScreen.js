@@ -16,7 +16,7 @@ export default function HistoryScreen({navigation}) {
         <View>
             <View>
                 <TouchableOpacity onPress={() => navigation.goBack()} style={{top:22, left: 10 , position : 'absolute'}}>
-                    <MaterialCommunityIcons name="arrow-left-circle" color={'red'} size= {37} /> 
+                    <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
                 </TouchableOpacity>
             </View>
             <View style={{marginTop:20}}>

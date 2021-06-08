@@ -48,7 +48,7 @@ export function HistoryItem({navigation, id, title, rating, comment}) {
                     <CustomRatingBar/>
                 </View>
                 <ScrollView>
-                    <Text style={{ color:'white', fontSize:10, fontWeight:'bold'}}>{comment}</Text>
+                    <Text style={{ color:Color.second, fontSize:10, fontWeight:'bold'}}>{comment}</Text>
                 </ScrollView>
             </View>
         </View>
@@ -57,7 +57,7 @@ export function HistoryItem({navigation, id, title, rating, comment}) {
 
 const styles = StyleSheet.create({
     box:{     
-        backgroundColor: "#f04a4a",
+        backgroundColor: Color.second,
         borderRadius: 2,
         width: 350,
         height: 100,

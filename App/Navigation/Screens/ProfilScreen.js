@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {Animated, View, Text, Button,StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import {Animated, View, Text, Button,StyleSheet, Image,ImageBackground, FlatList, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements'
 import Color from '../../Constant/Color';
 import * as Animatable from 'react-native-animatable';
@@ -24,22 +24,24 @@ const favMoodList = ({item})=>{
 
     return (
       
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "white" }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+         <ImageBackground source={require('../../assets/img/background.jpg')} style={styles.image}>
         <View style={{alignSelf: 'flex-end', marginHorizontal:10, marginVertical: 5}}>
           <TouchableOpacity
             style={{
-              borderWidth:1,
+              borderWidth:3,
               borderColor: Color.first,
               alignItems:'center',
               justifyContent:"center",
-              width:50,
-              height:50,
-              backgroundColor:'#fff',
-              borderRadius:30,
+              width:60,
+              height:60,
+              backgroundColor:Color.second,
+              borderRadius:60,
+
             }}
             onPress={() => navigation.navigate('History Screen')}
           >
-            <Icon name="hourglass" type='antdesign'  size={30} color="#01a699" />
+            <Icon name="hourglass" type='antdesign'  size={38} color={Color.first} />
           </TouchableOpacity>
         </View>
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center',}}>
@@ -47,7 +49,6 @@ const favMoodList = ({item})=>{
           style={{width: 160, height: 160,borderRadius: 200 / 2, overflow: "hidden", borderWidth: 3,borderColor: Color.first, alignItems:'center', justifyContent:'center', marginBottom:30, marginTop:30,}} 
           source={{uri: 'https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-vector-user-young-boy-avatar-icon-png-image_1538408.jpg'}} 
           /> 
-          <Text style={{fontSize: 36}}>Ton Profil</Text>
           </View>
           <View style={{flex: 1}}>
             <View style={styles.cont}>
@@ -64,12 +65,14 @@ const favMoodList = ({item})=>{
               />
             </View>
             </View>
-            <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}> Tes lieux favoris</Text>
-            <View style={{marginLeft: 20, backgroundColor: Color.second, borderRadius: 20, alignContent: 'center', alignItems: 'center', width: 110, height: 25, justifyContent:'center', marginHorizontal: 7}}>
-            <Text style={{color:'white', fontSize:17, fontWeight:'bold'}}>Cosy café</Text>
-   
+            <View style={{backgroundColor:'white', marginTop: 45, paddingBottom: 20}}>
+              <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}> Tes lieux favoris</Text>
+              <View style={{marginLeft: 20, backgroundColor: Color.second, borderRadius: 20, alignContent: 'center', alignItems: 'center', width: 110, height: 25, justifyContent:'center', marginHorizontal: 7}}>
+              <Text style={{color:'white', fontSize:17, fontWeight:'bold'}}>Cosy café</Text>
+            </View>
           </View>
           </View>
+        </ImageBackground>
       </View>
 
 
@@ -85,15 +88,20 @@ const styles = StyleSheet.create({
     borderBottomColor: Color.first,
     borderTopWidth: 2, 
     borderBottomWidth:2,
-    width: '90%'
+    width: '100%'
   },
   favMoood:{
-
-     width:'100%'
+     backgroundColor:'white',
+     width:'100%',
 
   },
   containerProfil:{
     flexDirection:'row',
     alignItems: 'center',
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
 });
