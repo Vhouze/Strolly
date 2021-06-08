@@ -8,6 +8,8 @@ import database from '../../test.js'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector, useDispatch} from 'react-redux';
 import {barPick} from '../../Store/Actions/actions';
+import { SliderBox } from "react-native-image-slider-box";
+
 
 export default function SwipeScreen({navigation}) {
 
@@ -62,6 +64,7 @@ export default function SwipeScreen({navigation}) {
   
     };
 
+    /// <Image style={styles.img} source={{uri:data[index].imgUrl[0]}}  />
     return (
       
       <View style={styles.screen}>
@@ -70,7 +73,15 @@ export default function SwipeScreen({navigation}) {
   
 
           <View  style={styles.imgContainer}>
-             <Image style={styles.img} source={{uri:data[index].imgUrl[0]}}  />
+              <SliderBox images={data[index].imgUrl} style={styles.img} dotColor= {Color.first} inactiveDotColor={Color.second} 
+               dotStyle={{
+                width: 16,
+                height: 16,
+                borderRadius: 16,
+                marginHorizontal: 5,
+                marginBottom: 10
+              }}
+              />
              <TouchableOpacity onPress={back} style={{top:38, left: 10 , position : 'absolute'}}>
                 <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
              </TouchableOpacity>
