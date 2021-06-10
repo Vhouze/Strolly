@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     borderColor: Color.first,
     borderRadius: 30,
     paddingHorizontal: 30,
+    
 
   }, 
 

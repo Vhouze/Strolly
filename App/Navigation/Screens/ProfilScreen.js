@@ -84,10 +84,7 @@ const favMoodList = ({item})=>{
 const styles = StyleSheet.create({
   
   cont:{     
-    borderTopColor: Color.first,
-    borderBottomColor: Color.first,
-    borderTopWidth: 2, 
-    borderBottomWidth:2,
+
     width: '100%',
   },
   favMoood:{

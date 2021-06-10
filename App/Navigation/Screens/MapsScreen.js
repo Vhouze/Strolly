@@ -105,6 +105,17 @@ function Map({navigation}) {
                 {{latitude: parseFloat(data.latitude),
                    longitude:  parseFloat(data.longitude)}}
                 title={data.title}
+                pinColor = {Color.first}
+                >
+                   </Marker>
+                <Marker
+                key= {5267}
+                coordinate=
+                {{latitude:localisation.latitude,
+                   longitude:  localisation.longitude}}
+                title={data.title}
+                pinColor = {Color.second}
+
                 >
                  
     
