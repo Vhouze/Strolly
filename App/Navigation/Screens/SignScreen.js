@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet, Image } from 'react-native';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import {useDispatch} from 'react-redux';
@@ -38,7 +38,64 @@ export default function SignScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Trendby</Text>
+      <View style={styles.upScreen}>
+        <View style={styles.topNav}>
+          <Image style={styles.arrow} source={require('../../assets/arrow.png')}/>
+          <Text style={styles.register}>Register</Text>
+        </View>
+        <Text style={styles.title}>Sign In</Text>
+        <Text style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+      </View>
+      <View style={styles.downScreen}>
+        <View style={styles.inputContainer}>
+          <View style={styles.inputView} >
+            <TextInput  
+              style={styles.inputText}
+              placeholder="Username..." 
+              placeholderTextColor="grey"
+              onChangeText={email => setText(email)}
+              // value={state.email}
+            />
+          </View>
+          <View style={styles.inputView} >
+            <TextInput  
+              secureTextEntry
+              style={styles.inputText}
+              placeholder="Password..." 
+              placeholderTextColor="grey"
+              onChangeText={password => setPass(password)}
+              />
+          </View>
+        </View>
+        <View style={styles.viewForgot}>
+          <Text style={styles.forgot}>forgot password ?</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={login} >
+            <View  style={styles.signin}>
+              <Text style={styles.signinText} >Sign In</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={move} >
+            <View  style={styles.logGoogle}>
+              <Image style={styles.logoGoogle} source={require('../../assets/logo_google.png')}/>
+              <Text style={styles.blank}></Text>
+              <Text style={styles.logTextGoogle} >Continue with Google</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={move} >
+            <View  style={styles.logFacebook}>
+              <Image style={styles.logoFacebook} source={require('../../assets/logo_facebook.png')}/>
+              <Text style={styles.blank}></Text>
+              <Text style={styles.logTextFacebook}> Continue with Facebook</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={move}>
+            <Text style={styles.loginTextBis}>Continue as Guest</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      {/* <Text style={styles.logo}>Trendby</Text>
       <View style={styles.slogan}>
         <Text style={{fontSize : 20, marginBottom: 40}}>L'ambiance en un clic</Text>
       </View>
@@ -72,8 +129,8 @@ export default function SignScreen({navigation}) {
       </TouchableOpacity>
       <TouchableOpacity onPress={move}>
         <Text style={styles.loginTextBis}>Continue as Guest</Text>
-      </TouchableOpacity>
-     
+      </TouchableOpacity> */}
+
     </View>
   );
 }
@@ -83,55 +140,193 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: Color.second,
   },
-  logo:{
-    fontWeight:"bold",
-    fontSize:50,
-    color: Color.first,
-    marginBottom:40,
+  upScreen: {
+    flex: 2,
+  },
+  downScreen: {
+    flex: 3,
+    backgroundColor: Color.first,
+    borderTopLeftRadius: 45,
+    borderTopRightRadius: 45,
+  },
+  topNav: {
+    flexDirection: 'row',
+    margin: 10,
+  },
+  arrow: {
+    width: 18,
+    height: 18,
+  },
+  register: {
+    flex: 1,
+    color: 'black',
+    textAlign: 'right',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  title: {
+    marginLeft: 20,
+    fontSize: 50,
+    fontWeight: 'bold',
+    color: 'white',
+    fontFamily: 'Roboto',
+    flex: 2,
+  },
+  content: {
+    fontFamily: 'Roboto',
+    color: 'white',
+    fontSize: 24,
+    flex: 3,
+    marginLeft: 20,
+    marginRight: 6,
+  },
+  inputContainer: {
+    flex: 3,
+    alignItems: 'center',
+    margin: 20,
+  },
+  viewForgot: {
+    flex: 1,
+  },
+  buttonContainer: {
+    flex: 6,
+  },
+  forgot: {
+    marginRight: 20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'right',
+    fontFamily: 'Roboto',
   },
   inputView:{
     width:"80%",
-    backgroundColor: Color.second,
+    backgroundColor: 'white',
     borderRadius:25,
     height:50,
     marginBottom:20,
-    justifyContent:"center",
-    padding:20
+    justifyContent: 'center',
+    padding:20,
+    flex: 1,
   },
   inputText:{
     height:50,
     color:"white"
   },
-  forgot:{
-    color:"white",
-    fontSize:11
+  buttons: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
   },
-  loginBtn:{
-    width:"80%",
-    backgroundColor:Color.first,
+  signin: {
+    // width: '80%',
+    // backgroundColor: 'black',
+    // borderRadius: 25,
+    // margin: 20,
+    // justifyContent: 'center'
+    backgroundColor: 'black',
     borderRadius:25,
-    height:50,
-    alignItems:"center",
-    justifyContent:"center",
-    marginTop:40,
-    marginBottom:10
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "80%",
+    marginLeft: "10%",
+    marginRight: "10%",
+    marginTop: 10,
+    height: 50,
   },
-  loginText:{
-    color:"white",
-    fontSize: 20,
+  signinText:{
+    color:'white',
     fontWeight:'bold',
+    fontSize: 22,
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
   },
-  loginTextBis:{
-    margin: 15,
-    color:"grey"
+  logGoogle: {
+    backgroundColor: 'white',
+    borderRadius:25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "80%",
+    marginLeft: "10%",
+    marginRight: "10%",
+    marginTop: 10,
+    height: 50,
+    flexDirection: 'row',
   },
+  logoGoogle: {
+    margin: 20,
+    width: 38,
+    height: 38,
+  },
+  logTextGoogle: {
+    flex: 9,
+    fontWeight: 'bold',
+    color: 'grey',
+  },
+  logFacebook: {
+    backgroundColor: "#1877F2",
+    borderRadius:25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: "80%",
+    marginLeft: "10%",
+    marginRight: "10%",
+    marginTop: 10,
+    height: 50,
+    flexDirection: 'row',
+  },
+  logoFacebook: {
+    margin: 20,
+    width: 40,
+    height: 40,
+  },
+  logTextFacebook: {
+    flex: 9,
+    fontWeight: "bold",
+    color: 'white',
+  },
+  blank: {
+    flex: 1,
+  },
+  loginTextBis: {
+    color: 'black',
+    textAlign: 'right',
+    margin: 20,
+  }
+  // logo:{
+  //   fontWeight:"bold",
+  //   fontSize:50,
+  //   color: Color.first,
+  //   marginBottom:40,
+  // },
+  // forgot:{
+  //   color:"white",
+  //   fontSize:11
+  // },
+  // loginBtn:{
+  //   width:"80%",
+  //   backgroundColor:Color.first,
+  //   borderRadius:25,
+  //   height:50,
+  //   alignItems:"center",
+  //   justifyContent:"center",
+  //   marginTop:40,
+  //   marginBottom:10
+  // },
+  // loginText:{
+  //   color:"white",
+  //   fontSize: 20,
+  //   fontWeight:'bold',
+  // },
+  // loginTextBis:{
+  //   margin: 15,
+  //   color:"grey"
+  // },
 
-  slogan:{
+  // slogan:{
 
-    marginHorizontal:50,
-  },
+  //   marginHorizontal:50,
+  // },
 });
