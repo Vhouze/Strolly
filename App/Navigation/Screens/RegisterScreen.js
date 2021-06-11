@@ -6,27 +6,27 @@ import {Strolly_postRegister, Strolly_postLogin} from '../../Components/StrollyA
 import Color from '../../Constant/Color';
 import {loginUser} from "../../Store/Actions/actions"
 
-export default function SignScreen({navigation}) {
+export default function RegisterScreen({navigation}) {
   const dispatch = useDispatch();
   const [email, setText] = useState('');
   const [password, setPass] = useState('');  
-  const login = () => {
-    Strolly_postLogin(email, password).then(res => 
-      {
-        if (res) {
-          dispatch(loginUser({id: res.id, pseudo: res.pseudo}))
-          navigation.navigate('Mood Screen')
-        }
-        else
-          alert("login failed.")
+  const register = () => {
+    if (email == "" || password == "")
+      return;
+    Strolly_postRegister(email, password).then(res => 
+      {if (res) {
+        alert("account created.")
+        navigation.navigate('Sign Screen')
+      } else
+          alert("account creation failed.")
       })  
   };
   const move = () => {
     dispatch(loginUser({id: 0, pseudo: "Invité"}))
     navigation.navigate("Localisation Screen")
   }
-  const moveSignup = () => {
-    navigation.navigate('Register Screen')
+  const moveLogin = () => {
+    navigation.navigate('Sign Screen')
   };
 
   return (
@@ -34,12 +34,12 @@ export default function SignScreen({navigation}) {
       <View style={styles.upScreen}>
         <View style={styles.topNav}>
           <Image style={styles.arrow} source={require('../../assets/arrow.png')}/>
-          <TouchableOpacity style={styles.registerContainer} onPress={moveSignup} >
-            <Text style={styles.register}>Register</Text>
+          <TouchableOpacity style={styles.registerContainer} onPress={moveLogin} >
+            <Text style={styles.register}>Sign In</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.title}>Sign In</Text>
-        <Text style={styles.content}>We will give you the place you deserve for a drink. Ready to sign in and find the best place to drink ?</Text>
+        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.content}>Ready to register to our Application and find the best place to drink ?</Text>
       </View>
       <View style={styles.downScreen}>
         <View style={styles.inputContainer}>
@@ -49,7 +49,6 @@ export default function SignScreen({navigation}) {
               placeholder="Username..." 
               placeholderTextColor="grey"
               onChangeText={email => setText(email)}
-              // value={state.email}
             />
           </View>
           <View style={styles.inputView} >
@@ -62,27 +61,10 @@ export default function SignScreen({navigation}) {
               />
           </View>
         </View>
-        <View style={styles.viewForgot}>
-          <Text style={styles.forgot}>forgot password ?</Text>
-        </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={login} >
+          <TouchableOpacity onPress={register} >
             <View  style={styles.signin}>
-              <Text style={styles.signinText} >Sign In</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={move} >
-            <View  style={styles.logGoogle}>
-              <Image style={styles.logoGoogle} source={require('../../assets/logo_google.png')}/>
-              <Text style={styles.blank}></Text>
-              <Text style={styles.logTextGoogle} >Continue with Google</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={move} >
-            <View  style={styles.logFacebook}>
-              <Image style={styles.logoFacebook} source={require('../../assets/logo_facebook.png')}/>
-              <Text style={styles.blank}></Text>
-              <Text style={styles.logTextFacebook}> Continue with Facebook</Text>
+              <Text style={styles.signinText} >Sign Up</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={move}>
@@ -90,42 +72,6 @@ export default function SignScreen({navigation}) {
           </TouchableOpacity>
         </View>
       </View>
-      {/* <Text style={styles.logo}>Trendby</Text>
-      <View style={styles.slogan}>
-        <Text style={{fontSize : 20, marginBottom: 40}}>L'ambiance en un clic</Text>
-      </View>
-    
-      <View style={styles.inputView} >
-        <TextInput  
-          style={styles.inputText}
-          placeholder="Username..." 
-          placeholderTextColor="white"
-          onChangeText={email => setText(email)}
-          // value={state.email}
-        />
-      </View>
-      <View style={styles.inputView} >
-        <TextInput  
-          secureTextEntry
-          style={styles.inputText}
-          placeholder="Password..." 
-          placeholderTextColor="white"
-          onChangeText={password => setPass(password)}
-          />
-      </View>
-      <TouchableOpacity>
-        <Text style={styles.forgot}>Forgot Password?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={login} style={styles.loginBtn}>
-        <Text style={styles.loginText}>SIGN IN</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={register}  style={styles.loginBtn}>
-        <Text style={styles.loginText}>SIGN UP</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={move}>
-        <Text style={styles.loginTextBis}>Continue as Guest</Text>
-      </TouchableOpacity> */}
-
     </SafeAreaView >
   );
 }
@@ -138,15 +84,16 @@ const styles = StyleSheet.create({
     backgroundColor: Color.second,
   },
   upScreen: {
-    flex: 2,
+    flex: 4,
   },
   downScreen: {
-    flex: 3,
+    flex: 4,
     backgroundColor: Color.first,
     borderTopLeftRadius: 45,
     borderTopRightRadius: 45,
   },
   topNav: {
+    flex: 1,
     flexDirection: 'row',
     margin: 10,
     height: 25,
@@ -186,18 +133,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 20,
   },
-  viewForgot: {
-    flex: 1,
-  },
   buttonContainer: {
-    flex: 6,
-  },
-  forgot: {
-    marginRight: 20,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'right',
-    fontFamily: 'Roboto',
+    flex: 5,
   },
   inputView:{
     width:"80%",

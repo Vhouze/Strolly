@@ -1,4 +1,4 @@
-import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet, StatusBar, Image} from 'react-native';
+import { View, Text, Button, TouchableOpacity, TextInput, StyleSheet, StatusBar, Image, SafeAreaView } from 'react-native';
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 import Color from '../../Constant/Color';
@@ -8,14 +8,13 @@ import {GetShops} from '../../Components/StrollyAPI/Data';
 export default function LoginScreen({navigation}) {
   const [email, setText] = useState('Guest');
   const [password, setPass] = useState('');  
-  const move = () => {
-    navigation.navigate('Localisation Screen')
-  };
 
   const moveLogin = () => {
     navigation.navigate('Sign Screen')
   };
-
+  const moveSignup = () => {
+    navigation.navigate('Register Screen')
+  };
   const getData = () => {
     GetShops(0.00, 0.00, 0, "bolDair").then(res => 
       {if (res) {
@@ -60,7 +59,7 @@ export default function LoginScreen({navigation}) {
     //       </TouchableOpacity>
     //     </View>
     // </View>
-    <View style={styles.container}>
+    <SafeAreaView  style={styles.container}>
       <View style={styles.upScreen}>
         <StatusBar barStyle = 'dark-content' />
         <Image style={styles.logo} source={require('../../assets/logo.png')}/>
@@ -76,14 +75,14 @@ export default function LoginScreen({navigation}) {
             </View>
           </TouchableOpacity>
           <Text style={styles.div}></Text>
-          <TouchableOpacity >
+          <TouchableOpacity onPress={moveSignup} >
             <View  style={styles.signup}>
               <Text style={styles.signupText} >Sign Up</Text>
             </View>
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </SafeAreaView >
   );
 }
 

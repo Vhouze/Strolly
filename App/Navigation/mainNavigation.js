@@ -6,6 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Ionicons } from '@expo/vector-icons';
 import React, {Platform, useState, useEffect} from 'react';
 import LoginScreen from './Screens/LoginScreen';
+import RegisterScreen from './Screens/RegisterScreen';
 import MapsScreen from './Screens/MapsScreen';
 import MoodScreen from './Screens/MoodScreen';
 import SwipeScreen from './Screens/SwipeScreen';
@@ -37,9 +38,14 @@ const MainNavigator = function mainNavigator ({navigation}){
             headerShown: false
           }}>
             
-          <Stack.Screen
+            <Stack.Screen
             name="Login Screen"
             component={LoginScreen}
+          />
+          
+          <Stack.Screen
+          name="Register Screen"
+          component={RegisterScreen}
           />
 
           <Stack.Screen
