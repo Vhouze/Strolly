@@ -33,7 +33,6 @@ export default function SignScreen({navigation}) {
     <SafeAreaView  style={styles.container}>
       <View style={styles.upScreen}>
         <View style={styles.topNav}>
-          <Image style={styles.arrow} source={require('../../assets/arrow.png')}/>
           <TouchableOpacity style={styles.registerContainer} onPress={moveSignup} >
             <Text style={styles.register}>Register</Text>
           </TouchableOpacity>

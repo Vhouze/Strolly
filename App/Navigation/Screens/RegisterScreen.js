@@ -33,7 +33,6 @@ export default function RegisterScreen({navigation}) {
     <SafeAreaView  style={styles.container}>
       <View style={styles.upScreen}>
         <View style={styles.topNav}>
-          <Image style={styles.arrow} source={require('../../assets/arrow.png')}/>
           <TouchableOpacity style={styles.registerContainer} onPress={moveLogin} >
             <Text style={styles.register}>Sign In</Text>
           </TouchableOpacity>
