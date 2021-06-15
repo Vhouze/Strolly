@@ -113,7 +113,7 @@ function Map({navigation}) {
                 coordinate=
                 {{latitude:localisation.latitude,
                    longitude:  localisation.longitude}}
-                title={data.title}
+                title="your position"
                 pinColor = {Color.second}
 
                 >
