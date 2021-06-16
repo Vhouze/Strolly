@@ -37,12 +37,12 @@ export default function LocalisationScreenTwo({navigation}) {
 
   return (
     <View style={styles.container}>
-      <View style= {{  flex : 10, alignContent:'center', justifyContent:'center', alignItems:'center', }}>
-          <View style={{flex: 3 }}>
-            <Text style={{fontSize: 33, color: Color.second, }}>Choix de localisation</Text>
+      <View style= {{ borderBottomLeftRadius:55, borderBottomRightRadius: 55 ,backgroundColor: Color.first , flex : 10, alignContent:'center', justifyContent:'center', alignItems:'center', }}>
+          <View style={{flex: 3, paddingTop: 40 }}>
+            <Text style={{fontSize: 33, color: Color.second, fontWeight:'bold',borderBottomWidth: 4, borderColor: Color.second  }}>Choix de la localisation</Text>
           </View>
           <View style={styles.slogan}>
-            <Text style={{fontSize : 18}}>Nous avons besoin de te localiser afin de te proposer les meilleurs ambiances autour de chez toi.</Text>
+            <Text style={{fontSize : 20, textAlign:'center'}}>Nous te conseillons de choisir la localisaiton personnalisée pour une expérience optimale</Text>
           </View>
           <View style={{flex: 4}}>
             <TouchableOpacity onPress={setLocalisation} >
@@ -51,15 +51,17 @@ export default function LocalisationScreenTwo({navigation}) {
               </View>
             </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={move} >
-          <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 80}} >
-            <Text style={styles.default}>Prendre Lyon comme position actuelle</Text>
+        </View>
+        <View style={{flex : 6,  alignContent:'center', justifyContent:'center', alignItems:'center'}} >
+          <TouchableOpacity onPress={move} style={{flex : 4, paddingTop: 70}}  >
+      
+              <Text style={styles.default}>Prendre Lyon comme position actuelle</Text>
+      
+          </TouchableOpacity>
+          <View style={{flex : 10 , alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 50}}>
+            <Text style={styles.nom}>Trend|by</Text>
           </View>
-        </TouchableOpacity>
-        <View style={{flex : 6 , alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 50}}>
-          <Text style={styles.nom}>Trend|by</Text>
-        </View>
-        </View>
+          </View>
     </View>
   );
 }
@@ -75,13 +77,15 @@ const styles = StyleSheet.create({
     color: Color.first,
     textDecorationLine: 'underline',
     fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 20
   },
   container:{
     flex:1,
+    backgroundColor:Color.second, 
   },
   slogan:{
     flex: 3,
+    marginHorizontal:20 ,
   },
 
   logText:{
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
   log:{
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor:Color.first,
+    backgroundColor:'black',
     borderRadius: 50,
     width:300,
     height: 60,

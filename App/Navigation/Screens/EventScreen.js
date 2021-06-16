@@ -29,8 +29,8 @@ export default function EventScreen({navigation}) {
                 <LottieView  style={{flex : 6, marginBottom: 100,  marginTop: 80}} source={require("../../assets/img/emoji.json")}  autoPlay />
               <View style={{flex :3.3, marginTop: 150}}>
                 <Text style={{marginBottom: 40, fontSize: 20}}>Le club arrive bientôt à Lyon, encore un peu de patience...</Text>
-                <TouchableOpacity onPress = {notif} style={{borderRadius : 30, alignItems: 'center',justifyContent: 'center', backgroundColor: Color.first}}  >
-                    <Text style={{color: 'white', fontSize: 28, fontWeight:'bold', textAlign:'center'}}> Recevoir une notification</Text>
+                <TouchableOpacity onPress = {notif} style={{ marginTop : 15 ,borderRadius : 30, alignItems: 'center',justifyContent: 'center', backgroundColor: Color.first}}  >
+                    <Text style={{  color: 'white', fontSize: 28, fontWeight:'bold', textAlign:'center'}}> Recevoir une notification</Text>
                 </TouchableOpacity>
               </View>
             </View>

@@ -4,7 +4,7 @@ import {HistoryItem} from "./../../Components/Profil/DataHistory"
 import Color from '../../Constant/Color';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector, useDispatch} from 'react-redux';
-
+import LottieView from 'lottie-react-native';
 export default function HistoryScreen({navigation}) {
     const data = useSelector ((state) => state.history);
 
@@ -13,27 +13,32 @@ export default function HistoryScreen({navigation}) {
     };
 
     return (
-        <View>
-            <View>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={{top:22, left: 10 , position : 'absolute'}}>
-                    <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
-                </TouchableOpacity>
+        <View style= {{flex:1}}>
+            <View >
+                <View>
+                    <TouchableOpacity onPress={() => navigation.goBack()} style={{top:22, left: 10 , position : 'absolute'}}>
+                        <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
+                    </TouchableOpacity>
+                </View>
+                <View style={{marginTop:20}}>
+                    <View style={{alignItems: "center"}}>
+                        <Text style={{fontSize: 25, margin: 10}}>Historique des activités</Text>
+                    </View>
+                    <View style={styles.cont}>
+                        <FlatList
+                            keyExtractor={(item) => item.id.toString()}
+                            data={data} 
+                            renderItem={renderHistory} 
+                            style={{marginBottom: 20}}
+                        />
+                    </View>
+                </View>
             </View>
-            <View style={{marginTop:20}}>
-                <View style={{alignItems: "center"}}>
-                    <Text style={{fontSize: 25, margin: 10}}>Historique des activités</Text>
-                </View>
-                <View style={styles.cont}>
-                    <FlatList
-                        keyExtractor={(item) => item.id.toString()}
-                        data={data} 
-                        renderItem={renderHistory} 
-                        style={{marginBottom: 20}}
-                    />
-                </View>
+            <View style={{flex: 1}}>
+              <LottieView  source={require("../../assets/img/star.json")}  autoPlay />
             </View>
         </View>
-    )
+    )   
 }
 
 const styles = StyleSheet.create({

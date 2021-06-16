@@ -6,6 +6,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {useSelector, useDispatch} from 'react-redux';
 import { updateHistory } from "./../../Store/Actions/actions"
 
+
+
 export default function ReviewEditScreen({route, navigation}) {
     const dispatch = useDispatch();
     const {id, title} = route.params;
@@ -49,6 +51,8 @@ export default function ReviewEditScreen({route, navigation}) {
                     })
                 }
             </View>
+           
+           
         )
     }
     return(

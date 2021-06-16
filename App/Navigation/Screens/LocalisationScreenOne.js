@@ -17,7 +17,7 @@ export default function LocalisationScreenOne({navigation}) {
   return (
     <View style={styles.container}>
       <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', flex : 3, }}>
-        <Text style={{fontSize: 42, color: Color.second, }}>Bienvenue !</Text>
+        <Text style={{fontSize: 42, color: Color.second,fontWeight:'bold' }}>Bienvenue !</Text>
       </View>
       <View style={{flex: 7, marginBottom: 70}}>
         <LottieView  source={require("../../assets/img/boussole.json")}  autoPlay />
@@ -27,7 +27,7 @@ export default function LocalisationScreenOne({navigation}) {
            <Text style={{fontSize : 18, textAlign:'center'}}>Nous avons besoin de te localiser afin de te proposer les meilleurs ambiances autour de chez toi.</Text>
          </View>
          <TouchableOpacity onPress={move} style={{borderRadius: 40, marginHorizontal: 50,  backgroundColor: Color.second}} >
-           <Text style={{fontSize: 30,color: 'white',  textAlign:'center'}}>Continuer</Text>
+           <Text style={{fontSize: 30,color: 'white', fontWeight:'bold',  textAlign:'center'}}>Continuer</Text>
          </TouchableOpacity>
            <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 50, marginBottom: 50}}>
              <Text style={styles.nom}>Trend|by</Text>
