@@ -15,7 +15,7 @@ export default function SignScreen({navigation}) {
       {
         if (res) {
           dispatch(loginUser({id: res.id, pseudo: res.pseudo}))
-          navigation.navigate('Mood Screen')
+          navigation.navigate('Localisation Screen One')
         }
         else
           alert("login failed.")
@@ -23,7 +23,7 @@ export default function SignScreen({navigation}) {
   };
   const move = () => {
     dispatch(loginUser({id: 0, pseudo: "Invité"}))
-    navigation.navigate("Localisation Screen")
+    navigation.navigate("Localisation Screen One")
   }
   const moveSignup = () => {
     navigation.navigate('Register Screen')
@@ -34,18 +34,18 @@ export default function SignScreen({navigation}) {
       <View style={styles.upScreen}>
         <View style={styles.topNav}>
           <TouchableOpacity style={styles.registerContainer} onPress={moveSignup} >
-            <Text style={styles.register}>Register</Text>
+            <Text style={styles.register}>S'enregistrer</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.title}>Sign In</Text>
-        <Text style={styles.content}>We will give you the place you deserve for a drink. Ready to sign in and find the best place to drink ?</Text>
+        <Text style={styles.title}>Se connecter</Text>
+        <Text style={styles.content}>Nous allons vous conseiller les endroits idéaux pour vos sorties. Êtes-vous prêts à vivre l'expérience Trend|by ?</Text>
       </View>
       <View style={styles.downScreen}>
         <View style={styles.inputContainer}>
           <View style={styles.inputView} >
             <TextInput  
               style={styles.inputText}
-              placeholder="Username..." 
+              placeholder="Nom d'utilisateur..." 
               placeholderTextColor="grey"
               onChangeText={email => setText(email)}
               // value={state.email}
@@ -55,37 +55,37 @@ export default function SignScreen({navigation}) {
             <TextInput  
               secureTextEntry
               style={styles.inputText}
-              placeholder="Password..." 
+              placeholder="Mot de passe..." 
               placeholderTextColor="grey"
               onChangeText={password => setPass(password)}
               />
           </View>
         </View>
         <View style={styles.viewForgot}>
-          <Text style={styles.forgot}>forgot password ?</Text>
+          <Text style={styles.forgot}>Mot de passe oublié ?</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={login} >
             <View  style={styles.signin}>
-              <Text style={styles.signinText} >Sign In</Text>
+              <Text style={styles.signinText} >Se connecter</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={move} >
             <View  style={styles.logGoogle}>
               <Image style={styles.logoGoogle} source={require('../../assets/logo_google.png')}/>
               <Text style={styles.blank}></Text>
-              <Text style={styles.logTextGoogle} >Continue with Google</Text>
+              <Text style={styles.logTextGoogle} >Continuer avec Google</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={move} >
             <View  style={styles.logFacebook}>
               <Image style={styles.logoFacebook} source={require('../../assets/logo_facebook.png')}/>
               <Text style={styles.blank}></Text>
-              <Text style={styles.logTextFacebook}> Continue with Facebook</Text>
+              <Text style={styles.logTextFacebook}> Continuer avec Facebook</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={move}>
-            <Text style={styles.loginTextBis}>Continue as Guest</Text>
+            <Text style={styles.loginTextBis}>Continue en tant qu'invité</Text>
           </TouchableOpacity>
         </View>
       </View>

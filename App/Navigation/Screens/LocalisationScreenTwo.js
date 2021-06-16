@@ -9,7 +9,7 @@ import {localisation} from '../../Store/Actions/actions';
 
 // {latitude : 48.862725, longitude: 2.287592} 
 
-export default function LocalisationScreen({navigation}) {
+export default function LocalisationScreenTwo({navigation}) {
     
   const dispatch = useDispatch();
 
@@ -37,25 +37,27 @@ export default function LocalisationScreen({navigation}) {
 
   return (
     <View style={styles.container}>
-      <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', flex : 6, }}>
-        <Text style={{fontSize: 42, color: Color.second, }}>Bienvenue !</Text>
-      </View>
-      <View style={styles.slogan}>
-        <Text style={{fontSize : 18}}>Nous avons besoin de te localiser afin de te proposer les meilleurs ambiances autour de chez toi.</Text>
-      </View>
-      <View style={styles.connection}>
-        <TouchableOpacity onPress={setLocalisation} >
-          <View  style={styles.log}>
-            <Text style={styles.logText}>Me localiser</Text>
+      <View style= {{  flex : 10, alignContent:'center', justifyContent:'center', alignItems:'center', }}>
+          <View style={{flex: 3 }}>
+            <Text style={{fontSize: 33, color: Color.second, }}>Choix de localisation</Text>
           </View>
-        </TouchableOpacity>
+          <View style={styles.slogan}>
+            <Text style={{fontSize : 18}}>Nous avons besoin de te localiser afin de te proposer les meilleurs ambiances autour de chez toi.</Text>
+          </View>
+          <View style={{flex: 4}}>
+            <TouchableOpacity onPress={setLocalisation} >
+              <View  style={styles.log}>
+                <Text style={styles.logText}>Me localiser</Text>
+              </View>
+            </TouchableOpacity>
+        </View>
         <TouchableOpacity onPress={move} >
           <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 80}} >
             <Text style={styles.default}>Prendre Lyon comme position actuelle</Text>
           </View>
         </TouchableOpacity>
-        <View style={{alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 50}}>
-          <Text style={styles.nom}>Trendby</Text>
+        <View style={{flex : 6 , alignContent:'center', justifyContent:'center', alignItems:'center', marginTop: 100, marginBottom: 50}}>
+          <Text style={styles.nom}>Trend|by</Text>
         </View>
         </View>
     </View>
@@ -77,12 +79,9 @@ const styles = StyleSheet.create({
   },
   container:{
     flex:1,
-    marginHorizontal:50,
   },
   slogan:{
-    flex:2,
-    marginHorizontal:20,
-    marginBottom: 100,
+    flex: 3,
   },
 
   logText:{
@@ -100,8 +99,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width:300,
     height: 60,
-    marginVertical: 20,
-    marginBottom: 60,
   },
 
 });

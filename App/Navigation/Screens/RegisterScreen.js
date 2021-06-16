@@ -23,7 +23,7 @@ export default function RegisterScreen({navigation}) {
   };
   const move = () => {
     dispatch(loginUser({id: 0, pseudo: "Invité"}))
-    navigation.navigate("Localisation Screen")
+    navigation.navigate("Localisation Screen One")
   }
   const moveLogin = () => {
     navigation.navigate('Sign Screen')
@@ -34,11 +34,11 @@ export default function RegisterScreen({navigation}) {
       <View style={styles.upScreen}>
         <View style={styles.topNav}>
           <TouchableOpacity style={styles.registerContainer} onPress={moveLogin} >
-            <Text style={styles.register}>Sign In</Text>
+            <Text style={styles.register}>Se connecter</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.title}>Sign Up</Text>
-        <Text style={styles.content}>Ready to register to our Application and find the best place to drink ?</Text>
+        <Text style={styles.title}>S'enregistrer</Text>
+        <Text style={styles.content}>Prêt à vous inscrire à notre application et trouver le meilleur endroit pour votre sortie ?</Text>
       </View>
       <View style={styles.downScreen}>
         <View style={styles.inputContainer}>
@@ -63,11 +63,11 @@ export default function RegisterScreen({navigation}) {
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={register} >
             <View  style={styles.signin}>
-              <Text style={styles.signinText} >Sign Up</Text>
+              <Text style={styles.signinText} >S'enregistrer</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={move}>
-            <Text style={styles.loginTextBis}>Continue as Guest</Text>
+            <Text style={styles.loginTextBis}>Continuer en tant qu'invité</Text>
           </TouchableOpacity>
         </View>
       </View>

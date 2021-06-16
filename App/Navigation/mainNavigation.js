@@ -11,7 +11,8 @@ import MapsScreen from './Screens/MapsScreen';
 import MoodScreen from './Screens/MoodScreen';
 import SwipeScreen from './Screens/SwipeScreen';
 import ProfilScreen from './Screens/ProfilScreen';
-import LocalisationScreen from './Screens/LocalisationScreen';
+import LocalisationScreenOne from './Screens/LocalisationScreenOne';
+import LocalisationScreenTwo from './Screens/LocalisationScreenTwo';
 import Color from '../Constant/Color';
 import SignScreen from'./Screens/SignScreen';
 import HistoryScreen from'./Screens/HistoryScreen';
@@ -72,9 +73,15 @@ const MainNavigator = function mainNavigator ({navigation}){
           />  
 
           <Stack.Screen
-          name="Localisation Screen"
-          component={LocalisationScreen}
+          name="Localisation Screen One"
+          component={LocalisationScreenOne}
           />
+
+          <Stack.Screen
+          name="Localisation Screen Two"
+          component={LocalisationScreenTwo}
+          />
+
 
           <Stack.Screen
           name="History Screen"
