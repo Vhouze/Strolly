@@ -33,7 +33,7 @@ const MainNavigator = function mainNavigator ({navigation}){
   return (
   
     <NavigationContainer>
-          <Stack.Navigator initialRouteName="Login Screen"
+          <Stack.Navigator initialRouteName="Event Screen"
           screenOptions={{
             headerShown: false
           }}>

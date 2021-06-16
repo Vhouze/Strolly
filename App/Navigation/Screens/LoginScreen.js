@@ -66,18 +66,18 @@ export default function LoginScreen({navigation}) {
         <Text style={styles.logofont}>Trend|by</Text>
       </View>
       <View style={styles.lowScreen}>
-        <Text style={styles.welcome}>Welcome</Text>
+        <Text style={styles.welcome}>Bienvenue</Text>
         <Text style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
         <View style={styles.buttons}>
           <TouchableOpacity onPress={moveLogin} >
             <View  style={styles.signin}>
-              <Text style={styles.signinText} >Sign In</Text>
+              <Text style={styles.signinText} >Se connecter</Text>
             </View>
           </TouchableOpacity>
           <Text style={styles.div}></Text>
           <TouchableOpacity onPress={moveSignup} >
             <View  style={styles.signup}>
-              <Text style={styles.signupText} >Sign Up</Text>
+              <Text style={styles.signupText} >S'inscrire</Text>
             </View>
           </TouchableOpacity>
         </View>
