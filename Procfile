@@ -1,3 +1,3 @@
 web: cd App
-web: npm install -D expo-cli
-web: expo start --web
+npm install -D expo-cli
+expo start --web
