@@ -1,0 +1,3 @@
+build:
+  docker:
+    web: ./API_DB/Dockerfile.web
