@@ -1,2 +1,2 @@
-cd App
-expo start --android
+web: cd App
+web: expo start --android
