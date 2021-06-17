@@ -1,1 +1,1 @@
-web: sudo docker-compose up --build
+web: cd API_DB && docker-compose up --build
