@@ -1,1 +1,1 @@
-web: docker-compose up --build
+web: sudo docker-compose up --build
