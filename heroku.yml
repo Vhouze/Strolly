@@ -1,3 +1,0 @@
-build:
-  docker:
-    web: ./API_DB/Docker-compose.yml

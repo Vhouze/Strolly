@@ -1,10 +1,12 @@
 var mysql = require('mysql');
 
-var mysqlHost = process.env.MYSQL_HOST || 'db';
-var mysqlPort = process.env.MYSQL_PORT || '3308';
-var mysqlUser =process.env.MYSQL_USER || 'admin';
-var mysqlPass = process.env.MYSQL_PASS || 'admin';
-var mysqlDB = process.env.MYSQL_DB || 'strolly';
+var mysqlHost = process.env.MYSQL_HOST || 'eu-cdbr-west-01.cleardb.com';
+var mysqlPort = process.env.MYSQL_PORT || '3306';
+var mysqlUser =process.env.MYSQL_USER || 'bbaf924bbece0a';
+var mysqlPass = process.env.MYSQL_PASS || '9d618fb7';
+var mysqlDB = process.env.MYSQL_DB || 'heroku_9d04589f58e21d7';
+
+var add = `mysql://bbaf924bbece0a:9d618fb7@eu-cdbr-west-01.cleardb.com/heroku_9d04589f58e21d7?reconnect=true`;
 
 var connection_options = {
   host: mysqlHost,
