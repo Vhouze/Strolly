@@ -8,6 +8,8 @@ var registerController = require("./controllers/register")
 var tokenController = require("./controllers/token")
 var datasetController = require("./controllers/dataset")
 
+const PORT = 3001;
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser());
@@ -34,6 +36,6 @@ app.post('/GetShops', function(req, res) {
 });
 
 
-app.listen(8082, function() {
-    console.log('server listening on 8082');
+app.listen(process.env.PORT || PORT , function() {
+    console.log(`server listening on ${PORT}`);
 });
