@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 
 export async function Strolly_postRegister(pseudo, password) {
-    const url= 'http://10.0.2.2:8082/register'
+    const url= 'https://trendby.herokuapp.com/register'
 
     return(
         axios.post(url,
@@ -17,7 +17,7 @@ export async function Strolly_postRegister(pseudo, password) {
 }
 
 export async function Strolly_postLogin(pseudo, password) {
-    const url= 'http://10.0.2.2:8082/login'
+    const url= 'https://trendby.herokuapp.com/login'
 
     return(
         axios.post(url,

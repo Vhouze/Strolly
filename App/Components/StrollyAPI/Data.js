@@ -17,7 +17,7 @@ moods:
 */
 
 export async function GetShops(lat = 0.00, lng = 0.00, radius = 0, mood = "") {
-    const url= 'http://10.0.2.2:8082/getShops'
+    const url= 'https://trendby.herokuapp.com/getShops'
     var parameters = {};
     var moodByTitle = {"Bol d'air": "bolDair", "Cosy": "cosy", "Afterwork": "afterwork", "Let's play": "letsPlay", "Dance": "letsDance", "WHAT THE BARZ": "whatTheBarz"};
     let finalMood = mood;
