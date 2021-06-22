@@ -1,1 +1,1 @@
-web: cd API_DB/ && node main.js
+web: cd API_DB/ && npm install && node main.js
