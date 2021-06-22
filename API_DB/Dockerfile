@@ -9,4 +9,4 @@ COPY . /app/
 
 CMD [ "node", "main.js" ]
 
-EXPOSE 8082
+EXPOSE 3001
