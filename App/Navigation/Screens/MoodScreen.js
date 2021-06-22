@@ -1,4 +1,4 @@
-import { View, Text, Button,StyleSheet, FlatList, TouchableOpacity, Platform, StatusBar } from 'react-native';
+import {ImageBackground ,  View, Text, Button,StyleSheet, FlatList, TouchableOpacity, Platform, StatusBar } from 'react-native';
 import React , { useState }from 'react';
 import Color from '../../Constant/Color';
 import MoodList from '../../Components/Mood/MoodList';
@@ -34,13 +34,15 @@ const zoomOut = {
  
     return (
 
-      <View style={{ flex: 1, backgroundColor: Color.first}}>
-        <View style={{ flex: 1, backgroundColor: "white"}}>
+        
+      <View style={{ flex: 1, }}>
+         <ImageBackground source={require('../../assets/img/background.jpg')} style={styles.image}>
+        <View style={{ flex: 1}}>
           <StatusBar barStyle = 'dark-content' />
           <View style={{flex: 3, marginTop: 70, marginLeft: 40}}>
             <View style={{flexDirection:'row', marginBottom:10}}>
               <Text style={{ fontSize: 30}}> Hello </Text>
-              <Text style={{color: Color.first,  fontSize: 30}}> {user.pseudo} </Text>
+              <Text style={{color: Color.second,fontWeight:'bold',  fontSize: 30}}> {user.pseudo} </Text>
               <Text style={{ fontSize: 30}}> ! </Text>
           </View>
           <View style={{flex: 1}}>
@@ -61,9 +63,10 @@ const zoomOut = {
         numColumns={2} /> 
       
         </Animatable.View>
-      
       </View>
+      </ImageBackground>
       </View>
+    
     );
   }
 
@@ -71,5 +74,10 @@ const zoomOut = {
     fadingContainer: {
       padding: 20,
       backgroundColor: "powderblue"
+    },
+    image: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center"
     },
   });

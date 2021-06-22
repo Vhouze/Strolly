@@ -76,6 +76,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         justifyContent: 'center',
         overflow: "hidden", 
+        borderWidth:4,
+    
+
+        borderColor: Color.second,
     },
 
     gridItem: {
@@ -88,8 +92,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex:1,
-
-        padding: 15,
+        padding: 10,
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
         

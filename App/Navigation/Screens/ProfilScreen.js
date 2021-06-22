@@ -52,6 +52,7 @@ const favMoodList = ({item})=>{
           </View>
           <View style={{flex: 1}}>
             <View style={styles.cont}>
+            <View style={{borderBottomWidth: 4,  borderColor: Color.second,}}>
             <View style={styles.favMoood}>
               <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}>Tes moods favoris </Text>
               <FlatList
@@ -65,10 +66,13 @@ const favMoodList = ({item})=>{
               />
             </View>
             </View>
-            <View style={{backgroundColor:'white', marginTop: 25, paddingBottom: 25 , marginHorizontal:15, borderTopRightRadius: 42,  borderTopLeftRadius: 42,  borderWidth: 4, borderColor: Color.second }}>
+            </View>
+            <View style={{borderBottomWidth: 4,  borderColor: Color.second,}}>
+            <View style={{backgroundColor:'white', marginTop: 25, paddingBottom: 25 , marginHorizontal:15, borderTopRightRadius: 42,  borderTopLeftRadius: 42, borderRightWidth: 4, borderRightWidth: 4,borderTopWidth: 4, borderLeftWidth: 4, borderColor: Color.second }}>
               <Text style={{fontSize: 20, marginVertical: 15, marginLeft: 20}}> Tes lieux favoris</Text>
               <View style={{marginLeft: 20, backgroundColor: Color.second, borderRadius: 20, alignContent: 'center', alignItems: 'center', width: 110, height: 25, justifyContent:'center', marginHorizontal: 7}}>
               <Text style={{color:'white', fontSize:17, fontWeight:'bold'}}>Cosy café</Text>
+            </View>
             </View>
           </View>
           </View>
@@ -91,7 +95,9 @@ const styles = StyleSheet.create({
      backgroundColor:'white',
      borderTopRightRadius: 42, 
       borderTopLeftRadius: 42, 
-      borderWidth: 4, 
+      borderTopWidth: 4, 
+      borderLeftWidth: 4,
+      borderRightWidth: 4,
       borderColor: Color.second,
       paddingBottom: 14 ,
       marginHorizontal: 15

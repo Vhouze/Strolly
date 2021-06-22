@@ -66,8 +66,8 @@ export default function LoginScreen({navigation}) {
         <Text style={styles.logofont}>Trend|by</Text>
       </View>
       <View style={styles.lowScreen}>
-        <Text style={styles.welcome}>Bienvenue</Text>
-        <Text style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</Text>
+        <Text style={styles.welcome}>Bonjour</Text>
+        <Text style={styles.content}>Merci d'avoir téléchargé Trend|by ! Pour que te conseiller des sorties sur mesure, nous avons besoin de savoir qui tu es.  </Text>
         <View style={styles.buttons}>
           <TouchableOpacity onPress={moveLogin} >
             <View  style={styles.signin}>
