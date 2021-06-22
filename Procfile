@@ -1,1 +1,1 @@
-web: node API_DB/main.js
+web: cd API_DB/ && node main.js
