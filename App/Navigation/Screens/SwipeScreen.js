@@ -37,7 +37,6 @@ export default function SwipeScreen({navigation}) {
     useEffect(()=> {
     },[index])
 
-
     var attributeClean = data[index].attributes.split(" · ")
     attributeClean=  attributeClean.join(',')
     attributeClean = attributeClean.split('·  ')

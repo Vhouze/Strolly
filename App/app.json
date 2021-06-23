@@ -17,6 +17,7 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.trendby.Mvp",
       "supportsTablet": true
     },
     "android": {
@@ -24,7 +25,7 @@
         "foregroundImage": "./assets/adaptive-icon2.png",
         "backgroundColor": "#EBBE14"
       },
-      "package": "com.Mvp"
+      "package": "com.trendby.Mvp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

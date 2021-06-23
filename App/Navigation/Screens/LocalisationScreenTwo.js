@@ -28,8 +28,6 @@ export default function LocalisationScreenTwo({navigation}) {
 
       let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High});
       dispatch(localisation(location.coords));
-      console.log(location)
-      console.log(location.coords)
     })();
      
      navigation.navigate('Mood Screen') 
@@ -44,7 +42,7 @@ export default function LocalisationScreenTwo({navigation}) {
             <Text style={{fontSize: 33, color: Color.second, fontWeight:'bold',borderBottomWidth: 4, borderColor: Color.second  }}>Choix de la localisation</Text>
           </View>
           <View style={styles.slogan}>
-            <Text style={{fontSize : 20, textAlign:'center'}}>Nous te conseillons de choisir la localisaiton personnalisée pour une expérience optimale</Text>
+            <Text style={{fontSize : 20, textAlign:'center'}}>Nous te conseillons de choisir la localisation personnalisée pour une expérience optimale</Text>
           </View>
           <View style={{flex: 4}}>
             <TouchableOpacity onPress={setLocalisation} >

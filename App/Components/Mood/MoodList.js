@@ -12,6 +12,10 @@ const MoodList = function moodList ({navigation, id, title , image}){
     const getData = (latitude,longitude,rayon,mood) => {
         return (GetShops(latitude,longitude,rayon,mood).then(res => 
           {if (res) {
+                if (Object.keys(res).length == 0) {
+                    alert("Pas de lieux correspondant à ce mood près de chez vous pour l'instant. Soon!")
+                    return "none";
+                }
                 dispatch(dataBack(res))
                 return "ok";
             }
@@ -37,9 +41,9 @@ const MoodList = function moodList ({navigation, id, title , image}){
         dispatch(moodPick(title));
 
         getData(latitude,longitude,rayon,title).then((res) => {
-            if (res != null)
+            if (res != null && res == "ok")
                 navigation.navigate(('Swipe Screen'),{title : title})
-            else
+            else if (res == null)
                 alert("Error: loading failed.")
         });
     };
