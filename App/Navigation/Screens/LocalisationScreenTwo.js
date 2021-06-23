@@ -26,8 +26,10 @@ export default function LocalisationScreenTwo({navigation}) {
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
-      dispatch(localisation(location));
+      let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High});
+      dispatch(localisation(location.coords));
+      console.log(location)
+      console.log(location.coords)
     })();
      
      navigation.navigate('Mood Screen') 
