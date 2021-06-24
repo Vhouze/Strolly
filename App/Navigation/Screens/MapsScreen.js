@@ -88,68 +88,6 @@ function Map({navigation}) {
          <MaterialCommunityIcons name="arrow-left-circle" color={Color.first} size= {37} /> 
        </TouchableOpacity>
         <View style={styles.containerMap}>
-            <MapView
-                style={styles.map}
-                initialRegion={{
-                latitude: localisation.latitude,
-                longitude: localisation.longitude,
-                latitudeDelta: 0.0222,
-                longitudeDelta: 0.0221,
-                }}
-                showsUserLocation={true}
-                showsBuildings = {true}
-                >
-                <Marker
-                key= {dataMap[0].id}
-                coordinate=
-                {{latitude: parseFloat(data.latitude),
-                   longitude:  parseFloat(data.longitude)}}
-                title={data.title}
-                pinColor = {Color.first}
-                >
-                   </Marker>
-                <Marker
-                key= {5267}
-                coordinate=
-                {{latitude:localisation.latitude,
-                   longitude:  localisation.longitude}}
-                title="your position"
-                pinColor = {Color.second}
-
-                >
-                 
-    
-                </Marker>
-                 
-
-              <MapViewDirections
-                origin={{latitude: localisation.latitude, longitude:  localisation.longitude}}
-                destination={{latitude: parseFloat(data.latitude), longitude:  parseFloat(data.longitude)}}
-                apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
-                mode="WALKING"
-                
-                strokeColor= {Color.first}
-                strokeWidth={6}
-               /// onStart={(params) => {
-               ///   console.log(`Started routing between "${params.origin}" and "${params.destination}"`);
-               /// }}
-                onReady={(result) => {
-                 setDistance(result.distance)
-                 setDuree(Math.trunc(result.duration))
-               
-                }}
-              />
-            </MapView>
-            </View>
-            <View style={{alignContent: 'center', marginBottom: 15,  alignItems: 'center', backgroundColor: Color.first, height: 28, borderRadius: 20, justifyContent:'center'}}>
-                <View style={{flexDirection : 'row'}}>
-                  <Text style={{alignItems:'center',marginRight: 10 ,fontSize: 18,fontWeight:'bold'}}>
-                  Distance: <Text style={{color: 'white', fontWeight:'bold',fontSize: 18,fontWeight:'bold'}}> {distance}  </Text>km
-                  </Text>
-                  <Text style={{marginLeft: 10,fontSize: 18,fontWeight: 'bold'}}>
-                  Durée: <Text style={{color: 'white' , fontWeight:'bold',fontSize: 18,}}>{duree} </Text> minutes
-                  </Text>
-                </View>
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}  showsHorizontalScrollIndicator={false}>
@@ -246,14 +184,14 @@ const styles = StyleSheet.create({
 
 
     screen:{
-      flex: 15,   
+      flex: 10,   
       backgroundColor: "white",
       paddingHorizontal: 18,
     
     },
 
     containerMap: {
-      flex:4, 
+      flex:0, 
       marginBottom: 25,  
       marginTop: 90,   
     },
