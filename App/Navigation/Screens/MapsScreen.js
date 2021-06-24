@@ -125,7 +125,7 @@ function Map({navigation}) {
               <MapViewDirections
                 origin={{latitude: localisation.latitude, longitude:  localisation.longitude}}
                 destination={{latitude: parseFloat(data.latitude), longitude:  parseFloat(data.longitude)}}
-                apikey={'AIzaSyA3b6kWKtzDr1O2qlDCIG0F7X3ctyS481o'}
+                apikey={'AIzaSyDl8O735TXKbX9LHugy7I47RKpLaMr9rQE'}
                 mode="WALKING"
                 
                 strokeColor= {Color.first}

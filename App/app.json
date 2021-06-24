@@ -25,7 +25,10 @@
         "foregroundImage": "./assets/adaptive-icon2.png",
         "backgroundColor": "#EBBE14"
       },
-      "package": "com.trendby.Mvp"
+      "package": "com.trendby.Mvp",
+      "config": {
+        "googleMaps": { "apiKey": "AIzaSyDl8O735TXKbX9LHugy7I47RKpLaMr9rQE" }   
+     }
     },
     "web": {
       "favicon": "./assets/favicon.png"
