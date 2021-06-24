@@ -164,6 +164,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignContent: 'center',
     marginHorizontal: 10,
+    paddingVertical: 5,
     borderWidth: 4,
     borderColor: Color.first,
     borderRadius: 30,
