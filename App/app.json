@@ -27,7 +27,7 @@
       },
       "package": "com.trendby.Mvp",
       "config": {
-        "googleMaps": { "apiKey": "AIzaSyDl8O735TXKbX9LHugy7I47RKpLaMr9rQE" }   
+        "googleMaps": { "apiKey": "PUT YOUR APIKEY HERE" }   
      }
     },
     "web": {
